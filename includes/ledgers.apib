@@ -1,0 +1,177 @@
+# Group Ledgers
+Group description
+
+## Ledger List [/ledgers/{?per_page,page,search,type,uid,start,end}]
+
++ Parameters
+
+	+ per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + type (string, optional) - The type of ledger.
+    + uid (number, optional) - Filter ledgers by user id.
+    + start (string, optional) - The start date of filtering ledgers.
+    + end (string, optional) - The end date of filtering ledgers.
+
+### List All Ledgers [GET]
+
+Fetches all available ledgers with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "ledger_id": 301,
+                    "chart_id": 101,
+                    "category_id": 201,
+                    "ledger_name": "301 - Chair",
+                    "chart_name": "101 - Asset",
+                    "ledger_code": 101,
+                    "ledger_shortcode": 'asset',
+                    "is_system": 0,
+                    "ledger_details": {
+                        "transaction_no": 501,
+                        "particulars": "Advanced",
+                        "debit": 100,
+                        "credit": 0,
+                    },
+                    "created_at": "2016-11-08 03:33:57",
+                    "updated_at": "2016-11-08 03:33:57",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/accounting/ledgers/301",
+                        "collection": "http://example.com/wp-json/erp/v1/accounting/ledgers"
+                    }
+                }
+            ]
+
+## Ledger List [/ledgers/]
+
+### Create A Ledger [POST]
+
+    Model (application/json)
+
+        {
+            "chart_id": 101,
+            "category_id": 201,
+            "ledger_name": "301 - Chair",
+            "chart_name": "101 - Asset",
+            "ledger_code": 101,
+            "ledger_shortcode": 'asset',
+            "is_system": 0,
+            "ledger_details": {
+                "transaction_no": 501,
+                "particulars": "Advanced",
+                "debit": 100,
+                "credit": 0,
+            },
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "ledger_id": 301,
+                "chart_id": 101,
+                "category_id": 201,
+                "ledger_name": "301 - Chair",
+                "chart_name": "101 - Asset",
+                "ledger_code": "101",
+                "ledger_shortcode": 'asset',
+                "is_system": 0,
+                "ledger_details": {
+                    "transaction_no": 501,
+                    "particulars": "Advanced",
+                    "debit": 100,
+                    "credit": 0,
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/ledgers/301",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/ledgers"
+                }
+            }
+
+
+## Manage Single Ledger [/ledgers/{id}]
+
++ Parameters
+	+ id (string) - ID of the ledger in the form of an string
+
+### Retrieve A Ledger [GET]
+
++ Response 200 (application/json)
+	+ Body
+
+			{
+                "ledger_id": 301,
+                "chart_id": 101,
+                "category_id": 201,
+                "ledger_name": "301 - Chair",
+                "chart_name": "101 - Asset",
+                "ledger_code": "101",
+                "ledger_shortcode": 'asset',
+                "is_system": 0,
+                "ledger_details": {
+                    "transaction_no": 501,
+                    "particulars": "Advanced",
+                    "debit": 100,
+                    "credit": 0,
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/ledgers/301",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/ledgers"
+                }
+            }
+
+
+### Update A Ledger [PUT]
+
+    Model (application/json)
+
+        {
+            "chart_id": 101,
+            "category_id": 201,
+            "ledger_name": "301 - Chair",
+            "chart_name": "101 - Asset",
+            "ledger_code": 101,
+            "ledger_shortcode": 'asset',
+            "is_system": 0,
+            "ledger_details": {
+                "transaction_no": 501,
+                "particulars": "Advanced",
+                "debit": 100,
+                "credit": 0,
+            },
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "ledger_id": 301,
+                "chart_id": 101,
+                "category_id": 201,
+                "ledger_name": "301 - Chair",
+                "chart_name": "101 - Asset",
+                "ledger_code": "101",
+                "ledger_shortcode": 'asset',
+                "is_system": 0,
+                "ledger_details": {
+                    "transaction_no": 501,
+                    "particulars": "Advanced",
+                    "debit": 100,
+                    "credit": 0,
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/ledgers/301",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/ledgers"
+                }
+            }

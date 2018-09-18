@@ -1,0 +1,172 @@
+# Group Journals
+Group description
+
+## Journal List [/journals/{?per_page,page,search,type,uid,start,end}]
+
++ Parameters
+
+	+ per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + type (string, optional) - The type of journal.
+    + uid (number, optional) - Filter journals by user id.
+    + start (string, optional) - The start date of filtering journals.
+    + end (string, optional) - The end date of filtering journals.
+
+### List All Journals [GET]
+
+Fetches all available journals with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "reference": "S8368",
+                    "summary": "Journal Details",
+                    "issue_date": "2016-11-22",
+                    "items": [
+                    {
+                        "id": 1,
+                        "debit": 100,
+                        "credit": 0,
+                        "ledger_id": 1,
+                        "ledger_name": "Accounts Receivable"
+                    },
+                    {
+                        "id": 2,
+                        "debit": 0,
+                        "credit": 100,
+                        "ledger_id": 24,
+                        "ledger_name": "Costs of Goods Sold"
+                    }
+                    ],
+                    "total": 200,
+                    "trans_total": 200,
+                    "created_by": {
+                    "ID": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                    },
+                    "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                    }
+                }
+            ]
+
+## Journal List [/journals/]
+
+### Create A Journal [POST]
+
+    Model (application/json)
+
+        {
+            "reference": "S8367",
+            "summary": "Journal Details Here",
+            "issue_date": "2016-11-22",
+            "items": [
+                {
+                    "debit": 100,
+                    "ledger_id": 1
+                },
+                {
+                    "credit": 100,
+                    "ledger_id": 24
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1,
+                "reference": "S8368",
+                "summary": "Journal Details",
+                "issue_date": "2016-11-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "debit": 100,
+                        "credit": 0,
+                        "ledger_id": 1,
+                        "ledger_name": "Accounts Receivable"
+                    },
+                    {
+                        "id": 2,
+                        "debit": 0,
+                        "credit": 100,
+                        "ledger_id": 24,
+                        "ledger_name": "Costs of Goods Sold"
+                    }
+                ],
+                "total": 200,
+                "trans_total": 200,
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                }
+            }
+
+
+## Manage Single Journal [/journals/{id}]
+
++ Parameters
+	+ id (string) - ID of the journal in the form of an string
+
+### Retrieve A Journal [GET]
+
++ Response 200 (application/json)
+	+ Body
+
+			{
+                "id": 1,
+                "reference": "S8368",
+                "summary": "Journal Details",
+                "issue_date": "2016-11-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "debit": 100,
+                        "credit": 0,
+                        "ledger_id": 1,
+                        "ledger_name": "Accounts Receivable"
+                    },
+                    {
+                        "id": 2,
+                        "debit": 0,
+                        "credit": 100,
+                        "ledger_id": 24,
+                        "ledger_name": "Costs of Goods Sold"
+                    }
+                ],
+                "total": 200,
+                "trans_total": 200,
+                "created_by": {
+                    "ID": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                }
+            }

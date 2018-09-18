@@ -1,0 +1,466 @@
+# Group Invoices
+Group description
+
+## Invoice List [/invoices/{?per_page,page,search,type,status,uid,start,end}]
+
++ Parameters
+
+	+ per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + type (string, optional) - The type of invoice.
+    + status (string, optional) - The status of invoice.
+    + uid (number, optional) - Filter invoices by user id.
+    + start (string, optional) - The start date of filtering invoices.
+    + end (string, optional) - The end date of filtering invoices.
+
+### List All Invoices [GET]
+
+Fetches all available invoices with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "invoice_id": 1,
+                    "voucher_no": 1,
+                    "customer_id": 1,
+                    "customer_name": "John Smith",
+                    "date": "2015-07-24",
+                    "due_date": "2015-07-24",
+                    "billing_address": {
+                        "address": "4581 Finch St.",
+                        "city": "Bayshore",
+                        "state": "CA",
+                        "post_code": "94326",
+                        "country": "USA"
+                    },
+                    "line_items": [
+                        {
+                            "product_id": "1",
+                            "product_name": "My Awesome Book",
+                            "product_details": "Book Details",
+                            "product_type": "product",
+                            "qty": 2,
+                            "unit_price": 200.0,
+                            "discount": 0,
+                            "tax": 20.0,
+                            "tax_percent": 10.0,
+                            "item_total": 400.0
+                        },
+                        {
+                            "product_id": "2",
+                            "product_name": "My Awesome Service",
+                            "product_details": "Service Details",
+                            "product_type": "service",
+                            "qty": 1,
+                            "unit_price": 100.0,
+                            "discount": 10.0,
+                            "tax": 10.0,
+                            "tax_percent": 10.0,
+                            "item_total": 100.0
+                        }
+                    ],
+                    "subtotal": 500.0,
+                    "total": 500.0,
+                    "discount": 10.0,
+                    "tax": 30.0,
+                    "invoice_type": "invoice",
+                    "status": "awaiting_payment",
+                    "attachments": [
+                        {
+                            'id': 1,
+                            'link' : "www.example.com/file1.pdf"
+                        },
+                        {
+                            'id': 2,
+                            'link' : "www.example.com/file2.pdf"
+                        }
+                    ],
+                    "particulars": "dummy pariculars",
+                    "transaction_by": {
+                        "ID": 1,
+                        "user_nicename": "john",
+                        "user_email": "mail@gmail.com",
+                        "user_url": "",
+                        "display_name": "John Wick",
+                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                        "_links": {
+                            "self": "http://example.com/wp-json/erp/v1/users/1",
+                            "collection": "http://example.com/wp-json/erp/v1/users"
+                        }
+                    },
+                    "created_at": "2016-11-08 03:33:57",
+                    "updated_at": "2016-11-08 03:33:57",
+                    "_links": {
+                        "self": "www.example.com/wp-json/erp/v1/accounting/invoices/1",
+                        "collection": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                    }
+                }
+            ]
+
+## Invoice List [/invoices]
+
+### Create A Invoice [POST]
+
+    Model (application/json)
+
+        {
+            "customer_id": 1,
+            "date": "2015-07-24",
+            "due_date": "2015-07-24",
+            "billing_address": {
+                "address": "4581 Finch St.",
+                "city": "Bayshore",
+                "state": "CA",
+                "post_code": "94326",
+                "country": "USA"
+            },
+            "line_items": [
+                {
+                    "product_id": "1",
+                    "product_type": "product",
+                    "qty": 2,
+                    "unit_price": 200.0,
+                    "discount": 0,
+                    "tax": 20.0,
+                    "tax_percent": 10.0,
+                    "item_total": 400.0
+                },
+                {
+                    "product_id": "2",
+                    "product_type": "service",
+                    "qty": 1,
+                    "unit_price": 100.0,
+                    "discount": 10.0,
+                    "tax": 10.0,
+                    "tax_percent": 10.0,
+                    "item_total": 100.0
+                }
+            ],
+            "subtotal": 500.0,
+            "total": 500.0,
+            "invoice_type": "invoice",
+            "status": "awaiting_payment",
+            "attachments": [
+                {
+                    'id': 1,
+                    'file' : "file1.pdf"
+                },
+                {
+                    'id': 2,
+                    'file' : "file2.pdf"
+                }
+            ],
+            "transaction_by": 1,
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "invoice_id": 1,
+                "voucher_no": 1,
+                "customer_id": 1,
+                "customer_name": "John Smith",
+                "date": "2015-07-24",
+                "due_date": "2015-07-24",
+                "billing_address": {
+                    "address": "4581 Finch St.",
+                    "city": "Bayshore",
+                    "state": "CA",
+                    "post_code": "94326",
+                    "country": "USA"
+                },
+                "line_items": [
+                    {
+                        "product_id": "1",
+                        "product_name": "My Awesome Book",
+                        "product_details": "Book Details",
+                        "product_type": "product",
+                        "qty": 2,
+                        "unit_price": 200.0,
+                        "discount": 0,
+                        "tax": 20.0,
+                        "tax_percent": 10.0,
+                        "item_total": 400.0
+                    },
+                    {
+                        "product_id": "2",
+                        "product_name": "My Awesome Service",
+                        "product_details": "Service Details",
+                        "product_type": "service",
+                        "qty": 1,
+                        "unit_price": 100.0,
+                        "discount": 10.0,
+                        "tax": 10.0,
+                        "tax_percent": 10.0,
+                        "item_total": 100.0
+                    }
+                ],
+                "subtotal": 500.0,
+                "total": 500.0,
+                "discount": 10.0,
+                "tax": 30.0,
+                "invoice_type": "invoice",
+                "status": "awaiting_payment",
+                "attachments": [
+                    {
+                        'id': 1,
+                        'link' : "www.example.com/file1.pdf"
+                    },
+                    {
+                        'id': 2,
+                        'link' : "www.example.com/file2.pdf"
+                    }
+                ],
+                "particulars": "dummy pariculars",
+                "transaction_by": {
+                    "ID": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "www.example.com/wp-json/erp/v1/accounting/invoices/1",
+                    "collection": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                }
+            }
+
+
+## Manage Single Invoice [/invoices/{id}]
+
++ Parameters
+	+ id (string) - ID of the invoice in the form of an string
+
+### Retrieve An Invoice [GET]
+
++ Response 200 (application/json)
+	+ Body
+
+			{
+                "invoice_id": 1,
+                "voucher_no": 1,
+                "customer_id": 1,
+                "customer_name": "John Smith",
+                "date": "2015-07-24",
+                "due_date": "2015-07-24",
+                "billing_address": {
+                    "address": "4581 Finch St.",
+                    "city": "Bayshore",
+                    "state": "CA",
+                    "post_code": "94326",
+                    "country": "USA"
+                },
+                "line_items": [
+                    {
+                        "product_id": "1",
+                        "product_name": "My Awesome Book",
+                        "product_details": "Book Details",
+                        "product_type": "product",
+                        "qty": 2,
+                        "unit_price": 200.0,
+                        "discount": 0,
+                        "tax": 20.0,
+                        "tax_percent": 10.0,
+                        "item_total": 400.0
+                    },
+                    {
+                        "product_id": "2",
+                        "product_name": "My Awesome Service",
+                        "product_details": "Service Details",
+                        "product_type": "service",
+                        "qty": 1,
+                        "unit_price": 100.0,
+                        "discount": 10.0,
+                        "tax": 10.0,
+                        "tax_percent": 10.0,
+                        "item_total": 100.0
+                    }
+                ],
+                "subtotal": 500.0,
+                "total": 500.0,
+                "discount": 10.0,
+                "tax": 30.0,
+                "invoice_type": "invoice",
+                "status": "awaiting_payment",
+                "attachments": [
+                    {
+                        'id': 1,
+                        'link' : "www.example.com/file1.pdf"
+                    },
+                    {
+                        'id': 2,
+                        'link' : "www.example.com/file2.pdf"
+                    }
+                ],
+                "particulars": "dummy pariculars",
+                "transaction_by": {
+                    "ID": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "www.example.com/wp-json/erp/v1/accounting/invoices/1",
+                    "collection": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                }
+            }
+
+### Update An Invoice [PUT]
+
+    Model (application/json)
+
+        {
+            "customer_id": 1,
+            "date": "2015-07-24",
+            "due_date": "2015-07-24",
+            "billing_address": {
+                "address": "4581 Finch St.",
+                "city": "Bayshore",
+                "state": "CA",
+                "post_code": "94326",
+                "country": "USA"
+            },
+            "line_items": [
+                {
+                    "product_id": "1",
+                    "product_type": "product",
+                    "qty": 2,
+                    "unit_price": 200.0,
+                    "discount": 0,
+                    "tax": 20.0,
+                    "tax_percent": 10.0,
+                    "item_total": 400.0
+                },
+                {
+                    "product_id": "2",
+                    "product_type": "service",
+                    "qty": 1,
+                    "unit_price": 100.0,
+                    "discount": 10.0,
+                    "tax": 10.0,
+                    "tax_percent": 10.0,
+                    "item_total": 100.0
+                }
+            ],
+            "subtotal": 500.0,
+            "total": 500.0,
+            "invoice_type": "invoice",
+            "status": "paid",
+            "attachments": [
+                {
+                    'id': 1,
+                    'file' : "file1.pdf"
+                },
+                {
+                    'id': 2,
+                    'file' : "file2.pdf"
+                }
+            ],
+            "transaction_by": 1,
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "invoice_id": 1,
+                "voucher_no": 1,
+                "customer_id": 1,
+                "customer_name": "John Smith",
+                "date": "2015-07-24",
+                "due_date": "2015-07-24",
+                "billing_address": {
+                    "address": "4581 Finch St.",
+                    "city": "Bayshore",
+                    "state": "CA",
+                    "post_code": "94326",
+                    "country": "USA"
+                },
+                "line_items": [
+                    {
+                        "product_id": "1",
+                        "product_name": "My Awesome Book",
+                        "product_details": "Book Details",
+                        "product_type": "product",
+                        "qty": 2,
+                        "unit_price": 200.0,
+                        "discount": 0,
+                        "tax": 20.0,
+                        "tax_percent": 10.0,
+                        "item_total": 400.0
+                    },
+                    {
+                        "product_id": "2",
+                        "product_name": "My Awesome Service",
+                        "product_details": "Service Details",
+                        "product_type": "service",
+                        "qty": 1,
+                        "unit_price": 100.0,
+                        "discount": 10.0,
+                        "tax": 10.0,
+                        "tax_percent": 10.0,
+                        "item_total": 100.0
+                    }
+                ],
+                "subtotal": 500.0,
+                "total": 500.0,
+                "discount": 10.0,
+                "tax": 30.0,
+                "invoice_type": "invoice",
+                "status": "paid",
+                "attachments": [
+                    {
+                        'id': 1,
+                        'link' : "www.example.com/file1.pdf"
+                    },
+                    {
+                        'id': 2,
+                        'link' : "www.example.com/file2.pdf"
+                    }
+                ],
+                "particulars": "dummy pariculars",
+                "transaction_by": {
+                    "ID": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "created_at": "2016-11-08 03:33:57",
+                "updated_at": "2016-11-08 03:33:57",
+                "_links": {
+                    "self": "www.example.com/wp-json/erp/v1/accounting/invoices/1",
+                    "collection": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                }
+            }
+
+### Delete An Invoice [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)

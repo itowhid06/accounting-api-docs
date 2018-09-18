@@ -1,0 +1,176 @@
+# Group Reports
+Group description
+
+## Trial Balance [/reports/trial-balance]
+Trial Balance Report
+
+### Show All Trial Balance [GET]
+
+Fetches Trial Balance Report
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "assets": {
+                    "7": {
+                        "id": 7,
+                        "code": 90,
+                        "name": "Petty Cash",
+                        "debit": 102,
+                        "credit": 0
+                    },
+                    "9": {
+                        "id": 62,
+                        "code": 92,
+                        "name": "Savings Account",
+                        "debit": 0,
+                        "credit": 712
+                    }
+                },
+                "liabilities": {
+                        "17": {
+                        "id": 73,
+                        "code": 488,
+                        "name": "Govt. Tax Payable",
+                        "debit": 0,
+                        "credit": 2
+                    }
+                },
+                "expenses": {
+                    "1": {
+                        "id": 24,
+                        "code": 500,
+                        "name": "Costs of Goods Sold",
+                        "debit": 700,
+                        "credit": 0
+                    },
+                    "34": {
+                        "id": 72,
+                        "code": 845,
+                        "name": "Govt. Tax Receivable",
+                        "debit": 10,
+                        "credit": 0
+                    },
+                    "36": {
+                        "id": 74,
+                        "code": 574,
+                        "name": "Govt. Tax Receivable",
+                        "debit": 2,
+                        "credit": 0
+                    }
+                },
+                "income": {
+                    "1": {
+                        "id": 54,
+                        "code": 400,
+                        "name": "Sales",
+                        "debit": 0,
+                        "credit": 100
+                    }
+                },
+                "equity": [],
+                "debit_total": 814,
+                "credit_total": 814
+            }
+
+            
+## Income Statement [/reports/income-statements]
+Income Statement Report
+
+### Show All Income Statement [GET]
+
+Fetches Income Statement Report
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "revenue": 102,
+                "cost_of_goods_sold": 700,
+                "gross_income": 0,
+                "overhead": 0,
+                "operating_income": 0,
+                "tax": 14,
+                "net_income": 0
+            }
+
+
+## Sales Tax [/reports/sales-taxes]
+Sales Tax Report
+
+### Show All Sales Tax [GET]
+
+Fetches Sales Tax Report
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "tax": "Govt. Tax",
+                    "tax_payable": {
+                        "transaction_sub_total": "100.00",
+                        "tax_amount": "2.00"
+                    },
+                    "tax_receivable": {
+                        "transaction_sub_total": "500.00",
+                        "tax_amount": "10.00"
+                    },
+                    "net_tax": "(8.00)"
+                },
+                {
+                    "tax": "Govt. Tax",
+                    "tax_payable": {
+                        "transaction_sub_total": "0.00",
+                        "tax_amount": "0.00"
+                    },
+                    "tax_receivable": {
+                        "transaction_sub_total": "200.00",
+                        "tax_amount": "2.00"
+                    },
+                    "net_tax": "(2.00)"
+                }
+            ]
+
+
+## Balance Sheet [/reports/balance-sheets]
+Balance Sheet Report
+
+### Show All Balance Sheet [GET]
+
+Fetches Balance Sheet Report
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "assets": {
+                    "accounts": [
+                    {
+                        "account": "Petty Cash",
+                        "amount": "102.00"
+                    },
+                    {
+                        "account": "Savings Account",
+                        "amount": "(712.00)"
+                    }
+                    ],
+                    "total": "(610.00)"
+                },
+                "liabilities": {
+                    "accounts": [
+                    {
+                        "account": "Govt. Tax Payable",
+                        "amount": "(2.00)"
+                    }
+                    ],
+                    "total": "(2.00)"
+                },
+                "equities": {
+                    "total": "(612.00)",
+                    "accounts": {
+                    "net_income": "(612.00)"
+                    }
+                }
+            }

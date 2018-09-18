@@ -1,0 +1,258 @@
+# Group Customers
+
+Group description
+
+## Customer List [/customers/{?per_page,page,search}]
+
++ Parameters
+
+	+ per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+
+
+### List All Customers [GET]
+
+Fetches all available customers with pagination
+
++ Response 200 (application/json)
+
+	+ Body
+
+			[
+                {
+                    "id": 2016,
+                    "first_name": "Madisen",
+                    "last_name": "Nienow",
+                    "email": "tHarvey@gmail.com",
+                    "vendor": "Network Air",
+                    "phone": "517.709.8784",
+                    "mobile": "",
+                    "other": "",
+                    "website": "http://www.Runolfsson.com/",
+                    "fax": "",
+                    "notes": "",
+                    "street_1": "6143 Jan Valleys Suite 827",
+                    "street_2": "",
+                    "city": "Yadiraland",
+                    "state": "FL",
+                    "postal_code": "97214",
+                    "country": "US",
+                    "owner": {
+                        "ID": 1,
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                            "collection": "http://example.com/wp-json/erp/v1/users"
+                        }
+                    },
+                    "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/customers/2016",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+                    }
+                }
+            ]
+
+## Customer List [/customers]
+
+### Create A Customer [POST]
+
+	Model (application/json)
+
+		{
+			"first_name": "Madisen",
+			"last_name": "Nienow",
+			"email": "tHarvey@gmail.com",
+			"vendor": "Network Air",
+			"phone": "517.709.8784",
+			"mobile": "",
+			"other": "",
+			"website": "http://www.Runolfsson.com/",
+			"fax": "",
+			"notes": "",
+			"street_1": "6143 Jan Valleys Suite 827",
+			"street_2": "",
+			"city": "Yadiraland",
+			"state": "FL",
+			"postal_code": "97214",
+			"country": "US"
+		}
+
++ Response 201 (application/json)
+	+ Body
+
+			{
+				"id": 2016,
+				"first_name": "Madisen",
+				"last_name": "Nienow",
+				"email": "tHarvey@gmail.com",
+				"vendor": "Network Air",
+				"phone": "517.709.8784",
+				"mobile": "",
+				"other": "",
+				"website": "http://www.Runolfsson.com/",
+				"fax": "",
+				"notes": "",
+				"street_1": "6143 Jan Valleys Suite 827",
+				"street_2": "",
+				"city": "Yadiraland",
+				"state": "FL",
+				"postal_code": "97214",
+				"country": "US",
+				"_links": {
+					"self": "http://example.com/wp-json/erp/v1/accounting/customers/2016",
+					"collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+			  	}
+			}
+
+## Manage Single Customer [/customers/{id}]
+
++ Parameters
+	+ id (string) - ID of the customer in the form of an string
+
+### Retrieve A Customer [GET]
+
++ Response 200 (application/json)
+	+ Body
+
+			{
+				"id": 2016,
+				"first_name": "Madisen",
+				"last_name": "Nienow",
+				"email": "tHarvey@gmail.com",
+				"vendor": "Network Air",
+				"phone": "517.709.8784",
+				"mobile": "",
+				"other": "",
+				"website": "http://www.Runolfsson.com/",
+				"fax": "",
+				"notes": "",
+				"street_1": "6143 Jan Valleys Suite 827",
+				"street_2": "",
+				"city": "Yadiraland",
+				"state": "FL",
+				"postal_code": "97214",
+				"country": "US",
+				"owner": {
+					"ID": 1,
+					"user_nicename": "john",
+					"user_email": "john@doe.com",
+					"user_url": "http://www.doe.com",
+					"display_name": "John Wick",
+					"avatar": "https://gravatar.com",
+					"_links": {
+						"self": "http://example.com/wp-json/erp/v1/users/1",
+						"collection": "http://example.com/wp-json/erp/v1/users"
+					}
+				},
+				"_links": {
+					"self": "http://example.com/wp-json/erp/v1/accounting/customers/2016",
+					"collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+				}
+			}
+
+### Edit A Customer [PUT]
+
+	Model (application/json)
+
+		{
+			"first_name": "Madisen",
+			"last_name": "Nienow",
+			"vendor": "Network Air",
+			"phone": "517.709.8784",
+			"mobile": "",
+			"other": "",
+			"website": "http://www.Runolfsson.com/",
+			"fax": "",
+			"notes": "",
+			"street_1": "6143 Jan Valleys Suite 827",
+			"street_2": "",
+			"city": "Yadiraland",
+			"state": "FL",
+			"postal_code": "97214",
+			"country": "US"
+		}
+
++ Response 201 (application/json)
+	+ Body
+
+			{
+				"id": 2016,
+				"first_name": "Madisen",
+				"last_name": "Nienow",
+				"email": "tHarvey@gmail.com",
+				"vendor": "Network Air",
+				"phone": "517.709.8784",
+				"mobile": "",
+				"other": "",
+				"website": "http://www.Runolfsson.com/",
+				"fax": "",
+				"notes": "",
+				"street_1": "6143 Jan Valleys Suite 827",
+				"street_2": "",
+				"city": "Yadiraland",
+				"state": "FL",
+				"postal_code": "97214",
+				"country": "US",
+				"owner": {
+					"ID": 1,
+					"user_nicename": "john",
+					"user_email": "john@doe.com",
+					"user_url": "http://www.doe.com",
+					"display_name": "John Wick",
+					"avatar": "https://gravatar.com",
+					"_links": {
+						"self": "http://example.com/wp-json/erp/v1/users/1",
+						"collection": "http://example.com/wp-json/erp/v1/users"
+					}
+				}
+			}
+
+### Delete A Customer [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)
+
+## Customers Transactions [/customers/{id}/transactions/{?per_page,page,search,include}]
+
++ Parameters
+	+ id (string) - ID of the customer in the form of an string
+
+### List All Transactions of a Customer [GET]
+
++ Request (application/json)
++ Response 200 (application/json)
+	+ Body
+
+			[
+				{
+					"id": 25,
+					"type": "expense",
+					"form_type": "payment_voucher",
+					"status": "paid",
+					"uid": "2035",
+					"billing_address": "",
+					"ref": "",
+					"summary": "",
+					"issue_date": "2016-10-26",
+					"due_date": "0000-00-00",
+					"currency": "USD",
+					"conversion_rate": null,
+					"sub_total": "0.0000",
+					"total": "5.0000",
+					"due": "0.0000",
+					"trans_total": "5.0000",
+					"invoice_number": "0",
+					"invoice_format": "0",
+					"files": "",
+					"parent": "0",
+					"created_by": "1",
+					"created_at": "2016-10-26 03:49:37"
+				}
+			]

@@ -1,0 +1,315 @@
+# Group Products
+Group description
+
+## Product List [/products/{?per_page,page,search}]
+
++ Parameters
+
+	+ per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+
+### List All Products [GET]
+
+Fetches all available products with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "product_id": 100,
+                    "product_name": "Pen",
+                    "product_desc": "Product Description",
+                    "sku": Off1324,
+                    "cost_price_per_unit": 200.00,
+                    "sale_price_per_unit": 300.00,
+                    "purchase_account": {
+                        "value": "79",
+                        "name": "Sales of Product Income"
+                    },
+                    "sales_account": {
+                        "value": "80",
+                        "name": "Cost of Goods Sold"
+                    },
+                    "asset_account": {
+                        "value": "81",
+                        "name": "Inventory Asset"
+                    },
+                    "tax_info": {
+                        "tax_on_sales": 1,
+                        "tax_on_purchase": 1,
+                    },
+                    "product_type": "product",
+                    "product_cat": [
+                        {
+                            "category_id": 15
+                        }
+                    ],
+                    "quantity": 10,
+                    "created": "2015-12-09T11:12:39-08:00",
+                    "updated": "2015-12-09T11:12:41-08:00",
+                    "created_by": {
+                        "ID": 1,
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                            "self": "http://example.com/wp-json/erp/v1/users/1",
+                            "collection": "http://example.com/wp-json/erp/v1/users"
+                        }
+                    },
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+                        "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                    }
+                }
+            ]
+
+## Product List [/products]
+
+### Create A Product [POST]
+
+    Model (application/json)
+
+        {
+            "product_name": "Pen",
+            "product_desc": "Product Description",
+            "sku": Off1324,
+            "cost_price_per_unit": 200.00,
+            "sale_price_per_unit": 300.00,
+            "purchase_account": {
+                "value": "79",
+                "name": "Sales of Product Income"
+            },
+            "sales_account": {
+                "value": "80",
+                "name": "Cost of Goods Sold"
+            },
+            "asset_account": {
+                "value": "81",
+                "name": "Inventory Asset"
+            },
+            "tax_info": {
+                "tax_on_sales": 1,
+                "tax_on_purchase": 1,
+            },
+            "product_type": "product",
+            "product_cat": [
+                {
+                    "category_id": 10
+                }
+            ],
+            "quantity": 10
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "product_id": 100,
+                "product_name": "Pen",
+                "product_desc": "Product Description",
+                "sku": Off1324,
+                "cost_price_per_unit": 200.00,
+                "sale_price_per_unit": 300.00,
+                "purchase_account": {
+                    "value": "79",
+                    "name": "Sales of Product Income"
+                },
+                "sales_account": {
+                    "value": "80",
+                    "name": "Cost of Goods Sold"
+                },
+                "asset_account": {
+                    "value": "81",
+                    "name": "Inventory Asset"
+                },
+                "tax_info": {
+                    "tax_on_sales": 1,
+                    "tax_on_purchase": 1,
+                },
+                "product_type": "product",
+                "product_cat": [
+                    {
+                        "category_id": 15
+                    }
+                ],
+                "quantity": 10,
+                "created": "2015-12-09T11:12:39-08:00",
+                "updated": "2015-12-09T11:12:41-08:00",
+                "created_by": {
+					"ID": 1,
+					"user_nicename": "john",
+					"user_email": "john@doe.com",
+					"user_url": "http://www.doe.com",
+					"display_name": "John Wick",
+					"avatar": "https://gravatar.com",
+					"_links": {
+						"self": "http://example.com/wp-json/erp/v1/users/1",
+						"collection": "http://example.com/wp-json/erp/v1/users"
+					}
+				},
+                "_links": {
+					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
+				}
+            }
+
+
+## Manage Single Product [/products/{id}]
+
++ Parameters
+	+ id (string) - ID of the product in the form of an string
+
+### Retrieve A Product [GET]
+
++ Response 200 (application/json)
+	+ Body
+
+			{
+                "product_id": 100,
+                "product_name": "Pen",
+                "product_desc": "Product Description",
+                "sku": Off1324,
+                "cost_price_per_unit": 200.00,
+                "sale_price_per_unit": 300.00,
+                "purchase_account": {
+                    "value": "79",
+                    "name": "Sales of Product Income"
+                },
+                "sales_account": {
+                    "value": "80",
+                    "name": "Cost of Goods Sold"
+                },
+                "asset_account": {
+                    "value": "81",
+                    "name": "Inventory Asset"
+                },
+                "tax_info": {
+                    "tax_on_sales": 1,
+                    "tax_on_purchase": 1,
+                },
+                "product_type": "product",
+                "product_cat": [
+                    {
+                        "category_id": 15
+                    }
+                ],
+                "quantity": 10,
+                "created": "2015-12-09T11:12:39-08:00",
+                "updated": "2015-12-09T11:12:41-08:00",
+                "created_by": {
+					"ID": 1,
+					"user_nicename": "john",
+					"user_email": "john@doe.com",
+					"user_url": "http://www.doe.com",
+					"display_name": "John Wick",
+					"avatar": "https://gravatar.com",
+					"_links": {
+						"self": "http://example.com/wp-json/erp/v1/users/1",
+						"collection": "http://example.com/wp-json/erp/v1/users"
+					}
+				},
+                "_links": {
+					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
+				}
+            }
+
+### Update A Product [PUT]
+
+    Model (application/json)
+
+        {
+            "product_name": "Pen Updated",
+            "product_desc": "Product Description",
+            "sku": Off1324,
+            "cost_price_per_unit": 200.00,
+            "sale_price_per_unit": 300.00,
+            "purchase_account": {
+                "value": "79",
+                "name": "Sales of Product Income"
+            },
+            "sales_account": {
+                "value": "80",
+                "name": "Cost of Goods Sold"
+            },
+            "asset_account": {
+                "value": "81",
+                "name": "Inventory Asset"
+            },
+            "tax_info": {
+                "tax_on_sales": 1,
+                "tax_on_purchase": 1,
+            },
+            "product_type": "product",
+            "product_cat": [
+                {
+                    "category_id": 10
+                }
+            ],
+            "quantity": 10
+        }
+
++ Response 201 (application/json)
+	+ Body
+
+			{
+                "product_id": 100,
+                "product_name": "Pen Updated",
+                "product_desc": "Product Description",
+                "sku": Off1324,
+                "cost_price_per_unit": 200.00,
+                "sale_price_per_unit": 300.00,
+                "purchase_account": {
+                    "value": "79",
+                    "name": "Sales of Product Income"
+                },
+                "sales_account": {
+                    "value": "80",
+                    "name": "Cost of Goods Sold"
+                },
+                "asset_account": {
+                    "value": "81",
+                    "name": "Inventory Asset"
+                },
+                "tax_info": {
+                    "tax_on_sales": 1,
+                    "tax_on_purchase": 1,
+                },
+                "product_type": "product",
+                "product_cat": [
+                    {
+                        "category_id": 15
+                    }
+                ],
+                "quantity": 10,
+                "created": "2015-12-09T11:12:39-08:00",
+                "updated": "2015-12-09T11:12:41-08:00",
+                "created_by": {
+					"ID": 1,
+					"user_nicename": "john",
+					"user_email": "john@doe.com",
+					"user_url": "http://www.doe.com",
+					"display_name": "John Wick",
+					"avatar": "https://gravatar.com",
+					"_links": {
+						"self": "http://example.com/wp-json/erp/v1/users/1",
+						"collection": "http://example.com/wp-json/erp/v1/users"
+					}
+				},
+                "_links": {
+					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
+				}
+            }
+
+### Delete A Product [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)
