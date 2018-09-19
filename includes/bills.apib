@@ -55,7 +55,7 @@ Fetches all available bills with pagination
                     "total": 200,
                     "reference_no": "Bill-001",
                     "created_by": {
-                        "ID": 1,
+                        "id": 1,
                         "user_nicename": "john",
                         "user_email": "mail@gmail.com",
                         "user_url": "",
@@ -145,7 +145,7 @@ Fetches all available bills with pagination
                 "total": 200,
                 "reference_no": "Bill-001",
                 "created_by": {
-                    "ID": 1,
+                    "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
                     "user_url": "",
@@ -166,7 +166,7 @@ Fetches all available bills with pagination
 ## Manage Single Bill [/bills/{id}]
 
 + Parameters
-	+ id (string) - ID of the bill in the form of an string
+	+ id (string) - id of the bill in the form of an string
 
 ### Retrieve A Bill [GET]
 
@@ -205,7 +205,7 @@ Fetches all available bills with pagination
                 "total": 200,
                 "reference_no": "Bill-001",
                 "created_by": {
-                    "ID": 1,
+                    "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
                     "user_url": "",
@@ -292,7 +292,7 @@ Fetches all available bills with pagination
                 "total": 200,
                 "reference_no": "Bill-001",
                 "created_by": {
-                    "ID": 1,
+                    "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
                     "user_url": "",
@@ -313,4 +313,94 @@ Fetches all available bills with pagination
 
 + Request (application/json)
 + Response 204 (application/json)
+
+
+## Make a payment from Bills [/bills/{id}/payment]
+
+### Make a Bill payment [PUT]
+
+    Model (application/json)
+
+        {
+            "vendor_id": 1,
+            "transaction_no": 503,
+            "ledger_id": "104 (Tea)",
+            "particulars": "due",
+            "bill_details": [
+                {
+                    "id": 1,
+                    "bill_no": 503,
+                    "transaction_no": 503,
+                    "particulars": "nothing",
+                    "debit": 0,
+                    "credit": 200,
+                },
+                {
+                    "id": 2,
+                    "bill_no": 503,
+                    "transaction_no": 504,
+                    "particulars": "updated",
+                    "debit": 150,
+                    "credit": 0,
+                }
+            ],
+            "date": "2016-11-22",
+            "due_date": "2016-11-22",
+            "subtotal": 200,
+            "total": 200,
+            "reference_no": "Bill-001",
+            "created_by": 1
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1,
+                "bill_id": 503,
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "transaction_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
+                "bill_details": [
+                    {
+                        "id": 1,
+                        "bill_no": 503,
+                        "transaction_no": 503,
+                        "particulars": "nothing",
+                        "debit": 0,
+                        "credit": 200,
+                    },
+                    {
+                        "id": 2,
+                        "bill_no": 503,
+                        "transaction_no": 504,
+                        "particulars": "nothing",
+                        "debit": 150,
+                        "credit": 0,
+                    }
+                ],
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Bill-001",
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/bills/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/bills"
+                }
+            }
 
