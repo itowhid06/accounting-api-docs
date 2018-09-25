@@ -1,0 +1,181 @@
+# Group Payments
+Group description
+
+## Payments List [/payments]
+
+### Create A Payment [POST]
+
+    Model (application/json)
+
+        {
+            "customer_id": 20,
+            "ref": 100,
+            "invoice_type": "invoice",
+            "payment_date": 10-10-18,
+            "deposit": 'Bank',
+            "Line": [
+                {
+                    "invoice_id": 1,
+                    "due": 100,
+                    "line_total": 200,
+                    "amount": 200,
+                }
+            ],
+            "amount": 10000,
+            "memo": "Acct. 1JK90",
+            "attachment" : 'file.pdf',
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_by": 'Bank',
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "voucher_no": 20,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+## Manage Single Payment [/payments/{id}]
+
++ Parameters
+    + id (string) - id of the payment in the form of an string
+
+### Retrieve An Payment [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_by": 'Bank',
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "voucher_no": 20,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+### Update An Payment [PUT]
+
+    Model (application/json)
+
+        {
+            "customer": 20,
+            "ref": 100,
+            "payment_date": 10-10-18,
+            "deposit": 'Bank',
+            "Line": [
+                {
+                    "invoice_id": 1,
+                    "due": 100,
+                    "line_total": 200,
+                    "amount": 200,
+                }
+            ],
+            "amount": 10000,
+            "memo": "Acct. 1JK90",
+            "attachment" : 'file.pdf',
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
+                "voucher_no": 20,
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_method": 'Bank',
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+### Delete An Payment [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)

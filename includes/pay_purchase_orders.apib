@@ -1,0 +1,180 @@
+# Group Pay Purchase Orders
+Group description
+
+## Pay Purchase Order List [/pay_purchase_orders]
+
+### Create A Pay Purchase Order [POST]
+
+    Model (application/json)
+
+        {
+            "vendor_id": 20,
+            "transaction_date": 10-10-18,
+            "transaction_by": 'Bank',
+            "bill_type": "purchase_order",
+            "Line": [
+                {
+                    "voucher_no": 1,
+                    "due": 100,
+                    "line_total": 200,
+                    "amount": 200,
+                }
+            ],
+            "amount": 10000,
+            "memo": "Acct. 1JK90",
+            "attachment" : 'file.pdf',
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "vendor_id": 20,
+                "vendor_name": "John Smith",
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_by": 'Bank',
+                "bill_type": "purchase_order",
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "voucher_no": 20,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+## Manage Single Pay Purchase Order [/pay_purchase_order/{id}]
+
++ Parameters
+    + id (string) - id of the pay_purchase_order in the form of an string
+
+### Retrieve An Pay Purchase Order [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "vendor_id": 20,
+                "vendor_name": "John Smith",
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_by": 'Bank',
+                "bill_type": "purchase_order",
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "voucher_no": 20,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+### Update An Pay Purchase Order [PUT]
+
+    Model (application/json)
+
+        {
+            "vendor_id": 20,
+            "transaction_date": 10-10-18,
+            "transaction_by": 'Bank',
+            "bill_type": "purchase_order",
+            "Line": [
+                {
+                    "voucher_no": 1,
+                    "due": 100,
+                    "line_total": 200,
+                    "amount": 200,
+                }
+            ],
+            "amount": 10000,
+            "memo": "Acct. 1JK90",
+            "attachment" : 'file.pdf',
+        }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "vendor_id": 20,
+                "vendor_name": "John Smith",
+                "particulars": "paid",
+                "payment_date": 10-10-18,
+                "transaction_by": 'Bank',
+                "bill_type": "purchase_order",
+                "Line": [
+                    {
+                        "invoice_id": 1,
+                        "voucher_no": 20,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200,
+                    }
+                ],
+                "amount": 10000,
+                "memo": "Acct. 1JK90",
+                "attachments" : 'file.pdf',
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "mail@gmail.com",
+                    "user_url": "",
+                    "display_name": "John Wick",
+                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
+                "_links": {
+                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                }
+            }
+
+### Delete An Pay Purchase Order [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)

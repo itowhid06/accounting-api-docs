@@ -5,7 +5,7 @@ Group description
 
 + Parameters
 
-	+ per_page: 20 (number, optional) - The number of results per page.
+    + per_page: 20 (number, optional) - The number of results per page.
         + Default: `20`
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
@@ -143,35 +143,35 @@ Fetches all available products with pagination
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
-					"id": 1,
-					"user_nicename": "john",
-					"user_email": "john@doe.com",
-					"user_url": "http://www.doe.com",
-					"display_name": "John Wick",
-					"avatar": "https://gravatar.com",
-					"_links": {
-						"self": "http://example.com/wp-json/erp/v1/users/1",
-						"collection": "http://example.com/wp-json/erp/v1/users"
-					}
-				},
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "john@doe.com",
+                    "user_url": "http://www.doe.com",
+                    "display_name": "John Wick",
+                    "avatar": "https://gravatar.com",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
                 "_links": {
-					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
-				}
+                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                }
             }
 
 
 ## Manage Single Product [/products/{id}]
 
 + Parameters
-	+ id (string) - id of the product in the form of an string
+    + id (string) - id of the product in the form of an string
 
 ### Retrieve A Product [GET]
 
 + Response 200 (application/json)
-	+ Body
+    + Body
 
-			{
+            {
                 "product_id": 100,
                 "product_name": "Pen",
                 "product_desc": "Product Description",
@@ -204,21 +204,21 @@ Fetches all available products with pagination
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
-					"id": 1,
-					"user_nicename": "john",
-					"user_email": "john@doe.com",
-					"user_url": "http://www.doe.com",
-					"display_name": "John Wick",
-					"avatar": "https://gravatar.com",
-					"_links": {
-						"self": "http://example.com/wp-json/erp/v1/users/1",
-						"collection": "http://example.com/wp-json/erp/v1/users"
-					}
-				},
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "john@doe.com",
+                    "user_url": "http://www.doe.com",
+                    "display_name": "John Wick",
+                    "avatar": "https://gravatar.com",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
                 "_links": {
-					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
-				}
+                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                }
             }
 
 ### Update A Product [PUT]
@@ -257,9 +257,9 @@ Fetches all available products with pagination
         }
 
 + Response 201 (application/json)
-	+ Body
+    + Body
 
-			{
+            {
                 "product_id": 100,
                 "product_name": "Pen Updated",
                 "product_desc": "Product Description",
@@ -292,21 +292,21 @@ Fetches all available products with pagination
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
-					"id": 1,
-					"user_nicename": "john",
-					"user_email": "john@doe.com",
-					"user_url": "http://www.doe.com",
-					"display_name": "John Wick",
-					"avatar": "https://gravatar.com",
-					"_links": {
-						"self": "http://example.com/wp-json/erp/v1/users/1",
-						"collection": "http://example.com/wp-json/erp/v1/users"
-					}
-				},
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "john@doe.com",
+                    "user_url": "http://www.doe.com",
+                    "display_name": "John Wick",
+                    "avatar": "https://gravatar.com",
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/users/1",
+                        "collection": "http://example.com/wp-json/erp/v1/users"
+                    }
+                },
                 "_links": {
-					"self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-					"collection": "http://example.com/wp-json/erp/v1/accounting/products"
-				}
+                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                }
             }
 
 ### Delete A Product [DELETE]
