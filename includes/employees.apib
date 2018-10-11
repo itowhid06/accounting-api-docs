@@ -1,8 +1,7 @@
-# Group Customers
+# Group Employees
 
 
-
-## Customer List [/customers/{?per_page,page,search}]
+## Employee List [/employees/{?per_page,page,search}]
 
 + Parameters
 
@@ -12,13 +11,11 @@
         + Default: `1`
     + search (string, optional) - The search keyword.
 
+### List All Employees [GET]
 
-### List All Customers [GET]
-
-Fetches all available customers with pagination
+Fetches all available employees with pagination
 
 + Response 200 (application/json)
-
     + Body
 
             [
@@ -27,6 +24,7 @@ Fetches all available customers with pagination
                     "first_name": "Madisen",
                     "last_name": "Nienow",
                     "email": "tHarvey@gmail.com",
+                    "company": "Network Air",
                     "phone": "517.709.8784",
                     "mobile": "",
                     "other": "",
@@ -42,21 +40,21 @@ Fetches all available customers with pagination
                     "_links": {
                         "self": [
                             {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                                "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
                             }
                         ],
                         "collection": [
                             {
-                                "http://example.com/wp-json/erp/v1/accounting/customers"
+                                "http://example.com/wp-json/erp/v1/accounting/employees"
                             }
                         ]
                     }
                 }
             ]
 
-## Customer List [/customers]
+## Employee List [/employees]
 
-### Create A Customer [POST]
+### Create A Employee [POST]
 
     Model (application/json)
 
@@ -64,7 +62,7 @@ Fetches all available customers with pagination
         "first_name": "Madisen",
         "last_name": "Nienow",
         "email": "tHarvey@gmail.com",
-        "vendor": "Network Air",
+        "company": "Network Air",
         "phone": "517.709.8784",
         "mobile": "",
         "other": "",
@@ -87,7 +85,7 @@ Fetches all available customers with pagination
                 "first_name": "Madisen",
                 "last_name": "Nienow",
                 "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
+                "employee": "Network Air",
                 "phone": "517.709.8784",
                 "mobile": "",
                 "other": "",
@@ -103,24 +101,25 @@ Fetches all available customers with pagination
                 "_links": {
                     "self": [
                         {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
                         }
                     ],
                     "collection": [
                         {
-                            "http://example.com/wp-json/erp/v1/accounting/customers"
+                            "http://example.com/wp-json/erp/v1/accounting/employees"
                         }
                     ]
                 }
             }
 
-## Manage Single Customer [/customers/{id}]
+## Manage Single Employee [/employees/{id}]
 
 + Parameters
-    + id (string) - id of the customer in the form of an string
+    + id (string) - id of the employee in the form of an string
 
-### Retrieve A Customer [GET]
+### Retrieve A Employee [GET]
 
++ Request (application/json)
 + Response 200 (application/json)
     + Body
 
@@ -129,7 +128,7 @@ Fetches all available customers with pagination
                 "first_name": "Madisen",
                 "last_name": "Nienow",
                 "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
+                "employee": "Network Air",
                 "phone": "517.709.8784",
                 "mobile": "",
                 "other": "",
@@ -143,19 +142,27 @@ Fetches all available customers with pagination
                 "postal_code": "97214",
                 "country": "US",
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/customers/2016",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+                    "self": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "http://example.com/wp-json/erp/v1/accounting/employees"
+                        }
+                    ]
                 }
             }
 
-### Edit A Customer [PUT]
+### Edit A Employee [PUT]
 
     Model (application/json)
 
     {
         "first_name": "Madisen",
         "last_name": "Nienow",
-        "vendor": "Network Air",
+        "employee": "Network Air",
         "phone": "517.709.8784",
         "mobile": "",
         "other": "",
@@ -178,7 +185,7 @@ Fetches all available customers with pagination
                 "first_name": "Madisen",
                 "last_name": "Nienow",
                 "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
+                "employee": "Network Air",
                 "phone": "517.709.8784",
                 "mobile": "",
                 "other": "",
@@ -194,28 +201,28 @@ Fetches all available customers with pagination
                 "_links": {
                     "self": [
                         {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
                         }
                     ],
                     "collection": [
                         {
-                            "http://example.com/wp-json/erp/v1/accounting/customers"
+                            "http://example.com/wp-json/erp/v1/accounting/employees"
                         }
                     ]
                 }
             }
 
-### Delete A Customer [DELETE]
+### Delete A Employee [DELETE]
 
 + Request (application/json)
 + Response 204 (application/json)
 
-## Customers Transactions [/customers/{id}/transactions/{?per_page,page,search,include,include}]
+## Employees Transactions [/employees/{id}/transactions/{?per_page,page,search,include,include}]
 
 + Parameters
-    + id (string) - id of the customer in the form of an string
+    + id (string) - id of the employee in the form of an string
 
-### List All Transactions of a Customer [GET]
+### List All Transactions of a Employee [GET]
 
 + Request (application/json)
 + Response 200 (application/json)

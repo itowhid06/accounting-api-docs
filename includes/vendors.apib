@@ -1,7 +1,6 @@
 # Group Vendors
-Group description
 
-## Vendor List [/vendors/{?per_page,page,search}]
+## Vendor List [/vendors/{?per_page,page,search,include}]
 
 + Parameters
 
@@ -37,21 +36,17 @@ Fetches all available vendors with pagination
                     "state": "FL",
                     "postal_code": "97214",
                     "country": "US",
-                    "owner": {
-                      "id": 1,
-                      "user_nicename": "john",
-                      "user_email": "john@doe.com",
-                      "user_url": "http://www.doe.com",
-                      "display_name": "John Wick",
-                      "avatar": "https://gravatar.com",
-                      "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
-                      }
-                    },
                     "_links": {
-                      "self": "http://example.com/wp-json/erp/v1/accounting/vendors/2016",
-                      "collection": "http://example.com/wp-json/erp/v1/accounting/vendors"
+                        "self": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "http://example.com/wp-json/erp/v1/accounting/customers"
+                            }
+                        ]
                     }
                 }
             ]
@@ -103,8 +98,16 @@ Fetches all available vendors with pagination
                 "postal_code": "97214",
                 "country": "US",
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/vendors/2016",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/vendors"
+                    "self": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "http://example.com/wp-json/erp/v1/accounting/customers"
+                        }
+                    ]
                 }
             }
 
@@ -137,21 +140,17 @@ Fetches all available vendors with pagination
                 "state": "FL",
                 "postal_code": "97214",
                 "country": "US",
-                "owner": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
-                    }
-                },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/vendors/2016",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/vendors"
+                    "self": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "http://example.com/wp-json/erp/v1/accounting/customers"
+                        }
+                    ]
                 }
             }
 
@@ -159,23 +158,23 @@ Fetches all available vendors with pagination
 
     Model (application/json)
 
-        {
-            "first_name": "Madisen",
-            "last_name": "Nienow",
-            "vendor": "Network Air",
-            "phone": "517.709.8784",
-            "mobile": "",
-            "other": "",
-            "website": "http://www.Runolfsson.com/",
-            "fax": "",
-            "notes": "",
-            "street_1": "6143 Jan Valleys Suite 827",
-            "street_2": "",
-            "city": "Yadiraland",
-            "state": "FL",
-            "postal_code": "97214",
-            "country": "US"
-        }
+    {
+        "first_name": "Madisen",
+        "last_name": "Nienow",
+        "vendor": "Network Air",
+        "phone": "517.709.8784",
+        "mobile": "",
+        "other": "",
+        "website": "http://www.Runolfsson.com/",
+        "fax": "",
+        "notes": "",
+        "street_1": "6143 Jan Valleys Suite 827",
+        "street_2": "",
+        "city": "Yadiraland",
+        "state": "FL",
+        "postal_code": "97214",
+        "country": "US"
+    }
 
 + Response 201 (application/json)
     + Body
@@ -198,17 +197,17 @@ Fetches all available vendors with pagination
                 "state": "FL",
                 "postal_code": "97214",
                 "country": "US",
-                "owner": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
-                    }
+                "_links": {
+                    "self": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "http://example.com/wp-json/erp/v1/accounting/customers"
+                        }
+                    ]
                 }
             }
 
@@ -217,7 +216,7 @@ Fetches all available vendors with pagination
 + Request (application/json)
 + Response 204 (application/json)
 
-## Vendors Transactions [/vendors/{id}/transactions/{?per_page,page,search,include}]
+## Vendors Transactions [/vendors/{id}/transactions/{?per_page,page,search,include,include}]
 
 + Parameters
     + id (string) - id of the vendor in the form of an string

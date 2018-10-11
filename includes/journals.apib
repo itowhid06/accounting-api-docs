@@ -1,7 +1,7 @@
 # Group Journals
-Group description
 
-## Journal List [/journals/{?per_page,page,search,type,uid,start,end}]
+
+## Journal List [/journals/{?per_page,page,search,include,type,uid,start,end}]
 
 + Parameters
 
@@ -10,6 +10,7 @@ Group description
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
     + type (string, optional) - The type of journal.
     + uid (number, optional) - Filter journals by user id.
     + start (string, optional) - The start date of filtering journals.
@@ -54,13 +55,29 @@ Fetches all available journals with pagination
                         "display_name": "John Wick",
                         "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/users/1",
-                            "collection": "http://example.com/wp-json/erp/v1/users"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
                         }
                     },
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                        "self": [
+                            {
+                                "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "www.example.com/wp-json/erp/v1/accounting/journals"
+                            }
+                        ]
                     }
                 }
             ]
@@ -71,21 +88,21 @@ Fetches all available journals with pagination
 
     Model (application/json)
 
-        {
-            "reference": "S8367",
-            "summary": "Journal Details Here",
-            "issue_date": "2016-11-22",
-            "items": [
-                {
-                    "debit": 100,
-                    "ledger_id": 1
-                },
-                {
-                    "credit": 100,
-                    "ledger_id": 24
-                }
-            ]
-        }
+    {
+        "reference": "S8367",
+        "summary": "Journal Details Here",
+        "issue_date": "2016-11-22",
+        "items": [
+            {
+                "debit": 100,
+                "ledger_id": 1
+            },
+            {
+                "credit": 100,
+                "ledger_id": 24
+            }
+        ]
+    }
 
 + Response 201 (application/json)
     + Body
@@ -114,8 +131,16 @@ Fetches all available journals with pagination
                 "total": 200,
                 "trans_total": 200,
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/journals"
+                        }
+                    ]
                 }
             }
 
@@ -161,12 +186,28 @@ Fetches all available journals with pagination
                     "display_name": "John Wick",
                     "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/journals/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/journals"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/journals"
+                        }
+                    ]
                 }
             }

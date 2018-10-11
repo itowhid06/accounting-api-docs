@@ -1,5 +1,5 @@
 # Group Chart of Accounts
-Group description
+
 
 ## Chart of Account List [/chart-of-accounts]
 A list of Chart of Accounts
@@ -24,19 +24,35 @@ Fetches all available chart-of-accounts with pagination
                     "entries": 0,
                     "created_by": {
                     "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
-                    }
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
                     },
                     "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                        "self": [
+                            {
+                                "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                            }
+                        ]
                     }
                 },
                 {
@@ -50,20 +66,36 @@ Fetches all available chart-of-accounts with pagination
                     "system": 1,
                     "entries": 0,
                     "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
-                    }
+                        "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
                     },
                     "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/2",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                        "self": [
+                            {
+                                "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                            }
+                        ]
                     }
                 }
             ]
@@ -72,14 +104,14 @@ Fetches all available chart-of-accounts with pagination
 
     Model (application/json)
 
-        {
-            "type": 6,
-            "code": 740,
-            "name": "Personal Account",
-            "description": "Personal Account",
-            "bank_account": "33423423424234",
-            "bank_name": "City Bank"
-        }
+    {
+        "type": 6,
+        "code": 740,
+        "name": "Personal Account",
+        "description": "Personal Account",
+        "bank_account": "33423423424234",
+        "bank_name": "City Bank"
+    }
 
 + Response 201 (application/json)
     + Body
@@ -95,8 +127,16 @@ Fetches all available chart-of-accounts with pagination
                 "system": 0,
                 "entries": 0,
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/67",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                        }
+                    ]
                 }
             }
 
@@ -129,13 +169,29 @@ Fetches all available chart-of-accounts with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/users/1",
-                    "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/67",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                        }
+                    ]
                 }
             }
 
@@ -143,12 +199,12 @@ Fetches all available chart-of-accounts with pagination
 
     Model (application/json)
 
-        {
-            "type"       : 12,
-            "code"       : 720,
-            "name"       : "Account Snacks",
-            "description": "Account for Expense of Snacks"
-        }
+    {
+        "type"       : 12,
+        "code"       : 720,
+        "name"       : "Account Snacks",
+        "description": "Account for Expense of Snacks"
+    }
 
 + Response 201 (application/json)
     + Body
@@ -171,13 +227,29 @@ Fetches all available chart-of-accounts with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/users/1",
-                    "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/67",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
+                        }
+                    ]
                 }
             }
 

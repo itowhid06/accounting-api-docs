@@ -1,6 +1,6 @@
 # Group Sales
 
-## Manage Sale Collection [/sales/{?per_page,page,search}]
+## Manage Sale Collection [/sales/{?per_page,page,search,include}]
 
 ### List All Sales [GET]
 
@@ -11,6 +11,7 @@
     + page (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
 
 + Response 200 (application/json)
 
@@ -69,8 +70,16 @@
                         "postal_code": "5200",
                         "country": "",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/accounting/customers/2034",
-                            "collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers"
+                                }
+                            ]
                         }
                     },
                     "created_by": {
@@ -81,13 +90,29 @@
                         "display_name": "admin",
                         "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/users/1",
-                            "collection": "http://example.com/wp-json/erp/v1/users"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
                         }
                     },
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/sales/2",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/sales"
+                        "self": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/sales/2"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/sales"
+                            }
+                        ]
                     }
                 },
                 {
@@ -142,8 +167,16 @@
                         "postal_code": "",
                         "country": "-1",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/accounting/customers/1007",
-                            "collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers"
+                                }
+                            ]
                         }
                     },
                     "created_by": {
@@ -154,229 +187,30 @@
                         "display_name": "admin",
                         "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/users/1",
-                            "collection": "http://example.com/wp-json/erp/v1/users"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
                         }
                     },
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/sales/3",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/sales"
+                        "self": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/sales/3"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/sales"
+                            }
+                        ]
                     }
                 }
             ]
-
-
-## Recieve a payment from Sales [/sales/{id}/payment]
-
-### Recieve a Sales payment [PUT]
-
-    Model (application/json)
-
-        {
-            "form_type": "invoice",
-            "billing_address": "Dhanmondi, Dhaka",
-            "reference": "",
-            "summary": "",
-            "issue_date": "2016-11-06",
-            "due_date": "2016-11-17",
-            "customer": 1007,
-            "items": [
-                {
-                    "product_id": 0,
-                    "account_id": 54,
-                    "description": "Some random description",
-                    "qty": 1,
-                    "unit_price": 2428,
-                    "discount": 0,
-                    "tax": 0
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Body
-
-            {
-                "id": 3,
-                "form_type": "invoice",
-                "status": "draft",
-                "billing_address": "Dhanmondi, Dhaka",
-                "reference": "",
-                "summary": "",
-                "issue_date": "2016-11-06",
-                "due_date": "2016-11-17",
-                "currency": "USD",
-                "conversion_rate": 0,
-                "items": [
-                    {
-                        "id": 3,
-                        "journal_id": 6,
-                        "product_id": 0,
-                        "description": "Some random description",
-                        "qty": 1,
-                        "unit_price": 2428,
-                        "discount": 0,
-                        "tax": 0,
-                        "tax_rate": 0,
-                        "tax_journal": 0,
-                        "line_total": 2428,
-                        "order": 1
-                    }
-                ],
-                "sub_total": 2428,
-                "total": 2428,
-                "due": 2428,
-                "trans_total": 2428,
-                "invoice": "INV-0008",
-                "parent": 0,
-                "created_at": "2016-11-08 03:33:58",
-                "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/sales/3",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/sales"
-                }
-            }
-
-
-## Void a payment from Sales [/sales/{id}/void]
-
-### Void a Sales payment [PUT]
-
-    Model (application/json)
-
-        {
-            "form_type": "invoice",
-            "billing_address": "Dhanmondi, Dhaka",
-            "reference": "",
-            "summary": "",
-            "issue_date": "2016-11-06",
-            "due_date": "2016-11-17",
-            "customer": 1007,
-            "items": [
-                {
-                    "product_id": 0,
-                    "account_id": 54,
-                    "description": "Some random description",
-                    "qty": 1,
-                    "unit_price": 2428,
-                    "discount": 0,
-                    "tax": 0
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Body
-
-            {
-                "id": 3,
-                "form_type": "invoice",
-                "status": "draft",
-                "billing_address": "Dhanmondi, Dhaka",
-                "reference": "",
-                "summary": "",
-                "issue_date": "2016-11-06",
-                "due_date": "2016-11-17",
-                "currency": "USD",
-                "conversion_rate": 0,
-                "items": [
-                    {
-                        "id": 3,
-                        "journal_id": 6,
-                        "product_id": 0,
-                        "description": "Some random description",
-                        "qty": 1,
-                        "unit_price": 2428,
-                        "discount": 0,
-                        "tax": 0,
-                        "tax_rate": 0,
-                        "tax_journal": 0,
-                        "line_total": 2428,
-                        "order": 1
-                    }
-                ],
-                "sub_total": 2428,
-                "total": 2428,
-                "due": 2428,
-                "trans_total": 2428,
-                "invoice": "INV-0008",
-                "parent": 0,
-                "created_at": "2016-11-08 03:33:58",
-                "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/sales/3",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/sales"
-                }
-            }
-
-## Update a payment from Sales [/sales/{id}/edit]
-
-### Update a Sales payment [PUT]
-
-    Model (application/json)
-
-        {
-            "form_type": "invoice",
-            "billing_address": "Dhanmondi, Dhaka",
-            "reference": "",
-            "summary": "",
-            "issue_date": "2016-11-06",
-            "due_date": "2016-11-17",
-            "customer": 1007,
-            "items": [
-                {
-                    "product_id": 0,
-                    "account_id": 54,
-                    "description": "Some random description",
-                    "qty": 1,
-                    "unit_price": 2428,
-                    "discount": 0,
-                    "tax": 0
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Body
-
-            {
-                "id": 3,
-                "form_type": "invoice",
-                "status": "draft",
-                "billing_address": "Dhanmondi, Dhaka",
-                "reference": "",
-                "summary": "",
-                "issue_date": "2016-11-06",
-                "due_date": "2016-11-17",
-                "currency": "USD",
-                "conversion_rate": 0,
-                "items": [
-                    {
-                        "id": 3,
-                        "journal_id": 6,
-                        "product_id": 0,
-                        "description": "Some random description",
-                        "qty": 1,
-                        "unit_price": 2428,
-                        "discount": 0,
-                        "tax": 0,
-                        "tax_rate": 0,
-                        "tax_journal": 0,
-                        "line_total": 2428,
-                        "order": 1
-                    }
-                ],
-                "sub_total": 2428,
-                "total": 2428,
-                "due": 2428,
-                "trans_total": 2428,
-                "invoice": "INV-0008",
-                "parent": 0,
-                "created_at": "2016-11-08 03:33:58",
-                "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/sales/3",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/sales"
-                }
-            }
 

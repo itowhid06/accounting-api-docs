@@ -1,7 +1,7 @@
 # Group Product Categories
-Group description
 
-## Product Categories List [/product_cats/{?per_page,page,search}]
+
+## Product Categories List [/product-cats/{?per_page,page,search,include}]
 
 + Parameters
 
@@ -10,10 +10,11 @@ Group description
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
 
 ### List All Product Categories [GET]
 
-Fetches all available product_cats with pagination
+Fetches all available product-cats with pagination
 
 + Response 200 (application/json)
     + Body
@@ -21,15 +22,15 @@ Fetches all available product_cats with pagination
             [
                 {
                     "id": 20,
-                    "product_term_name": "Office Products",
+                    "name": "Office Products",
                     "description": "office Products Category",
                     "slug": "office_products",
                     "parent": 50,
                     "meta": {},
                     "taxonomy": "product_cat",
                     "product_count": 20,
-                    "CreateTime":"2015-10-06T08:50:34-07:00",
-                    "LastUpdatedTime":"2015-10-06T08:50:34-07:00",
+                    "create_time":"2015-10-06T08:50:34-07:00",
+                    "update_time":"2015-10-06T08:50:34-07:00",
                     "created_by": {
                         "id": 1,
                         "user_nicename": "john",
@@ -38,45 +39,61 @@ Fetches all available product_cats with pagination
                         "display_name": "John Wick",
                         "avatar": "https://gravatar.com",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/users/1",
-                            "collection": "http://example.com/wp-json/erp/v1/users"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
                         }
                     },
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/product_cats/20",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/product_cats"
+                        "self": [
+                            {
+                                "href": "https://example.com/wp-json/wc/v2/products/categories/9"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://example.com/wp-json/wc/v2/products/categories"
+                            }
+                        ]
                     }
                 }
             ]
 
-## Product Categories List [/product_cats/]
+## Product Categories List [/product-cats/]
 
 ### Create A Product Category [POST]
 
     Model (application/json)
 
-        {
-            "product_cat_name": "Office Products",
-            "description": "office Products Category",
-            "slug": "office_products",
-            "parent": 50,
-            "meta": {}
-        }
+    {
+        "product_cat_name": "Office Products",
+        "description": "office Products Category",
+        "slug": "office_products",
+        "parent": 50,
+        "meta": {}
+    }
 
 + Response 201 (application/json)
     + Body
 
             {
                 "id": 20,
-                "product_term_name": "Office Products",
+                "name": "Office Products",
                 "description": "office Products Category",
                 "slug": "office_products",
                 "parent": 50,
                 "meta": {},
                 "taxonomy": "product_cat",
                 "product_count": 20,
-                "CreateTime":"2015-10-06T08:50:34-07:00",
-                "LastUpdatedTime":"2015-10-06T08:50:34-07:00",
+                "create_time":"2015-10-06T08:50:34-07:00",
+                "update_time":"2015-10-06T08:50:34-07:00",
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -85,18 +102,34 @@ Fetches all available product_cats with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/product_cats/20",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/product_cats"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories"
+                        }
+                    ]
                 }
             }
 
 
-## Manage Single Product Category [/product_cats/{id}]
+## Manage Single Product Category [/product-cats/{id}]
 
 + Parameters
     + id (string) - id of the product_cat in the form of an string
@@ -108,15 +141,15 @@ Fetches all available product_cats with pagination
 
             {
                 "id": 20,
-                "product_term_name": "Office Products",
+                "name": "Office Products",
                 "description": "office Products Category",
                 "slug": "office_products",
                 "parent": 50,
                 "meta": {},
                 "taxonomy": "product_cat",
                 "product_count": 20,
-                "CreateTime":"2015-10-06T08:50:34-07:00",
-                "LastUpdatedTime":"2015-10-06T08:50:34-07:00",
+                "create_time":"2015-10-06T08:50:34-07:00",
+                "update_time":"2015-10-06T08:50:34-07:00",
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -125,13 +158,29 @@ Fetches all available product_cats with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/product_cats/20",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/product_cats"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories"
+                        }
+                    ]
                 }
             }
 
@@ -139,28 +188,28 @@ Fetches all available product_cats with pagination
 
     Model (application/json)
 
-        {
-            "product_cat_name": "Office Products",
-            "description": "office Products Category",
-            "slug": "office_products",
-            "parent": 50,
-            "meta": {}
-        }
+    {
+        "product_cat_name": "Office Products",
+        "description": "office Products Category",
+        "slug": "office_products",
+        "parent": 50,
+        "meta": {}
+    }
 
 + Response 200 (application/json)
     + Body
 
             {
                 "id": 20,
-                "product_term_name": "Office Products",
+                "name": "Office Products",
                 "description": "office Products Category",
                 "slug": "office_products",
                 "parent": 50,
                 "meta": {},
                 "taxonomy": "product_cat",
                 "product_count": 20,
-                "CreateTime":"2015-10-06T08:50:34-07:00",
-                "LastUpdatedTime":"2015-10-06T08:50:34-07:00",
+                "create_time":"2015-10-06T08:50:34-07:00",
+                "update_time":"2015-10-06T08:50:34-07:00",
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -169,13 +218,29 @@ Fetches all available product_cats with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/product_cats/20",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/product_cats"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/wc/v2/products/categories"
+                        }
+                    ]
                 }
             }
 

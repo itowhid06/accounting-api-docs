@@ -1,7 +1,7 @@
 # Group Tax Rates
-Group description
 
-## Tax Rate List [/tax_rates/{?per_page,page,search}]
+
+## Tax Rate List [/tax_rates/{?per_page,page,search,include}]
 
 + Parameters
 
@@ -10,6 +10,7 @@ Group description
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
 
 ### List All Tax Rates [GET]
 
@@ -22,8 +23,8 @@ Fetches all available tax_rates with pagination
                 "taxes": [
                     {
                         "id": 1,
-                        "tax_name": "Test Tax",
-                        "tax_number": "Tax001",
+                        "name": "Test Tax",
+                        "number": "Tax001",
                         "compound": 0,
                         "components" : [
                             {
@@ -41,8 +42,16 @@ Fetches all available tax_rates with pagination
                         ],
                         "created_at": "2016-11-08 03:33:57",
                         "_links": {
-                            "self": "www.example.com/wp-json/erp/v1/accounting/taxes/1",
-                            "collection": "www.example.com/wp-json/erp/v1/accounting/taxes"
+                            "self": [
+                                {
+                                    "href": "www.example.com/wp-json/erp/v1/accounting/taxes/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "www.example.com/wp-json/erp/v1/accounting/taxes"
+                                }
+                            ]
                         }
                     }
                 ]
@@ -52,33 +61,33 @@ Fetches all available tax_rates with pagination
 
     Model (application/json)
 
-        {
-            "tax_name": "Test Tax",
-            "tax_number": "Tax001",
-            "compound": 0,
-            "components" : [
-                {
-                    'id' : 1,
-                    'component_name': 'VAT',
-                    'agency_name': 'NBR',
-                    'rate': .15
-                },
-                {
-                    'id' : 2,
-                    'component_name': 'SD',
-                    'agency_name': 'NBR',
-                    'rate': .10
-                }
-            ]
-        }
+    {
+        "name": "Test Tax",
+        "number": "Tax001",
+        "compound": 0,
+        "components" : [
+            {
+                'id' : 1,
+                'component_name': 'VAT',
+                'agency_name': 'NBR',
+                'rate': .15
+            },
+            {
+                'id' : 2,
+                'component_name': 'SD',
+                'agency_name': 'NBR',
+                'rate': .10
+            }
+        ]
+    }
 
 + Response 201 (application/json)
     + Body
 
             {
                 "id": 1,
-                "tax_name": "Test Tax",
-                "tax_number": "Tax001",
+                "name": "Test Tax",
+                "number": "Tax001",
                 "compound": 0,
                 "components" : [
                     {
@@ -96,8 +105,16 @@ Fetches all available tax_rates with pagination
                 ],
                 "created_at": "2016-11-08 03:33:57",
                 "_links": {
-                    "self": "www.example.com/wp-json/erp/v1/accounting/taxes/1",
-                    "collection": "www.example.com/wp-json/erp/v1/accounting/taxes"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/taxes/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "www.example.com/wp-json/erp/v1/accounting/taxes"
+                        }
+                    ]
                 }
             }
 
@@ -114,8 +131,8 @@ Fetches all available tax_rates with pagination
 
             {
                 "id": 1,
-                "tax_name": "Test Tax",
-                "tax_number": "Tax001",
+                "name": "Test Tax",
+                "number": "Tax001",
                 "compound": 0,
                 "components" : [
                     {
@@ -133,7 +150,15 @@ Fetches all available tax_rates with pagination
                 ],
                 "created_at": "2016-11-08 03:33:57",
                 "_links": {
-                    "self": "www.example.com/wp-json/erp/v1/accounting/taxes/1",
-                    "collection": "www.example.com/wp-json/erp/v1/accounting/taxes"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/taxes/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "www.example.com/wp-json/erp/v1/accounting/taxes"
+                        }
+                    ]
                 }
             }

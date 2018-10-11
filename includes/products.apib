@@ -1,7 +1,7 @@
 # Group Products
-Group description
 
-## Product List [/products/{?per_page,page,search}]
+
+## Product List [/products/{?per_page,page,search,include}]
 
 + Parameters
 
@@ -10,6 +10,7 @@ Group description
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
 
 ### List All Products [GET]
 
@@ -20,9 +21,9 @@ Fetches all available products with pagination
 
             [
                 {
-                    "product_id": 100,
-                    "product_name": "Pen",
-                    "product_desc": "Product Description",
+                    "id": 100,
+                    "name": "Pen",
+                    "description": "Product Description",
                     "sku": Off1324,
                     "cost_price_per_unit": 200.00,
                     "sale_price_per_unit": 300.00,
@@ -30,25 +31,31 @@ Fetches all available products with pagination
                         "value": "79",
                         "name": "Sales of Product Income"
                     },
-                    "sales_account": {
-                        "value": "80",
-                        "name": "Cost of Goods Sold"
-                    },
-                    "asset_account": {
-                        "value": "81",
-                        "name": "Inventory Asset"
-                    },
                     "tax_info": {
                         "tax_on_sales": 1,
                         "tax_on_purchase": 1,
                     },
-                    "product_type": "product",
-                    "product_cat": [
+                    "type": "product",
+                    "cat": [
                         {
                             "category_id": 15
                         }
                     ],
                     "quantity": 10,
+                    "images": [
+                        {
+                          "id": 792,
+                          "date_created": "2017-03-23T14:01:13",
+                          "date_modified": "2017-03-23T14:01:13",
+                          "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
+                        },
+                        {
+                          "id": 793,
+                          "date_created": "2017-03-23T14:01:14",
+                          "date_modified": "2017-03-23T14:01:14",
+                          "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
+                        }
+                    ],
                     "created": "2015-12-09T11:12:39-08:00",
                     "updated": "2015-12-09T11:12:41-08:00",
                     "created_by": {
@@ -59,13 +66,29 @@ Fetches all available products with pagination
                         "display_name": "John Wick",
                         "avatar": "https://gravatar.com",
                         "_links": {
-                            "self": "http://example.com/wp-json/erp/v1/users/1",
-                            "collection": "http://example.com/wp-json/erp/v1/users"
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
                         }
                     },
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                        "self": [
+                            {
+                                "href": "https://example.com/wp-json/erp/v1/products/794"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://example.com/wp-json/erp/v1/products"
+                            }
+                        ]
                     }
                 }
             ]
@@ -76,44 +99,44 @@ Fetches all available products with pagination
 
     Model (application/json)
 
-        {
-            "product_name": "Pen",
-            "product_desc": "Product Description",
-            "sku": Off1324,
-            "cost_price_per_unit": 200.00,
-            "sale_price_per_unit": 300.00,
-            "purchase_account": {
-                "value": "79",
-                "name": "Sales of Product Income"
-            },
-            "sales_account": {
-                "value": "80",
-                "name": "Cost of Goods Sold"
-            },
-            "asset_account": {
-                "value": "81",
-                "name": "Inventory Asset"
-            },
-            "tax_info": {
-                "tax_on_sales": 1,
-                "tax_on_purchase": 1,
-            },
-            "product_type": "product",
-            "product_cat": [
-                {
-                    "category_id": 10
-                }
-            ],
-            "quantity": 10
-        }
+    {
+        "name": "Pen",
+        "description": "Product Description",
+        "sku": Off1324,
+        "cost_price_per_unit": 200.00,
+        "sale_price_per_unit": 300.00,
+        "purchase_account": {
+            "value": "79",
+            "name": "Sales of Product Income"
+        },
+        "sales_account": {
+            "value": "80",
+            "name": "Cost of Goods Sold"
+        },
+        "asset_account": {
+            "value": "81",
+            "name": "Inventory Asset"
+        },
+        "tax_info": {
+            "tax_on_sales": 1,
+            "tax_on_purchase": 1,
+        },
+        "type": "product",
+        "cat": [
+            {
+                "category_id": 10
+            }
+        ],
+        "quantity": 10
+    }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "product_id": 100,
-                "product_name": "Pen",
-                "product_desc": "Product Description",
+                "id": 100,
+                "name": "Pen",
+                "description": "Product Description",
                 "sku": Off1324,
                 "cost_price_per_unit": 200.00,
                 "sale_price_per_unit": 300.00,
@@ -121,25 +144,31 @@ Fetches all available products with pagination
                     "value": "79",
                     "name": "Sales of Product Income"
                 },
-                "sales_account": {
-                    "value": "80",
-                    "name": "Cost of Goods Sold"
-                },
-                "asset_account": {
-                    "value": "81",
-                    "name": "Inventory Asset"
-                },
                 "tax_info": {
                     "tax_on_sales": 1,
                     "tax_on_purchase": 1,
                 },
-                "product_type": "product",
-                "product_cat": [
+                "type": "product",
+                "cat": [
                     {
                         "category_id": 15
                     }
                 ],
                 "quantity": 10,
+                "images": [
+                    {
+                      "id": 792,
+                      "date_created": "2017-03-23T14:01:13",
+                      "date_modified": "2017-03-23T14:01:13",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
+                    },
+                    {
+                      "id": 793,
+                      "date_created": "2017-03-23T14:01:14",
+                      "date_modified": "2017-03-23T14:01:14",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
+                    }
+                ],
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
@@ -150,13 +179,29 @@ Fetches all available products with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products/794"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products"
+                        }
+                    ]
                 }
             }
 
@@ -172,9 +217,9 @@ Fetches all available products with pagination
     + Body
 
             {
-                "product_id": 100,
-                "product_name": "Pen",
-                "product_desc": "Product Description",
+                "id": 100,
+                "name": "Pen",
+                "description": "Product Description",
                 "sku": Off1324,
                 "cost_price_per_unit": 200.00,
                 "sale_price_per_unit": 300.00,
@@ -182,25 +227,31 @@ Fetches all available products with pagination
                     "value": "79",
                     "name": "Sales of Product Income"
                 },
-                "sales_account": {
-                    "value": "80",
-                    "name": "Cost of Goods Sold"
-                },
-                "asset_account": {
-                    "value": "81",
-                    "name": "Inventory Asset"
-                },
                 "tax_info": {
                     "tax_on_sales": 1,
                     "tax_on_purchase": 1,
                 },
-                "product_type": "product",
-                "product_cat": [
+                "type": "product",
+                "cat": [
                     {
                         "category_id": 15
                     }
                 ],
                 "quantity": 10,
+                "images": [
+                    {
+                      "id": 792,
+                      "date_created": "2017-03-23T14:01:13",
+                      "date_modified": "2017-03-23T14:01:13",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
+                    },
+                    {
+                      "id": 793,
+                      "date_created": "2017-03-23T14:01:14",
+                      "date_modified": "2017-03-23T14:01:14",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
+                    }
+                ],
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
@@ -209,15 +260,30 @@ Fetches all available products with pagination
                     "user_email": "john@doe.com",
                     "user_url": "http://www.doe.com",
                     "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products/794"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products"
+                        }
+                    ]
                 }
             }
 
@@ -225,44 +291,44 @@ Fetches all available products with pagination
 
     Model (application/json)
 
-        {
-            "product_name": "Pen Updated",
-            "product_desc": "Product Description",
-            "sku": Off1324,
-            "cost_price_per_unit": 200.00,
-            "sale_price_per_unit": 300.00,
-            "purchase_account": {
-                "value": "79",
-                "name": "Sales of Product Income"
-            },
-            "sales_account": {
-                "value": "80",
-                "name": "Cost of Goods Sold"
-            },
-            "asset_account": {
-                "value": "81",
-                "name": "Inventory Asset"
-            },
-            "tax_info": {
-                "tax_on_sales": 1,
-                "tax_on_purchase": 1,
-            },
-            "product_type": "product",
-            "product_cat": [
-                {
-                    "category_id": 10
-                }
-            ],
-            "quantity": 10
-        }
+    {
+        "name": "Pen Updated",
+        "description": "Product Description",
+        "sku": Off1324,
+        "cost_price_per_unit": 200.00,
+        "sale_price_per_unit": 300.00,
+        "purchase_account": {
+            "value": "79",
+            "name": "Sales of Product Income"
+        },
+        "sales_account": {
+            "value": "80",
+            "name": "Cost of Goods Sold"
+        },
+        "asset_account": {
+            "value": "81",
+            "name": "Inventory Asset"
+        },
+        "tax_info": {
+            "tax_on_sales": 1,
+            "tax_on_purchase": 1,
+        },
+        "type": "product",
+        "cat": [
+            {
+                "category_id": 10
+            }
+        ],
+        "quantity": 10
+    }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "product_id": 100,
-                "product_name": "Pen Updated",
-                "product_desc": "Product Description",
+                "id": 100,
+                "name": "Pen",
+                "description": "Product Description",
                 "sku": Off1324,
                 "cost_price_per_unit": 200.00,
                 "sale_price_per_unit": 300.00,
@@ -270,25 +336,31 @@ Fetches all available products with pagination
                     "value": "79",
                     "name": "Sales of Product Income"
                 },
-                "sales_account": {
-                    "value": "80",
-                    "name": "Cost of Goods Sold"
-                },
-                "asset_account": {
-                    "value": "81",
-                    "name": "Inventory Asset"
-                },
                 "tax_info": {
                     "tax_on_sales": 1,
                     "tax_on_purchase": 1,
                 },
-                "product_type": "product",
-                "product_cat": [
+                "type": "product",
+                "cat": [
                     {
                         "category_id": 15
                     }
                 ],
                 "quantity": 10,
+                "images": [
+                    {
+                      "id": 792,
+                      "date_created": "2017-03-23T14:01:13",
+                      "date_modified": "2017-03-23T14:01:13",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
+                    },
+                    {
+                      "id": 793,
+                      "date_created": "2017-03-23T14:01:14",
+                      "date_modified": "2017-03-23T14:01:14",
+                      "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
+                    }
+                ],
                 "created": "2015-12-09T11:12:39-08:00",
                 "updated": "2015-12-09T11:12:41-08:00",
                 "created_by": {
@@ -299,13 +371,29 @@ Fetches all available products with pagination
                     "display_name": "John Wick",
                     "avatar": "https://gravatar.com",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/products/100",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/products"
+                    "self": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products/794"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "https://example.com/wp-json/erp/v1/products"
+                        }
+                    ]
                 }
             }
 

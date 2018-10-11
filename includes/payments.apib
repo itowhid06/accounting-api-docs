@@ -1,20 +1,21 @@
-# Group Pay Purchase Orders
+# Group Payments
 
 
-## Pay Purchase Order List [/pay-purchase-orders]
+## Payments List [/payments]
 
-### Create A Pay Purchase Order [POST]
+### Create A Payment [POST]
 
     Model (application/json)
 
     {
-        "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
-        "bill_type": "purchase_order",
-        "Line": [
+        "customer_id": 20,
+        "ref": 100,
+        "invoice_type": "invoice",
+        "payment_date": 10-10-18,
+        "deposit": 'Bank',
+        "line_items": [
             {
-                "voucher_no": 1,
+                "invoice_id": 1,
                 "due": 100,
                 "line_total": 200,
                 "amount": 200,
@@ -32,19 +33,20 @@
                 "file" : "file2.pdf"
             }
         ],
+        "transaction_by": 1,
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
                 "transaction_by": 'Bank',
-                "bill_type": "purchase_order",
-                "Line": [
+                "line_items": [
                     {
                         "invoice_id": 1,
                         "voucher_no": 20,
@@ -65,6 +67,7 @@
                         "file" : "file2.pdf"
                     }
                 ],
+                "transaction_by": 1,
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -88,35 +91,35 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/payments"
                         }
                     ]
                 }
             }
 
-## Manage Single Pay Purchase Order [/pay-purchase-orders/{id}]
+## Manage Single Payment [/payments/{id}]
 
 + Parameters
-    + id (string) - id of the pay-purchase-orders in the form of an string
+    + id (string) - id of the payment in the form of an string
 
-### Retrieve An Pay Purchase Order [GET]
+### Retrieve An Payment [GET]
 
 + Response 200 (application/json)
     + Body
 
             {
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
                 "transaction_by": 'Bank',
-                "bill_type": "purchase_order",
-                "Line": [
+                "line_items": [
                     {
                         "invoice_id": 1,
                         "voucher_no": 20,
@@ -160,29 +163,29 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/payments"
                         }
                     ]
                 }
             }
 
-### Update An Pay Purchase Order [PUT]
+### Update An Payment [PUT]
 
     Model (application/json)
 
     {
-        "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
-        "bill_type": "purchase_order",
-        "Line": [
+        "customer": 20,
+        "ref": 100,
+        "payment_date": 10-10-18,
+        "deposit": 'Bank',
+        "line_items": [
             {
-                "voucher_no": 1,
+                "invoice_id": 1,
                 "due": 100,
                 "line_total": 200,
                 "amount": 200,
@@ -206,16 +209,16 @@
     + Body
 
             {
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
+                "customer_id": 20,
+                "customer_name": "John Smith",
+                "ref": 100,
+                "voucher_no": 20,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
-                "bill_type": "purchase_order",
+                "transaction_method": 'Bank',
                 "Line": [
                     {
                         "invoice_id": 1,
-                        "voucher_no": 20,
                         "due": 100,
                         "line_total": 200,
                         "amount": 200,
@@ -256,19 +259,18 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/payments/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/payments"
                         }
                     ]
                 }
             }
 
-### Delete An Pay Purchase Order [DELETE]
+### Delete An Payment [DELETE]
 
 + Request (application/json)
 + Response 204 (application/json)
-

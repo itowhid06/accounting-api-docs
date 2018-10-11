@@ -1,29 +1,29 @@
 # Group Pay Bills
-Group description
 
-## Pay Bill List [/pay_bills]
+
+## Pay Bill List [/pay-bills]
 
 ### Create A Pay Bill [POST]
 
     Model (application/json)
 
-        {
-            "vendor_id": 20,
-            "transaction_date": 10-10-18,
-            "transaction_by": 'Bank',
-            "bill_type": "bill",
-            "Line": [
-                {
-                    "voucher_no": 1,
-                    "due": 100,
-                    "line_total": 200,
-                    "amount": 200,
-                }
-            ],
-            "amount": 10000,
-            "memo": "Acct. 1JK90",
-            "attachment" : 'file.pdf',
-        }
+    {
+        "vendor_id": 20,
+        "transaction_date": 10-10-18,
+        "transaction_by": 'Bank',
+        "bill_type": "bill",
+        "Line": [
+            {
+                "voucher_no": 1,
+                "due": 100,
+                "line_total": 200,
+                "amount": 200,
+            }
+        ],
+        "amount": 10000,
+        "memo": "Acct. 1JK90",
+        "attachment" : 'file.pdf',
+    }
 
 + Response 201 (application/json)
     + Body
@@ -55,20 +55,36 @@ Group description
                     "display_name": "John Wick",
                     "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                        }
+                    ]
                 }
             }
 
-## Manage Single Pay Bill [/pay_bill/{id}]
+## Manage Single Pay Bill [/pay-bill/{id}]
 
 + Parameters
-    + id (string) - id of the pay_bill in the form of an string
+    + id (string) - id of the pay-bill in the form of an string
 
 ### Retrieve An Pay Bill [GET]
 
@@ -102,13 +118,29 @@ Group description
                     "display_name": "John Wick",
                     "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                        }
+                    ]
                 }
             }
 
@@ -116,23 +148,23 @@ Group description
 
     Model (application/json)
 
-        {
-            "vendor_id": 20,
-            "transaction_date": 10-10-18,
-            "transaction_by": 'Bank',
-            "bill_type": "bill",
-            "Line": [
-                {
-                    "voucher_no": 1,
-                    "due": 100,
-                    "line_total": 200,
-                    "amount": 200,
-                }
-            ],
-            "amount": 10000,
-            "memo": "Acct. 1JK90",
-            "attachment" : 'file.pdf',
-        }
+    {
+        "vendor_id": 20,
+        "transaction_date": 10-10-18,
+        "transaction_by": 'Bank',
+        "bill_type": "bill",
+        "Line": [
+            {
+                "voucher_no": 1,
+                "due": 100,
+                "line_total": 200,
+                "amount": 200,
+            }
+        ],
+        "amount": 10000,
+        "memo": "Acct. 1JK90",
+        "attachment" : 'file.pdf',
+    }
 
 + Response 201 (application/json)
     + Body
@@ -164,13 +196,29 @@ Group description
                     "display_name": "John Wick",
                     "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/users/1",
-                        "collection": "http://example.com/wp-json/erp/v1/users"
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
                     }
                 },
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/payments/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/payments"
+                    "self": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                        }
+                    ]
                 }
             }
 
@@ -178,3 +226,4 @@ Group description
 
 + Request (application/json)
 + Response 204 (application/json)
+
