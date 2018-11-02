@@ -1,7 +1,7 @@
-# Group Invoices
+# Group Purchases
 
 
-## Invoice List [/invoices/{?per_page,page,search,include,type,status,uid,start,end}]
+## Purchase List [/purchases/{?per_page,page,search,include,type,uid,start,end}]
 
 + Parameters
 
@@ -11,15 +11,14 @@
         + Default: `1`
     + search (string, optional) - The search keyword.
     + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of invoice.
-    + status (string, optional) - The status of invoice.
-    + uid (number, optional) - Filter invoices by user id.
-    + start (string, optional) - The start date of filtering invoices.
-    + end (string, optional) - The end date of filtering invoices.
+    + type (string, optional) - The type of purchase.
+    + uid (number, optional) - Filter purchases by user id.
+    + start (string, optional) - The start date of filtering purchases.
+    + end (string, optional) - The end date of filtering purchases.
 
-### List All Invoices [GET]
+### List All Purchases [GET]
 
-Fetches all available invoices with pagination
+Fetches all available purchases with pagination
 
 + Response 200 (application/json)
     + Body
@@ -27,19 +26,12 @@ Fetches all available invoices with pagination
             [
                 {
                     "id": 1,
-                    "voucher_no": 1,
-                    "customer_id": 1,
-                    "customer_name": "John Smith",
-                    "date": "2015-07-24",
-                    "due_date": "2015-07-24",
-                    "billing_address": {
-                        "address": "4581 Finch St.",
-                        "city": "Bayshore",
-                        "state": "CA",
-                        "post_code": "94326",
-                        "country": "USA"
-                    },
-                    "line_items": [
+                    "vendor_id": 1,
+                    "vendor_name": Apple,
+                    "trn_no": 503,
+                    "ledger_id": "104 (Tea)",
+                    "particulars": "due",
+                    "purchase_details": [
                         {
                             "product_id": "1",
                             "product_name": "My Awesome Book",
@@ -65,13 +57,11 @@ Fetches all available invoices with pagination
                             "item_total": 100.0
                         }
                     ],
-                    "discount": 10.0,
-                    "tax": 30.0,
-                    "subtotal": 500.0,
-                    "total": 500.0,
-                    "due": 500.0,
-                    "type": "invoice",
-                    "status": "awaiting_payment",
+                    "date": "2016-11-22",
+                    "due_date": "2016-11-22",
+                    "subtotal": 200,
+                    "total": 200,
+                    "reference_no": "Purchase-001",
                     "attachments": [
                         {
                             "id": 1,
@@ -82,8 +72,7 @@ Fetches all available invoices with pagination
                             "file" : "file2.pdf"
                         }
                     ],
-                    "particulars": "dummy pariculars",
-                    "trn_by": {
+                    "created_by": {
                         "id": 1,
                         "user_nicename": "john",
                         "user_email": "mail@gmail.com",
@@ -103,64 +92,45 @@ Fetches all available invoices with pagination
                             ]
                         }
                     },
-                    "created_at": "2016-11-08 03:33:57",
-                    "updated_at": "2016-11-08 03:33:57",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                            }
-                        ]
+                        "self": "http://example.com/wp-json/erp/v1/accounting/purchases/1",
+                        "collection": "http://example.com/wp-json/erp/v1/accounting/purchases"
                     }
                 }
             ]
 
-## Invoice List [/invoices]
+## Purchase List [/purchases]
 
-### Create A Invoice [POST]
+### Create A Purchase [POST]
 
     Model (application/json)
 
     {
-        "customer_id": 1,
-        "date": "2015-07-24",
-        "due_date": "2015-07-24",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
-        "line_items": [
+        "vendor_id": 1,
+        "trn_no": 503,
+        "ledger_id": "104 (Tea)",
+        "particulars": "due",
+        "purchase_details": [
             {
-                "product_id": "1",
-                "product_type": "product",
+                "id": 1,
+                "product_id": 503,
                 "qty": 2,
-                "unit_price": 200.0,
-                "discount": 0,
-                "tax": 20.0,
-                "tax_percent": 10.0,
-                "item_total": 400.0
+                "unit_price": 100,
+                "total": 200
             },
             {
-                "product_id": "2",
-                "product_type": "service",
-                "qty": 1,
-                "unit_price": 100.0,
-                "discount": 10.0,
-                "tax": 10.0,
-                "tax_percent": 10.0,
-                "item_total": 100.0
+                "id": 2,
+                "product_id": 504,
+                "qty": 3,
+                "unit_price": 50,
+                "total": 150
             }
         ],
-        "type": "invoice",
-        "status": "awaiting_payment",
+        "date": "2016-11-22",
+        "due_date": "2016-11-22",
+        "subtotal": 200,
+        "total": 200,
+        "reference_no": "Purchase-001",
         "attachments": [
             {
                 "id": 1,
@@ -171,7 +141,7 @@ Fetches all available invoices with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "trn_by": 1
+        "created_by": 1
     }
 
 + Response 201 (application/json)
@@ -179,19 +149,12 @@ Fetches all available invoices with pagination
 
             {
                 "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
+                "purchase_details": [
                     {
                         "product_id": "1",
                         "product_name": "My Awesome Book",
@@ -217,24 +180,12 @@ Fetches all available invoices with pagination
                         "item_total": 100.0
                     }
                 ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "awaiting_payment",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "particulars": "dummy pariculars",
-                "trn_by": {
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Purchase-001",
+                "created_by": {
                     "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
@@ -254,48 +205,31 @@ Fetches all available invoices with pagination
                         ]
                     }
                 },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                        }
-                    ]
+                    "self": "http://example.com/wp-json/erp/v1/accounting/purchases/1",
+                    "collection": "http://example.com/wp-json/erp/v1/accounting/purchases"
                 }
             }
 
 
-## Manage Single Invoice [/invoices/{id}]
+## Manage Single Purchase [/purchases/{id}]
 
 + Parameters
-    + id (string) - id of the invoice in the form of an string
+    + id (string) - id of the purchase in the form of an string
 
-### Retrieve An Invoice [GET]
+### Retrieve A Purchase [GET]
 
 + Response 200 (application/json)
     + Body
 
             {
                 "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
+                "purchase_details": [
                     {
                         "product_id": "1",
                         "product_name": "My Awesome Book",
@@ -321,12 +255,11 @@ Fetches all available invoices with pagination
                         "item_total": 100.0
                     }
                 ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "awaiting_payment",
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Purchase-001",
                 "attachments": [
                     {
                         "id": 1,
@@ -337,8 +270,7 @@ Fetches all available invoices with pagination
                         "file" : "file2.pdf"
                     }
                 ],
-                "particulars": "dummy pariculars",
-                "trn_by": {
+                "created_by": {
                     "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
@@ -358,63 +290,50 @@ Fetches all available invoices with pagination
                         ]
                     }
                 },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases"
                         }
                     ]
                 }
             }
 
-### Update An Invoice [PUT]
+### Update A Purchase [PUT]
 
     Model (application/json)
 
     {
-        "customer_id": 1,
-        "date": "2015-07-24",
-        "due_date": "2015-07-24",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
-        "line_items": [
+        "vendor_id": 1,
+        "trn_no": 503,
+        "ledger_id": "104 (Tea)",
+        "particulars": "due",
+        "purchase_details": [
             {
-                "product_id": "1",
-                "product_type": "product",
+                "id": 1,
+                "product_id": 503,
                 "qty": 2,
-                "unit_price": 200.0,
-                "discount": 0,
-                "tax": 20.0,
-                "tax_percent": 10.0,
-                "item_total": 400.0
+                "unit_price": 100,
+                "total": 200
             },
             {
-                "product_id": "2",
-                "product_type": "service",
-                "qty": 1,
-                "unit_price": 100.0,
-                "discount": 10.0,
-                "tax": 10.0,
-                "tax_percent": 10.0,
-                "item_total": 100.0
+                "id": 2,
+                "product_id": 504,
+                "qty": 3,
+                "unit_price": 50,
+                "total": 150
             }
         ],
-        "subtotal": 500.0,
-        "total": 500.0,
-        "type": "invoice",
-        "status": "paid",
+        "date": "2016-11-22",
+        "due_date": "2016-11-22",
+        "subtotal": 200,
+        "total": 200,
+        "reference_no": "Purchase-001",
         "attachments": [
             {
                 "id": 1,
@@ -425,7 +344,7 @@ Fetches all available invoices with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "trn_by": 1,
+        "created_by": 1
     }
 
 + Response 201 (application/json)
@@ -433,19 +352,13 @@ Fetches all available invoices with pagination
 
             {
                 "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
+                "purchase_id": 503,
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
+                "purchase_details": [
                     {
                         "product_id": "1",
                         "product_name": "My Awesome Book",
@@ -471,12 +384,11 @@ Fetches all available invoices with pagination
                         "item_total": 100.0
                     }
                 ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "paid",
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Purchase-001",
                 "attachments": [
                     {
                         "id": 1,
@@ -487,8 +399,7 @@ Fetches all available invoices with pagination
                         "file" : "file2.pdf"
                     }
                 ],
-                "particulars": "dummy pariculars",
-                "trn_by": {
+                "created_by": {
                     "id": 1,
                     "user_nicename": "john",
                     "user_email": "mail@gmail.com",
@@ -508,23 +419,21 @@ Fetches all available invoices with pagination
                         ]
                     }
                 },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases"
                         }
                     ]
                 }
             }
 
-### Delete An Invoice [DELETE]
+### Delete A Purchase [DELETE]
 
 + Request (application/json)
 + Response 204 (application/json)

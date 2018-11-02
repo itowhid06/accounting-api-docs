@@ -1,5 +1,102 @@
 # Group Pay Bills
 
+## Pay Bill List [/pay_bills/{?per_page,page,search,include,type,uid,start,end}]
+
++ Parameters
+
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
+    + type (string, optional) - The type of bill.
+    + uid (number, optional) - Filter bills by user id.
+    + start (string, optional) - The start date of filtering bills.
+    + end (string, optional) - The end date of filtering bills.
+
+### List All Pay Bills [GET]
+
+Fetches all available pay bills with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "bill_no": 503,
+                    "vendor_id": 1,
+                    "vendor_name": Apple,
+                    "ledger_id": "104 (Tea)",
+                    "particulars": "due",
+                    "bill_details": [
+                        {
+                            "id": 1,
+                            "ledger_id": 503,
+                            "bill_no": 503,
+                            "trn_no": 504,
+                            "particulars": "nothing",
+                            "amount": 80,
+                            "tax": 20,
+                            "line_total": 100
+                        },
+                        {
+                            "id": 2,
+                            "ledger_id": 504,
+                            "bill_no": 503,
+                            "trn_no": 504,
+                            "particulars": "nothing",
+                            "amount": 90,
+                            "tax": 30,
+                            "line_total": 120
+                        },
+                    ],
+                    "date": "2016-11-22",
+                    "due_date": "2016-11-22",
+                    "subtotal": 200,
+                    "total": 200,
+                    "reference_no": "Bill-001",
+                    "created_by": {
+                        "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "mail@gmail.com",
+                        "user_url": "",
+                        "display_name": "John Wick",
+                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
+                    },
+                    "_links": {
+                        "self": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/bills/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/bills"
+                            }
+                        ]
+                    },
+                    "attachments": [
+                        {
+                            "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                        }
+                    ]
+                }
+            ]
+
 
 ## Pay Bill List [/pay-bills]
 
@@ -9,43 +106,71 @@
 
     {
         "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
-        "bill_type": "bill",
-        "Line": [
+        "trn_date": "10-10-18",
+        "trn_by": "Bank",
+        "bill_details": [
             {
-                "voucher_no": 1,
-                "due": 100,
-                "line_total": 200,
-                "amount": 200,
-            }
+                "id": 1,
+                "ledger_id": 503,
+                "particulars": "nothing",
+                "amount": 80,
+                "tax": 20,
+                "line_total": 100
+            },
+            {
+                "id": 2,
+                "ledger_id": 504,
+                "particulars": "nothing",
+                "amount": 90,
+                "tax": 30,
+                "line_total": 120
+            },
         ],
         "amount": 10000,
-        "memo": "Acct. 1JK90",
-        "attachment" : 'file.pdf',
+        "ref": "Acct. 1JK90",
+        "attachments": [
+            {
+                "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+            }
+        ]
     }
 
 + Response 201 (application/json)
     + Body
 
             {
+                "id": 1,
+                "bill_no": 503,
                 "vendor_id": 20,
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_by": "Bank",
                 "bill_type": "bill",
-                "Line": [
+                "bill_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
-                    }
+                        "id": 1,
+                        "ledger_id": 503,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 80,
+                        "tax": 20,
+                        "line_total": 100
+                    },
+                    {
+                        "id": 2,
+                        "ledger_id": 504,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 90,
+                        "tax": 30,
+                        "line_total": 120
+                    },
                 ],
                 "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "ref": "Acct. 1JK90",
                 "attachments" : 'file.pdf',
                 "created_by": {
                     "id": 1,
@@ -78,7 +203,12 @@
                             "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
                         }
                     ]
-                }
+                },
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                    }
+                ]
             }
 
 ## Manage Single Pay Bill [/pay-bill/{id}]
@@ -92,23 +222,37 @@
     + Body
 
             {
+                "id": 1,
+                "bill_no": 503,
                 "vendor_id": 20,
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
-                "bill_type": "bill",
-                "Line": [
+                "trn_by": 'Bank',
+                "bill_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
-                    }
+                        "id": 1,
+                        "ledger_id": 503,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 80,
+                        "tax": 20,
+                        "line_total": 100
+                    },
+                    {
+                        "id": 2,
+                        "ledger_id": 504,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 90,
+                        "tax": 30,
+                        "line_total": 120
+                    },
                 ],
                 "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "ref": "Acct. 1JK90",
                 "attachments" : 'file.pdf',
                 "created_by": {
                     "id": 1,
@@ -141,7 +285,12 @@
                             "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
                         }
                     ]
-                }
+                },
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                    }
+                ]
             }
 
 ### Update An Pay Bill [PUT]
@@ -150,20 +299,38 @@
 
     {
         "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
-        "bill_type": "bill",
-        "Line": [
+        "trn_date": "10-10-18",
+        "trn_by": "Bank",
+        "type": "bill",
+        "bill_details": [
             {
-                "voucher_no": 1,
-                "due": 100,
-                "line_total": 200,
-                "amount": 200,
-            }
+                "id": 1,
+                "ledger_id": 503,
+                "bill_no": 503,
+                "trn_no": 504,
+                "particulars": "nothing",
+                "amount": 80,
+                "tax": 20,
+                "line_total": 100
+            },
+            {
+                "id": 2,
+                "ledger_id": 504,
+                "bill_no": 503,
+                "trn_no": 504,
+                "particulars": "nothing",
+                "amount": 90,
+                "tax": 30,
+                "line_total": 120
+            },
         ],
         "amount": 10000,
-        "memo": "Acct. 1JK90",
-        "attachment" : 'file.pdf',
+        "ref": "Acct. 1JK90",
+        "attachments": [
+            {
+                "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+            }
+        ]
     }
 
 + Response 201 (application/json)
@@ -174,9 +341,9 @@
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_by": 'Bank',
                 "bill_type": "bill",
-                "Line": [
+                "line_items": [
                     {
                         "invoice_id": 1,
                         "voucher_no": 20,
@@ -186,7 +353,7 @@
                     }
                 ],
                 "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "ref": "Acct. 1JK90",
                 "attachments" : 'file.pdf',
                 "created_by": {
                     "id": 1,
@@ -219,7 +386,12 @@
                             "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
                         }
                     ]
-                }
+                },
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                    }
+                ]
             }
 
 ### Delete An Pay Bill [DELETE]

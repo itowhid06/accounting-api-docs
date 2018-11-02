@@ -1,27 +1,149 @@
 # Group Payments
 
+## Payments List [/payments/{?per_page,page,search,include,type,status,uid,start,end}]
 
-## Payments List [/payments]
++ Parameters
+
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
+    + type (string, optional) - The type of payment.
+    + status (string, optional) - The status of payment.
+    + uid (number, optional) - Filter payments by user id.
+    + start (string, optional) - The start date of filtering payments.
+    + end (string, optional) - The end date of filtering payments.
+
+### List All Payments [GET]
+
+Fetches all available payments with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "voucher_no": 1,
+                    "customer_id": 1,
+                    "customer_name": "John Smith",
+                    "date": "2015-07-24",
+                    "due_date": "2015-07-24",
+                    "billing_address": {
+                        "address": "4581 Finch St.",
+                        "city": "Bayshore",
+                        "state": "CA",
+                        "post_code": "94326",
+                        "country": "USA"
+                    },
+                    "line_items": [
+                        {
+                            "product_id": "1",
+                            "product_name": "My Awesome Book",
+                            "product_details": "Book Details",
+                            "product_type": "product",
+                            "qty": 2,
+                            "unit_price": 200.0,
+                            "discount": 0,
+                            "tax": 20.0,
+                            "tax_percent": 10.0,
+                            "item_total": 400.0
+                        },
+                        {
+                            "product_id": "2",
+                            "product_name": "My Awesome Service",
+                            "product_details": "Service Details",
+                            "product_type": "service",
+                            "qty": 1,
+                            "unit_price": 100.0,
+                            "discount": 10.0,
+                            "tax": 10.0,
+                            "tax_percent": 10.0,
+                            "item_total": 100.0
+                        }
+                    ],
+                    "discount": 10.0,
+                    "tax": 30.0,
+                    "subtotal": 500.0,
+                    "total": 500.0,
+                    "due": 500.0,
+                    "type": "payment",
+                    "status": "awaiting_payment",
+                    "attachments": [
+                        {
+                            "id": 1,
+                            "file" : "file1.pdf"
+                        },
+                        {
+                            "id": 2,
+                            "file" : "file2.pdf"
+                        }
+                    ],
+                    "particulars": "dummy pariculars",
+                    "trn_by": {
+                        "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "mail@gmail.com",
+                        "user_url": "",
+                        "display_name": "John Wick",
+                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
+                    },
+                    "created_at": "2016-11-08 03:33:57",
+                    "updated_at": "2016-11-08 03:33:57",
+                    "_links": {
+                        "self": [
+                            {
+                                "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "www.example.com/wp-json/erp/v1/accounting/payments"
+                            }
+                        ]
+                    }
+                }
+            ]
+
 
 ### Create A Payment [POST]
 
     Model (application/json)
 
     {
-        "customer_id": 20,
+        "customer_id": 1,
         "ref": 100,
-        "invoice_type": "invoice",
-        "payment_date": 10-10-18,
-        "deposit": 'Bank',
+        "trn_date": "10-10-18",
+        "due_date": "31-10-18",
+        "deposit": "Bank",
         "line_items": [
             {
-                "invoice_id": 1,
+                "payment_id": 1,
                 "due": 100,
                 "line_total": 200,
-                "amount": 200,
+                "amount": 200
+            },
+            {
+                "payment_id": 2,
+                "due": 100,
+                "line_total": 200,
+                "amount": 200
             }
         ],
-        "amount": 10000,
         "memo": "Acct. 1JK90",
         "attachments": [
             {
@@ -33,7 +155,8 @@
                 "file" : "file2.pdf"
             }
         ],
-        "transaction_by": 1,
+        "type": "payment",
+        "trn_by": 1
     }
 
 + Response 201 (application/json)
@@ -45,17 +168,22 @@
                 "ref": 100,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_method": 'Bank',
                 "line_items": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
+                        "payment_id": 1,
                         "due": 100,
                         "line_total": 200,
-                        "amount": 200,
+                        "amount": 200
+                    },
+                    {
+                        "payment_id": 2,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200
                     }
                 ],
-                "amount": 10000,
+                "pay_total": 100,
                 "memo": "Acct. 1JK90",
                 "attachments": [
                     {
@@ -67,7 +195,7 @@
                         "file" : "file2.pdf"
                     }
                 ],
-                "transaction_by": 1,
+                "trn_by": 1,
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -118,17 +246,22 @@
                 "ref": 100,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_method": 'Bank',
                 "line_items": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
+                        "payment_id": 1,
                         "due": 100,
                         "line_total": 200,
-                        "amount": 200,
+                        "amount": 200
+                    },
+                    {
+                        "payment_id": 2,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200
                     }
                 ],
-                "amount": 10000,
+                "pay_total": 100,
                 "memo": "Acct. 1JK90",
                 "attachments": [
                     {
@@ -140,6 +273,7 @@
                         "file" : "file2.pdf"
                     }
                 ],
+                "trn_by": 1,
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -185,13 +319,19 @@
         "deposit": 'Bank',
         "line_items": [
             {
-                "invoice_id": 1,
+                "payment_id": 1,
                 "due": 100,
                 "line_total": 200,
-                "amount": 200,
+                "amount": 200
+            },
+            {
+                "payment_id": 2,
+                "due": 100,
+                "line_total": 200,
+                "amount": 200
             }
         ],
-        "amount": 10000,
+        "pay_total": 100,
         "memo": "Acct. 1JK90",
         "attachments": [
             {
@@ -215,16 +355,22 @@
                 "voucher_no": 20,
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_method": 'Bank',
-                "Line": [
+                "trn_method": 'Bank',
+                "line_items": [
                     {
-                        "invoice_id": 1,
+                        "payment_id": 1,
                         "due": 100,
                         "line_total": 200,
-                        "amount": 200,
+                        "amount": 200
+                    },
+                    {
+                        "payment_id": 2,
+                        "due": 100,
+                        "line_total": 200,
+                        "amount": 200
                     }
                 ],
-                "amount": 10000,
+                "pay_total": 100,
                 "memo": "Acct. 1JK90",
                 "attachments": [
                     {

@@ -1,27 +1,116 @@
-# Group Pay Purchase Orders
+# Group Pay Purchases
 
+## Pay Purchases List [/pay-purchases/{?per_page,page,search,include,type,uid,start,end}]
 
-## Pay Purchase Order List [/pay-purchase-orders]
++ Parameters
 
-### Create A Pay Purchase Order [POST]
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
+    + include: owner (string, optional) - The additional object to be included.
+    + type (string, optional) - The type of pay-purchase.
+    + uid (number, optional) - Filter pay-purchases by user id.
+    + start (string, optional) - The start date of filtering pay-purchases.
+    + end (string, optional) - The end date of filtering pay-purchases.
+
+### List All Pay Purchases [GET]
+
+Fetches all available pay-purchases with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "vendor_id": 1,
+                    "vendor_name": Apple,
+                    "trn_no": 503,
+                    "ledger_id": "104 (Tea)",
+                    "particulars": "due",
+                    "purchase_details": [
+                        {
+                            "id": 1,
+                            "purchase_no": 503,
+                            "trn_no": 503,
+                            "particulars": "nothing",
+                            "debit": 0,
+                            "credit": 200,
+                        },
+                        {
+                            "id": 2,
+                            "purchase_no": 503,
+                            "trn_no": 504,
+                            "particulars": "nothing",
+                            "debit": 150,
+                            "credit": 0,
+                        }
+                    ],
+                    "date": "2016-11-22",
+                    "due_date": "2016-11-22",
+                    "subtotal": 200,
+                    "total": 200,
+                    "reference_no": "Purchase-001",
+                    "attachments": [
+                        {
+                            "id": 1,
+                            "file" : "file1.pdf"
+                        },
+                        {
+                            "id": 2,
+                            "file" : "file2.pdf"
+                        }
+                    ],
+                    "created_by": {
+                        "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "mail@gmail.com",
+                        "user_url": "",
+                        "display_name": "John Wick",
+                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
+                    },
+                    "_links": {
+                        "self": "http://example.com/wp-json/erp/v1/accounting/purchases/1",
+                        "collection": "http://example.com/wp-json/erp/v1/accounting/purchases"
+                    }
+                }
+            ]
+
+## Pay Purchases List [/pay-purchases]
+
+### Create A Pay Purchase [POST]
 
     Model (application/json)
 
     {
         "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
-        "bill_type": "purchase_order",
-        "Line": [
+        "trn_date": 10-10-18,
+        "trn_by": 'Bank',
+        "purchase_details": [
             {
-                "voucher_no": 1,
+                "id": 1,
+                "voucher_no": 503,
                 "due": 100,
-                "line_total": 200,
-                "amount": 200,
+                "total": 100
+                "line_total": 100,
             }
         ],
-        "amount": 10000,
-        "memo": "Acct. 1JK90",
+        "amount": 100,
+        "ref": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -42,19 +131,19 @@
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_by": 'Bank',
                 "bill_type": "purchase_order",
-                "Line": [
+                "purchase_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
+                        "id": 1,
+                        "voucher_no": 503,
                         "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
+                        "total": 100
+                        "line_total": 100,
                     }
                 ],
-                "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "amount": 100,
+                "ref": "Acct. 1JK90",
                 "attachments": [
                     {
                         "id": 1,
@@ -88,23 +177,23 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases"
                         }
                     ]
                 }
             }
 
-## Manage Single Pay Purchase Order [/pay-purchase-orders/{id}]
+## Manage Single Pay Purchase [/pay-purchases/{id}]
 
 + Parameters
-    + id (string) - id of the pay-purchase-orders in the form of an string
+    + id (string) - id of the pay-purchases in the form of an string
 
-### Retrieve An Pay Purchase Order [GET]
+### Retrieve A Pay Purchase [GET]
 
 + Response 200 (application/json)
     + Body
@@ -114,19 +203,19 @@
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_by": 'Bank',
                 "bill_type": "purchase_order",
-                "Line": [
+                "purchase_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
+                        "id": 1,
+                        "voucher_no": 503,
                         "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
+                        "total": 100
+                        "line_total": 100,
                     }
                 ],
-                "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "amount": 100,
+                "ref": "Acct. 1JK90",
                 "attachments": [
                     {
                         "id": 1,
@@ -160,36 +249,37 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases"
                         }
                     ]
                 }
             }
 
-### Update An Pay Purchase Order [PUT]
+### Update A Pay Purchase [PUT]
 
     Model (application/json)
 
     {
         "vendor_id": 20,
-        "transaction_date": 10-10-18,
-        "transaction_by": 'Bank',
+        "trn_date": 10-10-18,
+        "trn_by": 'Bank',
         "bill_type": "purchase_order",
-        "Line": [
+        "purchase_details": [
             {
-                "voucher_no": 1,
+                "id": 1,
+                "voucher_no": 503,
                 "due": 100,
-                "line_total": 200,
-                "amount": 200,
+                "total": 100
+                "line_total": 100,
             }
         ],
         "amount": 10000,
-        "memo": "Acct. 1JK90",
+        "ref": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -210,19 +300,19 @@
                 "vendor_name": "John Smith",
                 "particulars": "paid",
                 "payment_date": 10-10-18,
-                "transaction_by": 'Bank',
+                "trn_by": 'Bank',
                 "bill_type": "purchase_order",
-                "Line": [
+                "purchase_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
+                        "id": 1,
+                        "voucher_no": 503,
                         "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
+                        "total": 100
+                        "line_total": 100,
                     }
                 ],
                 "amount": 10000,
-                "memo": "Acct. 1JK90",
+                "ref": "Acct. 1JK90",
                 "attachments": [
                     {
                         "id": 1,
@@ -256,18 +346,18 @@
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders/1"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchase-orders"
+                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-purchases"
                         }
                     ]
                 }
             }
 
-### Delete An Pay Purchase Order [DELETE]
+### Delete A Pay Purchase [DELETE]
 
 + Request (application/json)
 + Response 204 (application/json)
