@@ -108,6 +108,13 @@ Fetches all available pay bills with pagination
         "vendor_id": 20,
         "trn_date": "10-10-18",
         "trn_by": "Bank",
+        "billing_address": {
+            "address": "4581 Finch St.",
+            "city": "Bayshore",
+            "state": "CA",
+            "post_code": "94326",
+            "country": "USA"
+        },
         "bill_details": [
             {
                 "id": 1,
@@ -124,8 +131,10 @@ Fetches all available pay bills with pagination
                 "amount": 90,
                 "tax": 30,
                 "line_total": 120
-            },
+            }
         ],
+        "type": "pay_bill",
+        "status": "awaiting_payment",
         "amount": 10000,
         "ref": "Acct. 1JK90",
         "attachments": [
@@ -301,13 +310,17 @@ Fetches all available pay bills with pagination
         "vendor_id": 20,
         "trn_date": "10-10-18",
         "trn_by": "Bank",
-        "type": "bill",
+        "billing_address": {
+            "address": "4581 Finch St.",
+            "city": "Bayshore",
+            "state": "CA",
+            "post_code": "94326",
+            "country": "USA"
+        },
         "bill_details": [
             {
                 "id": 1,
                 "ledger_id": 503,
-                "bill_no": 503,
-                "trn_no": 504,
                 "particulars": "nothing",
                 "amount": 80,
                 "tax": 20,
@@ -316,14 +329,14 @@ Fetches all available pay bills with pagination
             {
                 "id": 2,
                 "ledger_id": 504,
-                "bill_no": 503,
-                "trn_no": 504,
                 "particulars": "nothing",
                 "amount": 90,
                 "tax": 30,
                 "line_total": 120
-            },
+            }
         ],
+        "type": "pay_bill",
+        "status": "awaiting_payment",
         "amount": 10000,
         "ref": "Acct. 1JK90",
         "attachments": [

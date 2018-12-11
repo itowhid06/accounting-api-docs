@@ -130,21 +130,28 @@ Fetches all available payments with pagination
         "trn_date": "10-10-18",
         "due_date": "31-10-18",
         "deposit": "Bank",
+        "billing_address": {
+          "address": "4581 Finch St.",
+          "city": "Bayshore",
+          "state": "CA",
+          "post_code": "94326",
+          "country": "USA"
+        },
         "line_items": [
             {
-                "payment_id": 1,
+                "invoice_no": 1,
+                "amount": 200,
                 "due": 100,
-                "line_total": 200,
-                "amount": 200
+                "line_total": 200
             },
             {
-                "payment_id": 2,
+                "invoice_no": 2,
                 "due": 100,
                 "line_total": 200,
                 "amount": 200
             }
         ],
-        "memo": "Acct. 1JK90",
+        "particulars": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -156,7 +163,8 @@ Fetches all available payments with pagination
             }
         ],
         "type": "payment",
-        "trn_by": 1
+        "trn_by": "cash",
+        "status": "closed"
     }
 
 + Response 201 (application/json)
@@ -313,26 +321,33 @@ Fetches all available payments with pagination
     Model (application/json)
 
     {
-        "customer": 20,
+        "customer_id": 1,
         "ref": 100,
-        "payment_date": 10-10-18,
-        "deposit": 'Bank',
+        "trn_date": "10-10-18",
+        "due_date": "31-10-18",
+        "deposit": "Bank",
+        "billing_address": {
+          "address": "4581 Finch St.",
+          "city": "Bayshore",
+          "state": "CA",
+          "post_code": "94326",
+          "country": "USA"
+        },
         "line_items": [
             {
-                "payment_id": 1,
+                "invoice_no": 1,
+                "amount": 200,
                 "due": 100,
-                "line_total": 200,
-                "amount": 200
+                "line_total": 200
             },
             {
-                "payment_id": 2,
+                "invoice_no": 2,
                 "due": 100,
                 "line_total": 200,
                 "amount": 200
             }
         ],
-        "pay_total": 100,
-        "memo": "Acct. 1JK90",
+        "particulars": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -343,6 +358,9 @@ Fetches all available payments with pagination
                 "file" : "file2.pdf"
             }
         ],
+        "type": "payment",
+        "trn_by": "cash",
+        "status": "closed"
     }
 
 + Response 201 (application/json)

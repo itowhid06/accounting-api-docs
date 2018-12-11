@@ -159,8 +159,8 @@ Fetches all available invoices with pagination
                 "item_total": 100.0
             }
         ],
-        "type": "invoice",
         "status": "awaiting_payment",
+        "estimate": 0,
         "attachments": [
             {
                 "id": 1,
@@ -171,7 +171,8 @@ Fetches all available invoices with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "trn_by": 1
+        "transaction_by": "cash",
+        "particulars": "nothing"
     }
 
 + Response 201 (application/json)
@@ -411,10 +412,8 @@ Fetches all available invoices with pagination
                 "item_total": 100.0
             }
         ],
-        "subtotal": 500.0,
-        "total": 500.0,
-        "type": "invoice",
-        "status": "paid",
+        "status": "awaiting_payment",
+        "estimate": 0,
         "attachments": [
             {
                 "id": 1,
@@ -425,7 +424,8 @@ Fetches all available invoices with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "trn_by": 1,
+        "transaction_by": "cash",
+        "particulars": "nothing"
     }
 
 + Response 201 (application/json)

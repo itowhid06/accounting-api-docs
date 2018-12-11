@@ -98,18 +98,22 @@ Fetches all available pay-purchases with pagination
 
     {
         "vendor_id": 20,
-        "trn_date": 10-10-18,
-        "trn_by": 'Bank',
+        "trn_date": "10-10-18",
+        "trn_by": "Bank",
         "purchase_details": [
             {
-                "id": 1,
                 "voucher_no": 503,
                 "due": 100,
-                "total": 100
-                "line_total": 100,
+                "total": 100,
+                "line_total": 100
+            },
+            {
+                "voucher_no": 504,
+                "due": 100,
+                "total": 100,
+                "line_total": 100
             }
         ],
-        "amount": 100,
         "ref": "Acct. 1JK90",
         "attachments": [
             {
@@ -120,7 +124,7 @@ Fetches all available pay-purchases with pagination
                 "id": 2,
                 "file" : "file2.pdf"
             }
-        ],
+        ]
     }
 
 + Response 201 (application/json)
@@ -266,19 +270,22 @@ Fetches all available pay-purchases with pagination
 
     {
         "vendor_id": 20,
-        "trn_date": 10-10-18,
-        "trn_by": 'Bank',
-        "bill_type": "purchase_order",
+        "trn_date": "10-10-18",
+        "trn_by": "Bank",
         "purchase_details": [
             {
-                "id": 1,
                 "voucher_no": 503,
                 "due": 100,
-                "total": 100
-                "line_total": 100,
+                "total": 100,
+                "line_total": 100
+            },
+            {
+                "voucher_no": 504,
+                "due": 100,
+                "total": 100,
+                "line_total": 100
             }
         ],
-        "amount": 10000,
         "ref": "Acct. 1JK90",
         "attachments": [
             {
@@ -289,7 +296,7 @@ Fetches all available pay-purchases with pagination
                 "id": 2,
                 "file" : "file2.pdf"
             }
-        ],
+        ]
     }
 
 + Response 201 (application/json)

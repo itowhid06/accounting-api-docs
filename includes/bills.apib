@@ -102,35 +102,34 @@ Fetches all available bills with pagination
     {
         "vendor_id": 1,
         "trn_no": 503,
-        "ledger_id": "104 (Tea)",
         "particulars": "due",
         "bill_details": [
             {
                 "id": 1,
-                "ledger_id": 503,
+                "ledger_id": "104 (Tea)",
+                "amount": 500,
                 "particulars": "nothing",
-                "amount": 80,
-                "tax": 20,
-                "line_total": 100
+                "tax": 200,
+                "total": 700
             },
             {
                 "id": 2,
-                "ledger_id": 504,
-                "particulars": "nothing",
-                "amount": 90,
-                "tax": 30,
-                "line_total": 120
-            },
+                "ledger_id": "105 (Coffee)",
+                "amount": 400,
+                "particulars": "nothing2",
+                "tax": 150,
+                "total": 550
+            }
         ],
-        "date": "2016-11-22",
+        "trn_date": "2016-11-22",
         "due_date": "2016-11-22",
-        "reference_no": "Bill-001",
-        "created_by": 1,
+        "ref": "Bill-001",
+        "remarks": "pabfb",
         "attachments": [
             {
                 "href": "https://example.com/wp-json/wp/v2/media?parent=35"
             }
-        ],
+        ]
     }
 
 + Response 201 (application/json)
@@ -307,35 +306,34 @@ Fetches all available bills with pagination
     {
         "vendor_id": 1,
         "trn_no": 503,
-        "ledger_id": "104 (Tea)",
         "particulars": "due",
         "bill_details": [
             {
                 "id": 1,
-                "ledger_id": 503,
+                "ledger_id": "104 (Tea)",
+                "amount": 500,
                 "particulars": "nothing",
-                "amount": 80,
-                "tax": 20,
-                "line_total": 100
+                "tax": 200,
+                "total": 700
             },
             {
                 "id": 2,
-                "ledger_id": 504,
-                "particulars": "nothing",
-                "amount": 90,
-                "tax": 30,
-                "line_total": 120
-            },
+                "ledger_id": "105 (Coffee)",
+                "amount": 400,
+                "particulars": "nothing2",
+                "tax": 150,
+                "total": 550
+            }
         ],
-        "date": "2016-11-22",
+        "trn_date": "2016-11-22",
         "due_date": "2016-11-22",
-        "reference_no": "Bill-001",
-        "created_by": 1,
+        "ref": "Bill-001",
+        "remarks": "pabfb",
         "attachments": [
             {
                 "href": "https://example.com/wp-json/wp/v2/media?parent=35"
             }
-        ],
+        ]
     }
 
 + Response 201 (application/json)

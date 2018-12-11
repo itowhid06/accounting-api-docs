@@ -107,30 +107,27 @@ Fetches all available purchases with pagination
 
     {
         "vendor_id": 1,
-        "trn_no": 503,
-        "ledger_id": "104 (Tea)",
-        "particulars": "due",
-        "purchase_details": [
+        "ref": 100,
+        "trn_date": "10-10-18",
+        "due_date": "31-10-18",
+        "deposit": "Bank",
+        "line_items": [
             {
-                "id": 1,
-                "product_id": 503,
+                "product_id": "1",
+                "product_type": "product",
                 "qty": 2,
-                "unit_price": 100,
-                "total": 200
+                "unit_price": 200.0,
+                "item_total": 400.0
             },
             {
-                "id": 2,
-                "product_id": 504,
-                "qty": 3,
-                "unit_price": 50,
-                "total": 150
+                "product_id": "2",
+                "product_type": "service",
+                "qty": 1,
+                "unit_price": 100.0,
+                "item_total": 100.0
             }
         ],
-        "date": "2016-11-22",
-        "due_date": "2016-11-22",
-        "subtotal": 200,
-        "total": 200,
-        "reference_no": "Purchase-001",
+        "remarks": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -141,7 +138,9 @@ Fetches all available purchases with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "created_by": 1
+        "type": "purchase",
+        "trn_by": "cash",
+        "status": "approved"
     }
 
 + Response 201 (application/json)
@@ -310,30 +309,27 @@ Fetches all available purchases with pagination
 
     {
         "vendor_id": 1,
-        "trn_no": 503,
-        "ledger_id": "104 (Tea)",
-        "particulars": "due",
-        "purchase_details": [
+        "ref": 100,
+        "trn_date": "10-10-18",
+        "due_date": "31-10-18",
+        "deposit": "Bank",
+        "line_items": [
             {
-                "id": 1,
-                "product_id": 503,
+                "product_id": "1",
+                "product_type": "product",
                 "qty": 2,
-                "unit_price": 100,
-                "total": 200
+                "unit_price": 200.0,
+                "item_total": 400.0
             },
             {
-                "id": 2,
-                "product_id": 504,
-                "qty": 3,
-                "unit_price": 50,
-                "total": 150
+                "product_id": "2",
+                "product_type": "service",
+                "qty": 1,
+                "unit_price": 100.0,
+                "item_total": 100.0
             }
         ],
-        "date": "2016-11-22",
-        "due_date": "2016-11-22",
-        "subtotal": 200,
-        "total": 200,
-        "reference_no": "Purchase-001",
+        "remarks": "Acct. 1JK90",
         "attachments": [
             {
                 "id": 1,
@@ -344,7 +340,9 @@ Fetches all available purchases with pagination
                 "file" : "file2.pdf"
             }
         ],
-        "created_by": 1
+        "type": "purchase",
+        "trn_by": "cash",
+        "status": "approved"
     }
 
 + Response 201 (application/json)
