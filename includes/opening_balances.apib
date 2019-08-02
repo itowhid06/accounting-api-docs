@@ -1,0 +1,287 @@
+# Group Opening Balances
+
+
+## Opening Balance List [/opening-balances]
+A list of Opening Balances
+
+### List All Opening Balances [GET]
+
+Fetches all available opening-balances with pagination
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "group": "Assets",
+                    "type": "Current Asset",
+                    "code": 120,
+                    "name": "Accounts Receivable",
+                    "description": null,
+                    "parent": 0,
+                    "system": 1,
+                    "entries": 0,
+                    "created_by": {
+                    "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
+                    },
+                    "_links": {
+                        "self": [
+                            {
+                                "href":  "http://example.com/wp-json/erp/v1/accounting/opening-balances/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/opening-balances"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": 2,
+                    "group": "Assets",
+                    "type": "Inventory",
+                    "code": 140,
+                    "name": "Inventory",
+                    "description": null,
+                    "parent": 0,
+                    "system": 1,
+                    "entries": 0,
+                    "created_by": {
+                        "id": 1,
+                        "user_nicename": "john",
+                        "user_email": "john@doe.com",
+                        "user_url": "http://www.doe.com",
+                        "display_name": "John Wick",
+                        "avatar": "https://gravatar.com",
+                        "_links": {
+                            "self": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                                }
+                            ],
+                            "collection": [
+                                {
+                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                                }
+                            ]
+                        }
+                    },
+                    "_links": {
+                        "self": [
+                            {
+                                "href":  "http://example.com/wp-json/erp/v1/accounting/opening-balances/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "http://example.com/wp-json/erp/v1/accounting/opening-balances"
+                            }
+                        ]
+                    }
+                }
+            ]
+
+### Create A Opening Balance [POST]
+
+    Model (application/json)
+
+    {
+        "type": 6,
+        "code": 740,
+        "name": "Personal Account",
+        "description": "Personal Account",
+        "bank_account": "33423423424234",
+        "bank_name": "City Bank"
+    }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 67,
+                "group": "Assets",
+                "type": "Bank & Cash",
+                "code": 720,
+                "name": "Account Snacks",
+                "description": "Account for Expense of Snacks",
+                "parent": 0,
+                "system": 0,
+                "entries": 0,
+                "_links": {
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/opening-balances/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/opening-balances"
+                        }
+                    ]
+                }
+            }
+
+## Manage Single Opening Balance [/opening-balances/{id}]
+
++ Parameters
+    + id (string) - id of the chart-of-account in the form of an string
+
+### Retrieve A Opening Balance [GET]
+
++ Request (application/json)
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 67,
+                "group": "Expenses",
+                "type": "Expense",
+                "code": 720,
+                "name": "Account Snacks",
+                "description": "Account for Expense of Snacks",
+                "parent": 0,
+                "system": 0,
+                "entries": 0,
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "john@doe.com",
+                    "user_url": "http://www.doe.com",
+                    "display_name": "John Wick",
+                    "avatar": "https://gravatar.com",
+                    "_links": {
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
+                    }
+                },
+                "_links": {
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/opening-balances/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/opening-balances"
+                        }
+                    ]
+                }
+            }
+
+### Edit A Opening Balance [PUT]
+
+    Model (application/json)
+
+    {
+        "type"       : 12,
+        "code"       : 720,
+        "name"       : "Account Snacks",
+        "description": "Account for Expense of Snacks"
+    }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 67,
+                "group": "Expenses",
+                "type": "Expense",
+                "code": 720,
+                "name": "Account Snacks",
+                "description": "Account for Expense of Snacks",
+                "parent": 0,
+                "system": 0,
+                "entries": 0,
+                "created_by": {
+                    "id": 1,
+                    "user_nicename": "john",
+                    "user_email": "john@doe.com",
+                    "user_url": "http://www.doe.com",
+                    "display_name": "John Wick",
+                    "avatar": "https://gravatar.com",
+                    "_links": {
+                        "self": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
+                            }
+                        ],
+                        "collection": [
+                            {
+                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
+                            }
+                        ]
+                    }
+                },
+                "_links": {
+                    "self": [
+                        {
+                            "href":  "http://example.com/wp-json/erp/v1/accounting/opening-balances/1"
+                        }
+                    ],
+                    "collection": [
+                        {
+                            "href": "http://example.com/wp-json/erp/v1/accounting/opening-balances"
+                        }
+                    ]
+                }
+            }
+
+### Delete A Opening Balance [DELETE]
+
++ Request (application/json)
++ Response 204 (application/json)
+
+
+## Manage Type of Opening Balance [/opening-balances/types]
+
+### Retrieve All Types [GET]
+
+Retrieve all Opening Balances Types
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id"      : 1,
+                    "name"    : "Current Asset",
+                    "class_id": 1
+                },
+                {
+                    "id"      : 2,
+                    "name"    : "Fixed Asset",
+                    "class_id": 1
+                },
+                {
+                    "id"      : 3,
+                    "name"    : "Inventory",
+                    "class_id": 1
+                }
+            ]

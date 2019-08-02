@@ -1,6 +1,7 @@
-# Group Pay Bills
+# Group Currencies
 
-## Pay Bill List [/pay_bills/{?per_page,page,search,include,type,uid,start,end}]
+
+## Currency List [/currencies{?per_page,page,search,include,type,uid,start,end}]
 
 + Parameters
 
@@ -15,9 +16,9 @@
     + start (string, optional) - The start date of filtering bills.
     + end (string, optional) - The end date of filtering bills.
 
-### List All Pay Bills [GET]
+### List All Currencies [GET]
 
-Fetches all available pay bills with pagination
+Fetches all available bills with pagination
 
 + Response 200 (application/json)
     + Body
@@ -56,7 +57,7 @@ Fetches all available pay bills with pagination
                     "due_date": "2016-11-22",
                     "subtotal": 200,
                     "total": 200,
-                    "reference_no": "Bill-001",
+                    "reference_no": "Currency-001",
                     "created_by": {
                         "id": 1,
                         "user_nicename": "john",
@@ -80,63 +81,50 @@ Fetches all available pay bills with pagination
                     "_links": {
                         "self": [
                             {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                                "href": "http://example.com/wp-json/erp/v1/accounting/currencies1"
                             }
                         ],
                         "collection": [
                             {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/pay-bills"
+                                "href": "http://example.com/wp-json/erp/v1/accounting/currencies"
                             }
                         ]
-                    },
-                    "attachments": [
-                        {
-                            "href": "https://example.com/wp-json/wp/v2/media?parent=35"
-                        }
-                    ]
+                    }
                 }
             ]
 
+## Currency List [/currencies]
 
-## Pay Bill List [/pay-bills]
-
-### Create A Pay Bill [POST]
+### Create A Currency [POST]
 
     Model (application/json)
 
     {
-        "vendor_id": 20,
-        "trn_date": "10-10-18",
-        "trn_by": "Bank",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
+        "vendor_id": 1,
+        "trn_no": 503,
+        "particulars": "due",
         "bill_details": [
             {
                 "id": 1,
-                "ledger_id": 503,
+                "ledger_id": "104 (Tea)",
+                "amount": 500,
                 "particulars": "nothing",
-                "amount": 80,
-                "tax": 20,
-                "line_total": 100
+                "tax": 200,
+                "total": 700
             },
             {
                 "id": 2,
-                "ledger_id": 504,
-                "particulars": "nothing",
-                "amount": 90,
-                "tax": 30,
-                "line_total": 120
+                "ledger_id": "105 (Coffee)",
+                "amount": 400,
+                "particulars": "nothing2",
+                "tax": 150,
+                "total": 550
             }
         ],
-        "type": "pay_bill",
-        "status": "awaiting_payment",
-        "amount": 10000,
-        "ref": "Acct. 1JK90",
+        "trn_date": "2016-11-22",
+        "due_date": "2016-11-22",
+        "ref": "Currency-001",
+        "remarks": "pabfb",
         "attachments": [
             {
                 "href": "https://example.com/wp-json/wp/v2/media?parent=35"
@@ -150,12 +138,11 @@ Fetches all available pay bills with pagination
             {
                 "id": 1,
                 "bill_no": 503,
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_by": "Bank",
-                "bill_type": "bill",
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
                 "bill_details": [
                     {
                         "id": 1,
@@ -178,9 +165,16 @@ Fetches all available pay bills with pagination
                         "line_total": 120
                     },
                 ],
-                "amount": 10000,
-                "ref": "Acct. 1JK90",
-                "attachments" : 'file.pdf',
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Currency-001",
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                    }
+                ],
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -204,12 +198,12 @@ Fetches all available pay bills with pagination
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies"
                         }
                     ]
                 },
@@ -220,12 +214,13 @@ Fetches all available pay bills with pagination
                 ]
             }
 
-## Manage Single Pay Bill [/pay-bill/{id}]
+
+## Manage Single Currency [/currencies{id}]
 
 + Parameters
-    + id (string) - id of the pay-bill in the form of an string
+    + id (string) - id of the bill in the form of an string
 
-### Retrieve An Pay Bill [GET]
+### Retrieve A Currency [GET]
 
 + Response 200 (application/json)
     + Body
@@ -233,11 +228,11 @@ Fetches all available pay bills with pagination
             {
                 "id": 1,
                 "bill_no": 503,
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_by": 'Bank',
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
                 "bill_details": [
                     {
                         "id": 1,
@@ -260,9 +255,16 @@ Fetches all available pay bills with pagination
                         "line_total": 120
                     },
                 ],
-                "amount": 10000,
-                "ref": "Acct. 1JK90",
-                "attachments" : 'file.pdf',
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Currency-001",
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
+                    }
+                ],
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -286,59 +288,47 @@ Fetches all available pay bills with pagination
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies"
                         }
-                    ]
-                },
-                "attachments": [
-                    {
-                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
-                    }
-                ]
+                    ],
+                }
             }
 
-### Update An Pay Bill [PUT]
+### Update A Currency [PUT]
 
     Model (application/json)
 
     {
-        "vendor_id": 20,
-        "trn_date": "10-10-18",
-        "trn_by": "Bank",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
+        "vendor_id": 1,
+        "trn_no": 503,
+        "particulars": "due",
         "bill_details": [
             {
                 "id": 1,
-                "ledger_id": 503,
+                "ledger_id": "104 (Tea)",
+                "amount": 500,
                 "particulars": "nothing",
-                "amount": 80,
-                "tax": 20,
-                "line_total": 100
+                "tax": 200,
+                "total": 700
             },
             {
                 "id": 2,
-                "ledger_id": 504,
-                "particulars": "nothing",
-                "amount": 90,
-                "tax": 30,
-                "line_total": 120
+                "ledger_id": "105 (Coffee)",
+                "amount": 400,
+                "particulars": "nothing2",
+                "tax": 150,
+                "total": 550
             }
         ],
-        "type": "pay_bill",
-        "status": "awaiting_payment",
-        "amount": 10000,
-        "ref": "Acct. 1JK90",
+        "trn_date": "2016-11-22",
+        "due_date": "2016-11-22",
+        "ref": "Currency-001",
+        "remarks": "pabfb",
         "attachments": [
             {
                 "href": "https://example.com/wp-json/wp/v2/media?parent=35"
@@ -350,24 +340,45 @@ Fetches all available pay bills with pagination
     + Body
 
             {
-                "vendor_id": 20,
-                "vendor_name": "John Smith",
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_by": 'Bank',
-                "bill_type": "bill",
-                "line_items": [
+                "id": 1,
+                "bill_no": 503,
+                "vendor_id": 1,
+                "vendor_name": Apple,
+                "trn_no": 503,
+                "ledger_id": "104 (Tea)",
+                "particulars": "due",
+                "bill_details": [
                     {
-                        "invoice_id": 1,
-                        "voucher_no": 20,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200,
+                        "id": 1,
+                        "ledger_id": 503,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 80,
+                        "tax": 20,
+                        "line_total": 100
+                    },
+                    {
+                        "id": 2,
+                        "ledger_id": 504,
+                        "bill_no": 503,
+                        "trn_no": 504,
+                        "particulars": "nothing",
+                        "amount": 90,
+                        "tax": 30,
+                        "line_total": 120
+                    },
+                ],
+                "date": "2016-11-22",
+                "due_date": "2016-11-22",
+                "subtotal": 200,
+                "total": 200,
+                "reference_no": "Currency-001",
+                "attachments": [
+                    {
+                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
                     }
                 ],
-                "amount": 10000,
-                "ref": "Acct. 1JK90",
-                "attachments" : 'file.pdf',
                 "created_by": {
                     "id": 1,
                     "user_nicename": "john",
@@ -391,24 +402,18 @@ Fetches all available pay bills with pagination
                 "_links": {
                     "self": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills/1"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies/1"
                         }
                     ],
                     "collection": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/pay-bills"
+                            "href": "http://example.com/wp-json/erp/v1/accounting/currencies"
                         }
                     ]
-                },
-                "attachments": [
-                    {
-                        "href": "https://example.com/wp-json/wp/v2/media?parent=35"
-                    }
-                ]
+                }
             }
 
-### Delete An Pay Bill [DELETE]
+### Delete A Currency [DELETE]
 
 + Request (application/json)
 + Response 204 (application/json)
-

@@ -1,7 +1,7 @@
-# Group Tax Rates
+# Group Tax Categories
 
 
-## Tax Rate List [tax-rates/{?per_page,page,search,include}]
+## Tax Category List [/tax-cats/{?per_page,page,search,include}]
 
 + Parameters
 
@@ -12,7 +12,7 @@
     + search (string, optional) - The search keyword.
     + include: owner (string, optional) - The additional object to be included.
 
-### List All Tax Rates [GET]
+### List All Tax Categories [GET]
 
 Fetches all available tax_rates with pagination
 
@@ -57,7 +57,7 @@ Fetches all available tax_rates with pagination
                 ]
             }
 
-### Create A Tax Rate [POST]
+### Create A Tax Category [POST]
 
     Model (application/json)
 
@@ -119,12 +119,12 @@ Fetches all available tax_rates with pagination
             }
 
 
-## Manage Single Tax Rate [tax-rates/{id}]
+## Manage Single Tax Category [/tax-cats/{id}]
 
 + Parameters
     + id (string) - id of the tax_rate in the form of an string
 
-### Retrieve A Tax Rate [GET]
+### Retrieve A Tax Category [GET]
 
 + Response 200 (application/json)
     + Body

@@ -9,6 +9,7 @@
     "author": "Tareq Hasan <tareq@wedevs.com",
     "license": "MIT",
     "dependencies": {
-        "aglio": "^2.3.0"
+        "aglio": "^2.3.0",
+        "protagonist": "^2.0.0"
     }
 }
