@@ -492,13 +492,24 @@ Fetches all available invoices with pagination
                 }
             }
 
-### Delete An Invoice [DELETE]
+
+## Void Invoice [/invoices/{id}/void/]
+
++ Parameters
+    + id (string) - id of the invoice in the form of an string
+
+### Void an Invoices [POST]
+
+Voids a particular invoice
 
 + Request (application/json)
 + Response 204 (application/json)
 
 
-## Due Invoices of a customer [/invoices/due/{customer_id}]
+## Due Invoices of a customer [/invoices/due/{id}]
+
++ Parameters
+    + id (string) - id of the customer in the form of an string
 
 ### List All Due Invoices [GET]
 
@@ -526,3 +537,32 @@ Fetches all due invoices of a customer
                     }
                 }
             ]
+
+
+## Upload Attachments [/invoices/attachments/]
+
+### Upload an Attachment [POST]
+
+Uploads an attachment for any transaction
+
++ Request (application/json)
++ Response 200 (application/json)
+
+
+## Get Recievables overview [/invoices/overview-receivable]
+
+### List Recievables overview [GET]
+
+Get Dashboard Recievables overview section
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "data":[],
+                "amount":{
+                    "first":100,
+                    "second":200,
+                    "third":300
+                }
+            }
