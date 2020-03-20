@@ -1,7 +1,7 @@
 # Group Journals
 
 
-## Journal List [/journals/{?per_page,page,search,include,type,uid,start,end}]
+## Journal List [/journals/{?per_page,page,s}]
 
 + Parameters
 
@@ -9,12 +9,7 @@
         + Default: `20`
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
-    + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of journal.
-    + uid (number, optional) - Filter journals by user id.
-    + start (string, optional) - The start date of filtering journals.
-    + end (string, optional) - The end date of filtering journals.
+    + s (string, optional) - The search keyword.
 
 ### List All Journals [GET]
 
@@ -25,59 +20,39 @@ Fetches all available journals with pagination
 
             [
                 {
-                    "id": 1,
-                    "reference": "S8368",
-                    "summary": "Journal Details",
-                    "issue_date": "2016-11-22",
-                    "items": [
-                    {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
-                    },
-                    {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
-                    }
-                    ],
-                    "total": 200,
-                    "trans_total": 200,
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "mail@gmail.com",
-                        "user_url": "",
-                        "display_name": "John Wick",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
+                    "id": "1",
+                    "voucher_no": "1",
+                    "particulars": "Initial Journal Entry",
+                    "ref": null,
+                    "trn_date": "2020-03-20",
+                    "line_items": [
+                        {
+                            "ledger_id": "7",
+                            "account": "Cash",
+                            "particulars": "Cash In Hand",
+                            "debit": "10000.00",
+                            "credit": "0.00"
+                        },
+                        {
+                            "ledger_id": "94",
+                            "account": "Sales Revenue",
+                            "particulars": "Revenue From Sale",
+                            "debit": "0.00",
+                            "credit": "10000.00"
                         }
-                    },
+                    ],
+                    "attachments": null,
+                    "total": 10000,
+                    "created_at": null,
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/journals",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/journals"
-                            }
-                        ]
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals"
+                        }
                     }
                 }
             ]
@@ -89,58 +64,64 @@ Fetches all available journals with pagination
     Model (application/json)
 
     {
-        "reference": "S8367",
-        "summary": "Journal Details Here",
-        "issue_date": "2016-11-22",
-        "items": [
+        "trn_date": "2020-03-20",
+        "ref": "another jounrnal",
+        "line_items": [
             {
-                "debit": 100,
-                "ledger_id": 1
+                "ledger_id": "7",
+                "particulars": "cash added",
+                "debit": "1000",
+                "credit": 0
             },
             {
-                "credit": 100,
-                "ledger_id": 24
+                "ledger_id": "86",
+                "particulars": "equity",
+                "debit": 0,
+                "credit": "1000"
             }
-        ]
+        ],
+        "attachments": [],
+        "type": "journal",
+        "particulars": ""
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 1,
-                "reference": "S8368",
-                "summary": "Journal Details",
-                "issue_date": "2016-11-22",
-                "items": [
+                "id": "2",
+                "voucher_no": "4",
+                "particulars": "Journal created with voucher no 4",
+                "ref": "another jounrnal",
+                "trn_date": "2020-03-20",
+                "line_items": [
                     {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
+                        "ledger_id": "7",
+                        "account": "Cash",
+                        "particulars": "cash added",
+                        "debit": "1000.00",
+                        "credit": "0.00"
                     },
                     {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
+                        "ledger_id": "86",
+                        "account": "Owner's Equity",
+                        "particulars": "equity",
+                        "debit": "0.00",
+                        "credit": "1000.00"
                     }
                 ],
-                "total": 200,
-                "trans_total": 200,
+                "attachments": [],
+                "total": 1000,
+                "created_at": "2020-03-20",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/journals",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/journals"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals/2"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals"
+                    }
                 }
             }
 
@@ -156,58 +137,49 @@ Fetches all available journals with pagination
     + Body
 
             {
-                "id": 1,
-                "reference": "S8368",
-                "summary": "Journal Details",
-                "issue_date": "2016-11-22",
-                "items": [
+                "id": "1",
+                "voucher_no": "1",
+                "particulars": "Initial Journal Entry",
+                "ref": null,
+                "trn_date": "2020-03-20",
+                "line_items": [
                     {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
+                        "ledger_id": "7",
+                        "account": "Cash",
+                        "particulars": "Cash In Hand",
+                        "debit": "10000.00",
+                        "credit": "0.00"
                     },
                     {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
+                        "ledger_id": "94",
+                        "account": "Sales Revenue",
+                        "particulars": "Revenue From Sale",
+                        "debit": "0.00",
+                        "credit": "10000.00"
                     }
                 ],
-                "total": 200,
-                "trans_total": 200,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "attachments": null,
+                "total": 10000,
+                "created_at": null,
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/journals",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/journals/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/journals"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/journals"
+                    }
                 }
+            }
+
+## Next Journal number [/journals/next]
+
+### Retrieve the index number of next Journal [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 2
             }
