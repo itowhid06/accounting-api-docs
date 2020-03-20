@@ -1,6 +1,6 @@
 # Group Payments
 
-## Payments List [/payments/{?per_page,page,search,include,type,status,uid,start,end}]
+## Payments List [/payments/{?per_page,page,start,end}]
 
 + Parameters
 
@@ -8,11 +8,6 @@
         + Default: `20`
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
-    + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of payment.
-    + status (string, optional) - The status of payment.
-    + uid (number, optional) - Filter payments by user id.
     + start (string, optional) - The start date of filtering payments.
     + end (string, optional) - The end date of filtering payments.
 
@@ -26,95 +21,36 @@ Fetches all available payments with pagination
             [
                 {
                     "id": 1,
-                    "voucher_no": 1,
-                    "customer_id": 1,
-                    "customer_name": "John Smith",
-                    "date": "2015-07-24",
-                    "due_date": "2015-07-24",
-                    "billing_address": {
-                        "address": "4581 Finch St.",
-                        "city": "Bayshore",
-                        "state": "CA",
-                        "post_code": "94326",
-                        "country": "USA"
-                    },
+                    "voucher_no": 3,
+                    "customer_id": 42,
+                    "customer_name": "Custo Mer",
+                    "trn_date": "2019-11-19",
+                    "amount": "225.24",
+                    "ref": null,
+                    "account": "Cash",
                     "line_items": [
                         {
-                            "product_id": "1",
-                            "product_name": "My Awesome Book",
-                            "product_details": "Book Details",
-                            "product_type": "product",
-                            "qty": 2,
-                            "unit_price": 200.0,
-                            "discount": 0,
-                            "tax": 20.0,
-                            "tax_percent": 10.0,
-                            "item_total": 400.0
-                        },
-                        {
-                            "product_id": "2",
-                            "product_name": "My Awesome Service",
-                            "product_details": "Service Details",
-                            "product_type": "service",
-                            "qty": 1,
-                            "unit_price": 100.0,
-                            "discount": 10.0,
-                            "tax": 10.0,
-                            "tax_percent": 10.0,
-                            "item_total": 100.0
+                            "id": "1",
+                            "voucher_no": "3",
+                            "invoice_no": "2",
+                            "amount": "225.24"
                         }
                     ],
-                    "discount": 10.0,
-                    "tax": 30.0,
-                    "subtotal": 500.0,
-                    "total": 500.0,
-                    "due": 500.0,
+                    "attachments": [],
+                    "status": "Paid",
+                    "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_3.pdf",
                     "type": "payment",
-                    "status": "awaiting_payment",
-                    "attachments": [
-                        {
-                            "id": 1,
-                            "file" : "file1.pdf"
-                        },
-                        {
-                            "id": 2,
-                            "file" : "file2.pdf"
-                        }
-                    ],
-                    "particulars": "dummy pariculars",
-                    "trn_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "mail@gmail.com",
-                        "user_url": "",
-                        "display_name": "John Wick",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "created_at": "2016-11-08 03:33:57",
-                    "updated_at": "2016-11-08 03:33:57",
+                    "particulars": "particulars",
+                    "created_at": "2019-11-19",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/payments",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/payments"
-                            }
-                        ]
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments"
+                        }
                     }
                 }
             ]
@@ -125,116 +61,65 @@ Fetches all available payments with pagination
     Model (application/json)
 
     {
-        "customer_id": 1,
-        "ref": 100,
-        "trn_date": "10-10-18",
-        "due_date": "31-10-18",
-        "deposit": "Bank",
-        "billing_address": {
-          "address": "4581 Finch St.",
-          "city": "Bayshore",
-          "state": "CA",
-          "post_code": "94326",
-          "country": "USA"
-        },
-        "line_items": [
+        "customer_id":42,
+        "ref":"ref",
+        "trn_date":"2019-11-19",
+        "line_items":[
             {
-                "invoice_no": 1,
-                "amount": 200,
-                "due": 100,
-                "line_total": 200
-            },
-            {
-                "invoice_no": 2,
-                "due": 100,
-                "line_total": 200,
-                "amount": 200
+                "id":"1",
+                "invoice_no":"2",
+                "due_date":"2019-11-19",
+                "amount":225.24,
+                "due":225.24,
+                "line_total":225.24
             }
         ],
-        "particulars": "Acct. 1JK90",
-        "attachments": [
-            {
-                "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
-        ],
-        "type": "payment",
-        "trn_by": "cash",
-        "status": "closed"
+        "attachments":[],
+        "type":"payment",
+        "status":4,
+        "particulars":"particulars",
+        "deposit_to":"7",
+        "trn_by":"1",
+        "check_no":null,
+        "name":"",
+        "bank":""
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "customer_id": 20,
-                "customer_name": "John Smith",
-                "ref": 100,
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_method": 'Bank',
+                "id": 1,
+                "voucher_no": 3,
+                "customer_id": 42,
+                "customer_name": "Custo Mer",
+                "trn_date": "2019-11-19",
+                "amount": "225.24",
+                "ref": null,
+                "account": "Cash",
                 "line_items": [
                     {
-                        "payment_id": 1,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
-                    },
-                    {
-                        "payment_id": 2,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
+                        "id": "1",
+                        "voucher_no": "3",
+                        "invoice_no": "2",
+                        "amount": "225.24"
                     }
                 ],
-                "pay_total": 100,
-                "memo": "Acct. 1JK90",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "trn_by": 1,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "attachments": [],
+                "status": "Paid",
+                "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_3.pdf",
+                "type": "payment",
+                "particulars": "particulars",
+                "created_at": "2019-11-19",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/payments",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/payments"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments"
+                    }
                 }
             }
 
@@ -249,192 +134,36 @@ Fetches all available payments with pagination
     + Body
 
             {
-                "customer_id": 20,
-                "customer_name": "John Smith",
-                "ref": 100,
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_method": 'Bank',
-                "line_items": [
-                    {
-                        "payment_id": 1,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
-                    },
-                    {
-                        "payment_id": 2,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
-                    }
-                ],
-                "pay_total": 100,
-                "memo": "Acct. 1JK90",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "trn_by": 1,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/payments/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/payments"
-                        }
-                    ]
-                }
-            }
-
-### Update An Payment [PUT]
-
-    Model (application/json)
-
-    {
-        "customer_id": 1,
-        "ref": 100,
-        "trn_date": "10-10-18",
-        "due_date": "31-10-18",
-        "deposit": "Bank",
-        "billing_address": {
-          "address": "4581 Finch St.",
-          "city": "Bayshore",
-          "state": "CA",
-          "post_code": "94326",
-          "country": "USA"
-        },
-        "line_items": [
-            {
-                "invoice_no": 1,
-                "amount": 200,
-                "due": 100,
-                "line_total": 200
-            },
-            {
-                "invoice_no": 2,
-                "due": 100,
-                "line_total": 200,
-                "amount": 200
-            }
-        ],
-        "particulars": "Acct. 1JK90",
-        "attachments": [
-            {
                 "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
-        ],
-        "type": "payment",
-        "trn_by": "cash",
-        "status": "closed"
-    }
-
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "customer_id": 20,
-                "customer_name": "John Smith",
-                "ref": 100,
-                "voucher_no": 20,
-                "particulars": "paid",
-                "payment_date": 10-10-18,
-                "trn_method": 'Bank',
+                "voucher_no": 3,
+                "customer_id": 42,
+                "customer_name": "Custo Mer",
+                "trn_date": "2019-11-19",
+                "amount": "225.24",
+                "ref": null,
+                "account": "Cash",
                 "line_items": [
                     {
-                        "payment_id": 1,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
-                    },
-                    {
-                        "payment_id": 2,
-                        "due": 100,
-                        "line_total": 200,
-                        "amount": 200
+                        "id": "1",
+                        "voucher_no": "3",
+                        "invoice_no": "2",
+                        "amount": "225.24"
                     }
                 ],
-                "pay_total": 100,
-                "memo": "Acct. 1JK90",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "attachments": [],
+                "status": "Paid",
+                "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_3.pdf",
+                "type": "payment",
+                "particulars": "particulars",
+                "created_at": "2019-11-19",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/payments",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/payments/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/payments"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/payments"
+                    }
                 }
             }
-
-### Delete An Payment [DELETE]
-
-+ Request (application/json)
-+ Response 204 (application/json)
