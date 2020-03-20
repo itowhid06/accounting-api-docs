@@ -1,7 +1,7 @@
 # Group Invoices
 
 
-## Invoice List [/invoices/{?per_page,page,search,include,type,status,uid,start,end}]
+## Invoice List [/invoices/{?per_page,page,start,end}]
 
 + Parameters
 
@@ -9,11 +9,6 @@
         + Default: `20`
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
-    + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of invoice.
-    + status (string, optional) - The status of invoice.
-    + uid (number, optional) - Filter invoices by user id.
     + start (string, optional) - The start date of filtering invoices.
     + end (string, optional) - The end date of filtering invoices.
 
@@ -26,96 +21,93 @@ Fetches all available invoices with pagination
 
             [
                 {
-                    "id": 1,
-                    "voucher_no": 1,
-                    "customer_id": 1,
-                    "customer_name": "John Smith",
-                    "date": "2015-07-24",
-                    "due_date": "2015-07-24",
-                    "billing_address": {
-                        "address": "4581 Finch St.",
-                        "city": "Bayshore",
-                        "state": "CA",
-                        "post_code": "94326",
-                        "country": "USA"
-                    },
-                    "line_items": [
-                        {
-                            "product_id": "1",
-                            "product_name": "My Awesome Book",
-                            "product_details": "Book Details",
-                            "product_type": "product",
-                            "qty": 2,
-                            "unit_price": 200.0,
-                            "discount": 0,
-                            "tax": 20.0,
-                            "tax_percent": 10.0,
-                            "item_total": 400.0
-                        },
-                        {
-                            "product_id": "2",
-                            "product_name": "My Awesome Service",
-                            "product_details": "Service Details",
-                            "product_type": "service",
-                            "qty": 1,
-                            "unit_price": 100.0,
-                            "discount": 10.0,
-                            "tax": 10.0,
-                            "tax_percent": 10.0,
-                            "item_total": 100.0
-                        }
-                    ],
-                    "discount": 10.0,
-                    "tax": 30.0,
-                    "subtotal": 500.0,
-                    "total": 500.0,
-                    "due": 500.0,
-                    "type": "invoice",
-                    "status": "awaiting_payment",
-                    "attachments": [
-                        {
-                            "id": 1,
-                            "file" : "file1.pdf"
-                        },
-                        {
-                            "id": 2,
-                            "file" : "file2.pdf"
-                        }
-                    ],
-                    "particulars": "dummy particulars",
-                    "trn_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "mail@gmail.com",
-                        "user_url": "",
-                        "display_name": "John Wick",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "created_at": "2016-11-08 03:33:57",
-                    "updated_at": "2016-11-08 03:33:57",
-                    "_links": {
-                        "self": [
+                    "customer_id": 42,
+                    "date": "2019-11-19",
+                    "due_date": "2019-11-19",
+                    "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                    "discount_type": "discount-value",
+                    "tax_rate_id": 2,
+                    "status": 2,
+                    "estimate": 0,
+                    "attachments": "a:0:{}",
+                    "particulars": "A sample description",
+                    "request": {},
+                    "discount": 2,
+                    "tax": 27.240000000000002,
+                    "amount": 200,
+                    "id": {
+                        "editable": "1",
+                        "currency": "148",
+                        "id": "1",
+                        "voucher_no": "2",
+                        "customer_id": "42",
+                        "customer_name": "Custo Mer",
+                        "trn_date": "2019-11-19",
+                        "due_date": "2019-11-19",
+                        "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                        "amount": "200.00",
+                        "discount": "2.00",
+                        "discount_type": "discount-value",
+                        "tax": "27.24",
+                        "estimate": "0",
+                        "attachments": [],
+                        "status": "2",
+                        "particulars": "A sample description",
+                        "created_at": "2019-11-19",
+                        "debit": "225.24",
+                        "credit": "0.00",
+                        "line_items": [
                             {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                                "product_id": "3",
+                                "qty": "1",
+                                "unit_price": "150.00",
+                                "discount": "1.50",
+                                "tax": "17.82",
+                                "item_total": "150.00",
+                                "ecommerce_type": null,
+                                "tax_rate": "12.00",
+                                "name": "Burger",
+                                "product_type_id": "1",
+                                "category_id": "3",
+                                "vendor": null,
+                                "cost_price": "120.00",
+                                "sale_price": "150.00",
+                                "tax_cat_id": "2",
+                                "line_total": 166.32
+                            },
+                            {
+                                "product_id": "1",
+                                "qty": "1",
+                                "unit_price": "50.00",
+                                "discount": "0.50",
+                                "tax": "9.42",
+                                "item_total": "50.00",
+                                "ecommerce_type": null,
+                                "tax_rate": "19.00",
+                                "name": "7up",
+                                "product_type_id": "1",
+                                "category_id": "1",
+                                "vendor": null,
+                                "cost_price": "40.00",
+                                "sale_price": "50.00",
+                                "tax_cat_id": "3",
+                                "line_total": 58.92
                             }
                         ],
-                        "collection": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                            }
-                        ]
+                        "tax_rate_id": "1",
+                        "total_due": "225.24",
+                        "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_2.pdf",
+                        "email": "cust@om.er"
+                    },
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/invoices",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices"
+                        }
                     }
                 }
             ]
@@ -127,147 +119,136 @@ Fetches all available invoices with pagination
     Model (application/json)
 
     {
-        "customer_id": 1,
-        "date": "2015-07-24",
-        "due_date": "2015-07-24",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
-        "line_items": [
+        "customer_id":42,
+        "date":"2019-11-19",
+        "due_date":"2019-11-19",
+        "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+        "discount_type":"discount-value",
+        "tax_rate_id":2,
+        "line_items":[
             {
-                "product_id": "1",
-                "product_type": "product",
-                "qty": 2,
-                "unit_price": 200.0,
-                "discount": 0,
-                "tax": 20.0,
-                "tax_percent": 10.0,
-                "item_total": 400.0
+                "product_id":"3",
+                "product_type_name":"Inventory",
+                "tax_cat_id":"2",
+                "qty":1,
+                "unit_price":150,
+                "tax":"17.82",
+                "tax_rate":12,
+                "discount":1.5,
+                "item_total":150
             },
             {
-                "product_id": "2",
-                "product_type": "service",
-                "qty": 1,
-                "unit_price": 100.0,
-                "discount": 10.0,
-                "tax": 10.0,
-                "tax_percent": 10.0,
-                "item_total": 100.0
+                "product_id":"1",
+                "product_type_name":"Inventory",
+                "tax_cat_id":"3",
+                "qty":1,
+                "unit_price":50,
+                "tax":"9.42",
+                "tax_rate":19,
+                "discount":0.5,
+                "item_total":50
             }
         ],
-        "status": "awaiting_payment",
-        "estimate": 0,
-        "attachments": [
-            {
-                "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
+        "attachments":[
+
         ],
-        "transaction_by": "cash",
-        "particulars": "nothing"
+        "particulars":"A sample description",
+        "type":"invoice",
+        "status":2,
+        "estimate":0
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
-                    {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
-                    }
-                ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "awaiting_payment",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "particulars": "dummy particulars",
-                "trn_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
-                "_links": {
-                    "self": [
+                "customer_id": 42,
+                "date": "2019-11-19",
+                "due_date": "2019-11-19",
+                "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                "discount_type": "discount-value",
+                "tax_rate_id": 2,
+                "status": 2,
+                "estimate": 0,
+                "attachments": "a:0:{}",
+                "particulars": "A sample description",
+                "request": {},
+                "discount": 2,
+                "tax": 27.240000000000002,
+                "amount": 200,
+                "id": {
+                    "editable": "1",
+                    "currency": "148",
+                    "id": "1",
+                    "voucher_no": "2",
+                    "customer_id": "42",
+                    "customer_name": "Custo Mer",
+                    "trn_date": "2019-11-19",
+                    "due_date": "2019-11-19",
+                    "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                    "amount": "200.00",
+                    "discount": "2.00",
+                    "discount_type": "discount-value",
+                    "tax": "27.24",
+                    "estimate": "0",
+                    "attachments": [],
+                    "status": "2",
+                    "particulars": "A sample description",
+                    "created_at": "2019-11-19",
+                    "debit": "225.24",
+                    "credit": "0.00",
+                    "line_items": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                            "product_id": "3",
+                            "qty": "1",
+                            "unit_price": "150.00",
+                            "discount": "1.50",
+                            "tax": "17.82",
+                            "item_total": "150.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "12.00",
+                            "name": "Burger",
+                            "product_type_id": "1",
+                            "category_id": "3",
+                            "vendor": null,
+                            "cost_price": "120.00",
+                            "sale_price": "150.00",
+                            "tax_cat_id": "2",
+                            "line_total": 166.32
+                        },
+                        {
+                            "product_id": "1",
+                            "qty": "1",
+                            "unit_price": "50.00",
+                            "discount": "0.50",
+                            "tax": "9.42",
+                            "item_total": "50.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "19.00",
+                            "name": "7up",
+                            "product_type_id": "1",
+                            "category_id": "1",
+                            "vendor": null,
+                            "cost_price": "40.00",
+                            "sale_price": "50.00",
+                            "tax_cat_id": "3",
+                            "line_total": 58.92
                         }
                     ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                        }
-                    ]
+                    "tax_rate_id": "1",
+                    "total_due": "225.24",
+                    "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_2.pdf",
+                    "email": "cust@om.er"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/invoices",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices"
+                    }
                 }
             }
 
@@ -283,95 +264,93 @@ Fetches all available invoices with pagination
     + Body
 
             {
-                "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
-                    {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
-                    }
-                ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "awaiting_payment",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "particulars": "dummy particulars",
-                "trn_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
-                "_links": {
-                    "self": [
+                "customer_id": 42,
+                "date": "2019-11-19",
+                "due_date": "2019-11-19",
+                "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                "discount_type": "discount-value",
+                "tax_rate_id": 2,
+                "status": 2,
+                "estimate": 0,
+                "attachments": "a:0:{}",
+                "particulars": "A sample description",
+                "request": {},
+                "discount": 2,
+                "tax": 27.240000000000002,
+                "amount": 200,
+                "id": {
+                    "editable": "1",
+                    "currency": "148",
+                    "id": "1",
+                    "voucher_no": "2",
+                    "customer_id": "42",
+                    "customer_name": "Custo Mer",
+                    "trn_date": "2019-11-19",
+                    "due_date": "2019-11-19",
+                    "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                    "amount": "200.00",
+                    "discount": "2.00",
+                    "discount_type": "discount-value",
+                    "tax": "27.24",
+                    "estimate": "0",
+                    "attachments": [],
+                    "status": "2",
+                    "particulars": "A sample description",
+                    "created_at": "2019-11-19",
+                    "debit": "225.24",
+                    "credit": "0.00",
+                    "line_items": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                            "product_id": "3",
+                            "qty": "1",
+                            "unit_price": "150.00",
+                            "discount": "1.50",
+                            "tax": "17.82",
+                            "item_total": "150.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "12.00",
+                            "name": "Burger",
+                            "product_type_id": "1",
+                            "category_id": "3",
+                            "vendor": null,
+                            "cost_price": "120.00",
+                            "sale_price": "150.00",
+                            "tax_cat_id": "2",
+                            "line_total": 166.32
+                        },
+                        {
+                            "product_id": "1",
+                            "qty": "1",
+                            "unit_price": "50.00",
+                            "discount": "0.50",
+                            "tax": "9.42",
+                            "item_total": "50.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "19.00",
+                            "name": "7up",
+                            "product_type_id": "1",
+                            "category_id": "1",
+                            "vendor": null,
+                            "cost_price": "40.00",
+                            "sale_price": "50.00",
+                            "tax_cat_id": "3",
+                            "line_total": 58.92
                         }
                     ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                        }
-                    ]
+                    "tax_rate_id": "1",
+                    "total_due": "225.24",
+                    "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_2.pdf",
+                    "email": "cust@om.er"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/invoices",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices"
+                    }
                 }
             }
 
@@ -380,147 +359,136 @@ Fetches all available invoices with pagination
     Model (application/json)
 
     {
-        "customer_id": 1,
-        "date": "2015-07-24",
-        "due_date": "2015-07-24",
-        "billing_address": {
-            "address": "4581 Finch St.",
-            "city": "Bayshore",
-            "state": "CA",
-            "post_code": "94326",
-            "country": "USA"
-        },
-        "line_items": [
+        "customer_id":42,
+        "date":"2019-11-19",
+        "due_date":"2019-11-19",
+        "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+        "discount_type":"discount-value",
+        "tax_rate_id":2,
+        "line_items":[
             {
-                "product_id": "1",
-                "product_type": "product",
-                "qty": 2,
-                "unit_price": 200.0,
-                "discount": 0,
-                "tax": 20.0,
-                "tax_percent": 10.0,
-                "item_total": 400.0
+                "product_id":"3",
+                "product_type_name":"Inventory",
+                "tax_cat_id":"2",
+                "qty":1,
+                "unit_price":150,
+                "tax":"17.82",
+                "tax_rate":12,
+                "discount":1.5,
+                "item_total":150
             },
             {
-                "product_id": "2",
-                "product_type": "service",
-                "qty": 1,
-                "unit_price": 100.0,
-                "discount": 10.0,
-                "tax": 10.0,
-                "tax_percent": 10.0,
-                "item_total": 100.0
+                "product_id":"1",
+                "product_type_name":"Inventory",
+                "tax_cat_id":"3",
+                "qty":1,
+                "unit_price":50,
+                "tax":"9.42",
+                "tax_rate":19,
+                "discount":0.5,
+                "item_total":50
             }
         ],
-        "status": "awaiting_payment",
-        "estimate": 0,
-        "attachments": [
-            {
-                "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
+        "attachments":[
+
         ],
-        "transaction_by": "cash",
-        "particulars": "nothing"
+        "particulars":"A sample description",
+        "type":"invoice",
+        "status":2,
+        "estimate":0
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 1,
-                "voucher_no": 1,
-                "customer_id": 1,
-                "customer_name": "John Smith",
-                "date": "2015-07-24",
-                "due_date": "2015-07-24",
-                "billing_address": {
-                    "address": "4581 Finch St.",
-                    "city": "Bayshore",
-                    "state": "CA",
-                    "post_code": "94326",
-                    "country": "USA"
-                },
-                "line_items": [
-                    {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
-                    }
-                ],
-                "subtotal": 500.0,
-                "total": 500.0,
-                "discount": 10.0,
-                "tax": 30.0,
-                "type": "invoice",
-                "status": "paid",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "particulars": "dummy particulars",
-                "trn_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "created_at": "2016-11-08 03:33:57",
-                "updated_at": "2016-11-08 03:33:57",
-                "_links": {
-                    "self": [
+                "customer_id": 42,
+                "date": "2019-11-19",
+                "due_date": "2019-11-19",
+                "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                "discount_type": "discount-value",
+                "tax_rate_id": 2,
+                "status": 2,
+                "estimate": 0,
+                "attachments": "a:0:{}",
+                "particulars": "A sample description",
+                "request": {},
+                "discount": 2,
+                "tax": 27.240000000000002,
+                "amount": 200,
+                "id": {
+                    "editable": "1",
+                    "currency": "148",
+                    "id": "1",
+                    "voucher_no": "2",
+                    "customer_id": "42",
+                    "customer_name": "Custo Mer",
+                    "trn_date": "2019-11-19",
+                    "due_date": "2019-11-19",
+                    "billing_address":"Street: Abc Street, City:  Ab City, State: New York, Country: US",
+                    "amount": "200.00",
+                    "discount": "2.00",
+                    "discount_type": "discount-value",
+                    "tax": "27.24",
+                    "estimate": "0",
+                    "attachments": [],
+                    "status": "2",
+                    "particulars": "A sample description",
+                    "created_at": "2019-11-19",
+                    "debit": "225.24",
+                    "credit": "0.00",
+                    "line_items": [
                         {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices/1"
+                            "product_id": "3",
+                            "qty": "1",
+                            "unit_price": "150.00",
+                            "discount": "1.50",
+                            "tax": "17.82",
+                            "item_total": "150.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "12.00",
+                            "name": "Burger",
+                            "product_type_id": "1",
+                            "category_id": "3",
+                            "vendor": null,
+                            "cost_price": "120.00",
+                            "sale_price": "150.00",
+                            "tax_cat_id": "2",
+                            "line_total": 166.32
+                        },
+                        {
+                            "product_id": "1",
+                            "qty": "1",
+                            "unit_price": "50.00",
+                            "discount": "0.50",
+                            "tax": "9.42",
+                            "item_total": "50.00",
+                            "ecommerce_type": null,
+                            "tax_rate": "19.00",
+                            "name": "7up",
+                            "product_type_id": "1",
+                            "category_id": "1",
+                            "vendor": null,
+                            "cost_price": "40.00",
+                            "sale_price": "50.00",
+                            "tax_cat_id": "3",
+                            "line_total": 58.92
                         }
                     ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/invoices"
-                        }
-                    ]
+                    "tax_rate_id": "1",
+                    "total_due": "225.24",
+                    "pdf_link": "http://localhost/wperp/wp-content/uploads/erp-pdfs/voucher_2.pdf",
+                    "email": "cust@om.er"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/invoices",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices"
+                    }
                 }
             }
 
@@ -528,3 +496,33 @@ Fetches all available invoices with pagination
 
 + Request (application/json)
 + Response 204 (application/json)
+
+
+## Due Invoices of a customer [/invoices/due/{customer_id}]
+
+### List All Due Invoices [GET]
+
+Fetches all due invoices of a customer
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": "1",
+                    "voucher_no": "2",
+                    "due_date": "2019-11-19",
+                    "amount": "225.24",
+                    "due": "225.24",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/invoices",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/invoices"
+                        }
+                    }
+                }
+            ]
