@@ -23,33 +23,40 @@ Fetches all available customers with pagination
 
             [
                 {
-                    "id": 2016,
-                    "first_name": "Madisen",
-                    "last_name": "Nienow",
-                    "email": "tHarvey@gmail.com",
-                    "phone": "517.709.8784",
+                    "id": 41,
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "email": "john@gmail.com",
+                    "phone": "1234567890",
                     "mobile": "",
-                    "other": "",
-                    "website": "http://www.Runolfsson.com/",
-                    "fax": "",
+                    "fax": null,
+                    "website": "",
                     "notes": "",
-                    "street_1": "6143 Jan Valleys Suite 827",
-                    "street_2": "",
-                    "city": "Yadiraland",
-                    "state": "FL",
-                    "postal_code": "97214",
-                    "country": "US",
+                    "other": null,
+                    "company": "ABC Inc.",
+                    "photo_id": null,
+                    "photo": null,
+                    "billing": {
+                        "first_name": "John",
+                        "last_name": "Smith",
+                        "street_1": "43 Edgewood Rd.",
+                        "street_2": "",
+                        "city": "Riverside",
+                        "state": "CA",
+                        "postal_code": "94544",
+                        "country": "US",
+                        "email": "john@gmail.com",
+                        "phone": "1234567890"
+                    },
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/customers",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "http://example.com/wp-json/erp/v1/accounting/customers"
-                            }
-                        ]
+                        "self": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers/41"
+                        },
+                        "collection": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers"
+                        }
                     }
                 }
             ]
@@ -61,56 +68,69 @@ Fetches all available customers with pagination
     Model (application/json)
 
     {
-        "first_name": "Madisen",
-        "last_name": "Nienow",
-        "email": "tHarvey@gmail.com",
-        "vendor": "Network Air",
-        "phone": "517.709.8784",
-        "mobile": "",
-        "other": "",
-        "website": "http://www.Runolfsson.com/",
-        "fax": "",
-        "notes": "",
-        "street_1": "6143 Jan Valleys Suite 827",
-        "street_2": "",
-        "city": "Yadiraland",
-        "state": "FL",
-        "postal_code": "97214",
-        "country": "US"
+        "first_name":"John",
+        "last_name":"Smith",
+        "email":"john@gmail.com",
+        "mobile":"",
+        "company":"ABC Inc.",
+        "phone":"1234567890",
+        "website":"",
+        "notes":"",
+        "fax":"",
+        "street_1":"43 Edgewood Rd.",
+        "street_2":"",
+        "city":"Riverside",
+        "country":{
+            "id":"US",
+            "name":"United States (US)"
+        },
+        "state":{
+            "id":"CA",
+            "name":"California"
+        },
+        "postal_code":"94544",
+        "photo_id":null,
+        "photo":"https://example.com/wperp/wp-content/plugins/wp-erp/assets/images/mystery-person.png"
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
-                "phone": "517.709.8784",
+                "id": 41,
+                "first_name": "John",
+                "last_name": "Smith",
+                "email": "john@gmail.com",
+                "phone": "1234567890",
                 "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
+                "fax": null,
+                "website": "",
                 "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
+                "other": null,
+                "company": "ABC Inc.",
+                "photo_id": null,
+                "photo": null,
+                "billing": {
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "street_1": "43 Edgewood Rd.",
+                    "street_2": "",
+                    "city": "Riverside",
+                    "state": "CA",
+                    "postal_code": "94544",
+                    "country": "US",
+                    "email": "john@gmail.com",
+                    "phone": "1234567890"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/customers",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "http://example.com/wp-json/erp/v1/accounting/customers"
-                        }
-                    ]
+                    "self": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers/41"
+                    },
+                    "collection": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers"
+                    }
                 }
             }
 
@@ -125,26 +145,40 @@ Fetches all available customers with pagination
     + Body
 
             {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
-                "phone": "517.709.8784",
+                "id": 41,
+                "first_name": "John",
+                "last_name": "Smith",
+                "email": "john@gmail.com",
+                "phone": "1234567890",
                 "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
+                "fax": null,
+                "website": "",
                 "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
+                "other": null,
+                "company": "ABC Inc.",
+                "photo_id": null,
+                "photo": null,
+                "billing": {
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "street_1": "43 Edgewood Rd.",
+                    "street_2": "",
+                    "city": "Riverside",
+                    "state": "CA",
+                    "postal_code": "94544",
+                    "country": "US",
+                    "email": "john@gmail.com",
+                    "phone": "1234567890"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/customers",
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/customers/2016",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/customers"
+                    "self": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers/41"
+                    },
+                    "collection": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers"
+                    }
                 }
             }
 
@@ -153,55 +187,69 @@ Fetches all available customers with pagination
     Model (application/json)
 
     {
-        "first_name": "Madisen",
-        "last_name": "Nienow",
-        "vendor": "Network Air",
-        "phone": "517.709.8784",
-        "mobile": "",
-        "other": "",
-        "website": "http://www.Runolfsson.com/",
-        "fax": "",
-        "notes": "",
-        "street_1": "6143 Jan Valleys Suite 827",
-        "street_2": "",
-        "city": "Yadiraland",
-        "state": "FL",
-        "postal_code": "97214",
-        "country": "US"
+        "first_name":"John",
+        "last_name":"Smith",
+        "email":"john@gmail.com",
+        "mobile":"",
+        "company":"ABC Inc.",
+        "phone":"1234567890",
+        "website":"",
+        "notes":"",
+        "fax":"",
+        "street_1":"43 Edgewood Rd.",
+        "street_2":"",
+        "city":"Riverside",
+        "country":{
+            "id":"US",
+            "name":"United States (US)"
+        },
+        "state":{
+            "id":"CA",
+            "name":"California"
+        },
+        "postal_code":"94544",
+        "photo_id":null,
+        "photo":"https://example.com/wperp/wp-content/plugins/wp-erp/assets/images/mystery-person.png"
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "vendor": "Network Air",
-                "phone": "517.709.8784",
+                "id": 41,
+                "first_name": "John",
+                "last_name": "Smith",
+                "email": "john@gmail.com",
+                "phone": "1234567890",
                 "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
+                "fax": null,
+                "website": "",
                 "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
+                "other": null,
+                "company": "ABC Inc.",
+                "photo_id": null,
+                "photo": null,
+                "billing": {
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "street_1": "43 Edgewood Rd.",
+                    "street_2": "",
+                    "city": "Riverside",
+                    "state": "CA",
+                    "postal_code": "94544",
+                    "country": "US",
+                    "email": "john@gmail.com",
+                    "phone": "1234567890"
+                },
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/customers",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "http://example.com/wp-json/erp/v1/accounting/customers"
-                        }
-                    ]
+                    "self": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers/41"
+                    },
+                    "collection": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers"
+                    }
                 }
             }
 
@@ -223,27 +271,40 @@ Fetches all available customers with pagination
 
             [
                 {
-                    "id": 25,
-                    "type": "expense",
-                    "form_type": "payment_voucher",
-                    "status": "paid",
-                    "uid": "2035",
-                    "billing_address": "",
-                    "ref": "",
-                    "summary": "",
-                    "issue_date": "2016-10-26",
-                    "due_date": "0000-00-00",
-                    "currency": "USD",
-                    "conversion_rate": null,
-                    "sub_total": "0.0000",
-                    "total": "5.0000",
-                    "due": "0.0000",
-                    "trans_total": "5.0000",
-                    "invoice_number": "0",
-                    "invoice_format": "0",
-                    "files": "",
-                    "parent": "0",
-                    "created_by": "1",
-                    "created_at": "2016-10-26 03:49:37"
+                    "id": 41,
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "email": "john@gmail.com",
+                    "phone": "1234567890",
+                    "mobile": "",
+                    "fax": null,
+                    "website": "",
+                    "notes": "",
+                    "other": null,
+                    "company": "ABC Inc.",
+                    "photo_id": null,
+                    "photo": null,
+                    "billing": {
+                        "first_name": "John",
+                        "last_name": "Smith",
+                        "street_1": "43 Edgewood Rd.",
+                        "street_2": "",
+                        "city": "Riverside",
+                        "state": "CA",
+                        "postal_code": "94544",
+                        "country": "US",
+                        "email": "john@gmail.com",
+                        "phone": "1234567890"
+                    },
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/customers",
+                    "_links": {
+                        "self": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers/41"
+                        },
+                        "collection": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/customers"
+                        }
+                    }
                 }
             ]

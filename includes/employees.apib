@@ -20,114 +20,63 @@ Fetches all available employees with pagination
 
             [
                 {
-                    "id": 2016,
-                    "first_name": "Madisen",
-                    "last_name": "Nienow",
-                    "email": "tHarvey@gmail.com",
-                    "company": "Network Air",
-                    "phone": "517.709.8784",
+                    "employee_id": "1009",
+                    "designation": "Admin",
+                    "department": "Administration",
+                    "location": "0",
+                    "hiring_source": "referral",
+                    "hiring_date": "24-10-2019",
+                    "termination_date": "0000-00-00",
+                    "date_of_birth": "15-02-1999",
+                    "reporting_to": 0,
+                    "pay_rate": "5000",
+                    "pay_type": "monthly",
+                    "type": "contract",
+                    "status": "active",
+                    "end_date": [],
+                    "photo_id": 0,
+                    "first_name": "Gerson",
+                    "middle_name": "",
+                    "last_name": "Heidenreich",
+                    "other_email": "",
+                    "phone": "418.460.7944 x434",
+                    "work_phone": "",
+                    "blood_group": "",
+                    "spouse_name": "",
+                    "father_name": "",
+                    "mother_name": "",
                     "mobile": "",
-                    "other": "",
-                    "website": "http://www.Runolfsson.com/",
-                    "fax": "",
-                    "notes": "",
-                    "street_1": "6143 Jan Valleys Suite 827",
-                    "street_2": "",
-                    "city": "Yadiraland",
-                    "state": "FL",
-                    "postal_code": "97214",
-                    "country": "US",
+                    "address": "269 Alison Trafficway Lake Dantemouth, WI 63430",
+                    "gender": "male",
+                    "marital_status": "widowed",
+                    "nationality": "US",
+                    "driving_license": "",
+                    "hobbies": "",
+                    "user_url": "https://example.com/wperp/wp-admin/admin.php?page=erp-hr&section=employee&action=view&id=11",
+                    "description": "Hatter was the first figure,' said the Dormouse crossed the court, 'Bring me the list of the cattle in the night? Let me see: I'll give them a new idea to Alice, they all crowded round it, panting.",
+                    "street_1": null,
+                    "street_2": null,
+                    "city": null,
+                    "country": null,
+                    "state": null,
+                    "postal_code": null,
+                    "full_name": "Gerson Heidenreich",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/employees",
+                    "id": 11,
+                    "user_id": 11,
+                    "email": "phansen@koch.org",
+                    "people_id": "40",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "http://example.com/wp-json/erp/v1/accounting/employees"
-                            }
-                        ]
+                        "self": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/employees/11"
+                        },
+                        "collection": {
+                            "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/employees"
+                        }
                     }
                 }
             ]
-
-## Employee List [/employees]
-
-### Create A Employee [POST]
-
-    Model (application/json)
-
-    {
-        "first_name": "mad",
-        "last_name": "max",
-        "user_id": 2,
-        "company": "Rolfson",
-        "email": "eftgchafasf08@gmail.com",
-        "location": "0",
-        "hiring_source": "referral",
-        "hiring_date": "2016-06-23",
-        "date_of_birth": "1987-02-02",
-        "pay_rate": 30000,
-        "pay_type": "monthly",
-        "type": "contract",
-        "status": "active",
-        "other_email": "",
-        "phone": "02795318272",
-        "work_phone": "",
-        "mobile": "",
-        "address": "574 Lemke Track Suite 646\nDavismouth, DE 42145-1296",
-        "gender": "female",
-        "marital_status": "widowed",
-        "nationality": "US",
-        "driving_license": "",
-        "hobbies": "",
-        "user_url": "http://www.DAmore.com/quasi-repudiandae-dicta-iste-est.html",
-        "description": "Fun loving guy.",
-        "street_1": "",
-        "street_2": "",
-        "city": "",
-        "country": "",
-        "state": "",
-        "postal_code": "",
-        "department": 5,
-        "designation": "Software Engineer"
-    }
-
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "employee": "Network Air",
-                "phone": "517.709.8784",
-                "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
-                "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
-                "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "http://example.com/wp-json/erp/v1/accounting/employees"
-                        }
-                    ]
-                }
-            }
 
 ## Manage Single Employee [/employees/{id}]
 
@@ -141,151 +90,59 @@ Fetches all available employees with pagination
     + Body
 
             {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "employee": "Network Air",
-                "phone": "517.709.8784",
+                "employee_id": "1009",
+                "designation": "Admin",
+                "department": "Administration",
+                "location": "0",
+                "hiring_source": "referral",
+                "hiring_date": "24-10-2019",
+                "termination_date": "0000-00-00",
+                "date_of_birth": "15-02-1999",
+                "reporting_to": 0,
+                "pay_rate": "5000",
+                "pay_type": "monthly",
+                "type": "contract",
+                "status": "active",
+                "end_date": [],
+                "photo_id": 0,
+                "first_name": "Gerson",
+                "middle_name": "",
+                "last_name": "Heidenreich",
+                "other_email": "",
+                "phone": "418.460.7944 x434",
+                "work_phone": "",
+                "blood_group": "",
+                "spouse_name": "",
+                "father_name": "",
+                "mother_name": "",
                 "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
-                "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
+                "address": "269 Alison Trafficway Lake Dantemouth, WI 63430",
+                "gender": "male",
+                "marital_status": "widowed",
+                "nationality": "US",
+                "driving_license": "",
+                "hobbies": "",
+                "user_url": "https://example.com/wperp/wp-admin/admin.php?page=erp-hr&section=employee&action=view&id=11",
+                "description": "Hatter was the first figure,' said the Dormouse crossed the court, 'Bring me the list of the cattle in the night? Let me see: I'll give them a new idea to Alice, they all crowded round it, panting.",
+                "street_1": null,
+                "street_2": null,
+                "city": null,
+                "country": null,
+                "state": null,
+                "postal_code": null,
+                "full_name": "Gerson Heidenreich",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/employees",
+                "id": 11,
+                "user_id": 11,
+                "email": "phansen@koch.org",
+                "people_id": "40",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "http://example.com/wp-json/erp/v1/accounting/employees"
-                        }
-                    ]
+                    "self": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/employees/11"
+                    },
+                    "collection": {
+                        "href": "https://example.com/wperp/wp-json/erp/v1/accounting/v1/employees"
+                    }
                 }
             }
-
-### Edit A Employee [PUT]
-
-    Model (application/json)
-
-    {
-        "first_name": "mad",
-        "last_name": "max",
-        "user_id": 2,
-        "company": "Rolfson",
-        "email": "eftgchafasf08@gmail.com",
-        "location": "0",
-        "hiring_source": "referral",
-        "hiring_date": "2016-06-23",
-        "date_of_birth": "1987-02-02",
-        "pay_rate": 30000,
-        "pay_type": "monthly",
-        "type": "contract",
-        "status": "active",
-        "other_email": "",
-        "phone": "02795318272",
-        "work_phone": "",
-        "mobile": "",
-        "address": "574 Lemke Track Suite 646\nDavismouth, DE 42145-1296",
-        "gender": "female",
-        "marital_status": "widowed",
-        "nationality": "US",
-        "driving_license": "",
-        "hobbies": "",
-        "user_url": "http://www.DAmore.com/quasi-repudiandae-dicta-iste-est.html",
-        "description": "Fun loving guy.",
-        "street_1": "",
-        "street_2": "",
-        "city": "",
-        "country": "",
-        "state": "",
-        "postal_code": "",
-        "department": 5,
-        "designation": "Software Engineer"
-    }
-
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "id": 2016,
-                "first_name": "Madisen",
-                "last_name": "Nienow",
-                "email": "tHarvey@gmail.com",
-                "employee": "Network Air",
-                "phone": "517.709.8784",
-                "mobile": "",
-                "other": "",
-                "website": "http://www.Runolfsson.com/",
-                "fax": "",
-                "notes": "",
-                "street_1": "6143 Jan Valleys Suite 827",
-                "street_2": "",
-                "city": "Yadiraland",
-                "state": "FL",
-                "postal_code": "97214",
-                "country": "US",
-                "_links": {
-                    "self": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/employees/2016"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "http://example.com/wp-json/erp/v1/accounting/employees"
-                        }
-                    ]
-                }
-            }
-
-### Delete A Employee [DELETE]
-
-+ Request (application/json)
-+ Response 204 (application/json)
-
-## Employees Transactions [/employees/{id}/transactions/{?per_page,page,search,include,include}]
-
-+ Parameters
-    + id (string) - id of the employee in the form of an string
-
-### List All Transactions of a Employee [GET]
-
-+ Request (application/json)
-+ Response 200 (application/json)
-    + Body
-
-            [
-                {
-                    "id": 25,
-                    "type": "expense",
-                    "form_type": "payment_voucher",
-                    "status": "paid",
-                    "uid": "2035",
-                    "billing_address": "",
-                    "ref": "",
-                    "summary": "",
-                    "issue_date": "2016-10-26",
-                    "due_date": "0000-00-00",
-                    "currency": "USD",
-                    "conversion_rate": null,
-                    "sub_total": "0.0000",
-                    "total": "5.0000",
-                    "due": "0.0000",
-                    "trans_total": "5.0000",
-                    "invoice_number": "0",
-                    "invoice_format": "0",
-                    "files": "",
-                    "parent": "0",
-                    "created_by": "1",
-                    "created_at": "2016-10-26 03:49:37"
-                }
-            ]
