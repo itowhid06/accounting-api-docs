@@ -1,7 +1,7 @@
 # Group Product Categories
 
 
-## Product Categories List [/product-cats/{?per_page,page,search,include}]
+## Product Categories List [/product-cats/{?per_page,page,search}]
 
 + Parameters
 
@@ -10,7 +10,6 @@
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
 
 ### List All Product Categories [GET]
 
@@ -21,47 +20,63 @@ Fetches all available product-cats with pagination
 
             [
                 {
-                    "id": 20,
-                    "name": "Office Products",
-                    "description": "office Products Category",
-                    "slug": "office_products",
-                    "parent": 50,
-                    "meta": {},
-                    "taxonomy": "product_cat",
-                    "product_count": 20,
-                    "create_time":"2015-10-06T08:50:34-07:00",
-                    "update_time":"2015-10-06T08:50:34-07:00",
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "john@doe.com",
-                        "user_url": "http://www.doe.com",
-                        "display_name": "John Wick",
-                        "avatar": "https://gravatar.com",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
+                    "id": "1",
+                    "name": "Beverage",
+                    "parent": "0",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/product-cats",
                     "_links": {
-                        "self": [
-                            {
-                                "href": "https://example.com/wp-json/wc/v2/products/categories/9"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://example.com/wp-json/wc/v2/products/categories"
-                            }
-                        ]
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                        }
+                    }
+                },
+                {
+                    "id": "2",
+                    "name": "Plugin",
+                    "parent": "0",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/product-cats",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/2"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                        }
+                    }
+                },
+                {
+                    "id": "3",
+                    "name": "Fast food",
+                    "parent": "0",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/product-cats",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/3"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                        }
+                    }
+                },
+                {
+                    "id": "4",
+                    "name": "Chemical solvent",
+                    "parent": "0",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/product-cats",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/4"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                        }
                     }
                 }
             ]
@@ -73,58 +88,26 @@ Fetches all available product-cats with pagination
     Model (application/json)
 
     {
-        "product_cat_name": "Office Products",
-        "description": "office Products Category",
-        "slug": "office_products",
-        "parent": 50,
-        "meta": {}
+        "name": "Service",
+        "parent": 0
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 20,
-                "name": "Office Products",
-                "description": "office Products Category",
-                "slug": "office_products",
-                "parent": 50,
-                "meta": {},
-                "taxonomy": "product_cat",
-                "product_count": 20,
-                "create_time":"2015-10-06T08:50:34-07:00",
-                "update_time":"2015-10-06T08:50:34-07:00",
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "id": "2",
+                "name": "Plugin",
+                "parent": "0",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/product-cats",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/2"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                    }
                 }
             }
 
@@ -140,47 +123,18 @@ Fetches all available product-cats with pagination
     + Body
 
             {
-                "id": 20,
-                "name": "Office Products",
-                "description": "office Products Category",
-                "slug": "office_products",
-                "parent": 50,
-                "meta": {},
-                "taxonomy": "product_cat",
-                "product_count": 20,
-                "create_time":"2015-10-06T08:50:34-07:00",
-                "update_time":"2015-10-06T08:50:34-07:00",
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "id": "2",
+                "name": "Plugin",
+                "parent": "0",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/product-cats",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/2"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                    }
                 }
             }
 
@@ -189,62 +143,45 @@ Fetches all available product-cats with pagination
     Model (application/json)
 
     {
-        "product_cat_name": "Office Products",
-        "description": "office Products Category",
-        "slug": "office_products",
-        "parent": 50,
-        "meta": {}
+        "name": "Service",
+        "parent": 0
     }
 
 + Response 200 (application/json)
     + Body
 
             {
-                "id": 20,
-                "name": "Office Products",
-                "description": "office Products Category",
-                "slug": "office_products",
-                "parent": 50,
-                "meta": {},
-                "taxonomy": "product_cat",
-                "product_count": 20,
-                "create_time":"2015-10-06T08:50:34-07:00",
-                "update_time":"2015-10-06T08:50:34-07:00",
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "id": "2",
+                "name": "Plugin",
+                "parent": "0",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/product-cats",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories/9"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "https://example.com/wp-json/wc/v2/products/categories"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats/2"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/product-cats"
+                    }
                 }
             }
 
 ### Delete A Product Category [DELETE]
+
+Deletes a Product Category
+
++ Request (application/json)
++ Response 204 (application/json)
+
+
+## Bulk Delete Product Categories [/product-cats/{ids}]
+
++ Parameters
+    + ids (string) - ids of the product categories to be deleted seperated by comma
+
+### Bulk Delete Product Categories [DELETE]
+
+Bulk Deletes selected product categories
 
 + Request (application/json)
 + Response 204 (application/json)
