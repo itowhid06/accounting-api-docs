@@ -10,11 +10,6 @@
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of purchase.
-    + uid (number, optional) - Filter purchases by user id.
-    + start (string, optional) - The start date of filtering purchases.
-    + end (string, optional) - The end date of filtering purchases.
 
 ### List All Purchases [GET]
 
@@ -26,75 +21,46 @@ Fetches all available purchases with pagination
             [
                 {
                     "id": 1,
-                    "vendor_id": 1,
-                    "vendor_name": Apple,
-                    "trn_no": 503,
-                    "ledger_id": "104 (Tea)",
-                    "particulars": "due",
-                    "purchase_details": [
+                    "editable": 1,
+                    "vendor_id": 6,
+                    "voucher_no": 6,
+                    "vendor_name": "Christine Tillman",
+                    "date": "2020-03-23",
+                    "due_date": "2020-03-23",
+                    "line_items": [
                         {
-                            "product_id": "1",
-                            "product_name": "My Awesome Book",
-                            "product_details": "Book Details",
-                            "product_type": "product",
-                            "qty": 2,
-                            "unit_price": 200.0,
-                            "discount": 0,
-                            "tax": 20.0,
-                            "tax_percent": 10.0,
-                            "item_total": 400.0
-                        },
-                        {
-                            "product_id": "2",
-                            "product_name": "My Awesome Service",
-                            "product_details": "Service Details",
-                            "product_type": "service",
-                            "qty": 1,
-                            "unit_price": 100.0,
-                            "discount": 10.0,
-                            "tax": 10.0,
-                            "tax_percent": 10.0,
-                            "item_total": 100.0
+                            "product_id": "4",
+                            "qty": "1",
+                            "price": "200.00",
+                            "amount": "200.00",
+                            "name": "Dry cleaning",
+                            "product_type_id": "1",
+                            "category_id": "4",
+                            "vendor": "6",
+                            "cost_price": "200.00",
+                            "unit_price": "250.00",
+                            "line_total": "200.00"
                         }
                     ],
-                    "date": "2016-11-22",
-                    "due_date": "2016-11-22",
-                    "subtotal": 200,
-                    "total": 200,
-                    "reference_no": "Purchase-001",
-                    "attachments": [
-                        {
-                            "id": 1,
-                            "file" : "file1.pdf"
-                        },
-                        {
-                            "id": 2,
-                            "file" : "file2.pdf"
-                        }
-                    ],
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "mail@gmail.com",
-                        "user_url": "",
-                        "display_name": "John Wick",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
+                    "type": "purchase",
+                    "ref": "PUR001",
+                    "billing_address": "street_1: Constantin Creek; street_2: 56306 Kadin Fields; city: Roweville; state: NY; postal_code: 86336; country: US; ",
+                    "status": "2",
+                    "purchase_order": "0",
+                    "amount": "200.00",
+                    "created_at": "2020-03-23",
+                    "due": "-200.00",
+                    "attachments": [],
+                    "particulars": "purchase products",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/purchases",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/purchases/1",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/purchases"
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases"
+                        }
                     }
                 }
             ]
@@ -106,41 +72,25 @@ Fetches all available purchases with pagination
     Model (application/json)
 
     {
-        "vendor_id": 1,
-        "ref": 100,
-        "trn_date": "10-10-18",
-        "due_date": "31-10-18",
-        "deposit": "Bank",
+        "vendor_id": 6,
+        "vendor_name": "Christine Tillman",
+        "trn_date": "2020-03-23",
+        "due_date": "2020-03-23",
+        "ref": "PUR001",
+        "billing_address": "Constantin Creek, 56306 Kadin Fields Roweville New York, 86336 United States (US)",
         "line_items": [
             {
-                "product_id": "1",
-                "product_type": "product",
-                "qty": 2,
-                "unit_price": 200.0,
-                "item_total": 400.0
-            },
-            {
-                "product_id": "2",
-                "product_type": "service",
+                "product_id": "4",
                 "qty": 1,
-                "unit_price": 100.0,
-                "item_total": 100.0
+                "unit_price": "200.00",
+                "item_total": "200.00"
             }
         ],
-        "remarks": "Acct. 1JK90",
-        "attachments": [
-            {
-                "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
-        ],
+        "particulars": "purchase products",
+        "attachments": [],
         "type": "purchase",
-        "trn_by": "cash",
-        "status": "approved"
+        "status": 2,
+        "purchase_order": 0
     }
 
 + Response 201 (application/json)
@@ -148,65 +98,46 @@ Fetches all available purchases with pagination
 
             {
                 "id": 1,
-                "vendor_id": 1,
-                "vendor_name": Apple,
-                "trn_no": 503,
-                "ledger_id": "104 (Tea)",
-                "particulars": "due",
-                "purchase_details": [
+                "editable": 1,
+                "vendor_id": 6,
+                "voucher_no": 6,
+                "vendor_name": "Christine Tillman",
+                "date": "2020-03-23",
+                "due_date": "2020-03-23",
+                "line_items": [
                     {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
+                        "product_id": "4",
+                        "qty": "1",
+                        "price": "200.00",
+                        "amount": "200.00",
+                        "name": "Dry cleaning",
+                        "product_type_id": "1",
+                        "category_id": "4",
+                        "vendor": "6",
+                        "cost_price": "200.00",
+                        "unit_price": "250.00",
+                        "line_total": "200.00"
                     }
                 ],
-                "date": "2016-11-22",
-                "due_date": "2016-11-22",
-                "subtotal": 200,
-                "total": 200,
-                "reference_no": "Purchase-001",
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "type": "purchase",
+                "ref": "PUR001",
+                "billing_address": "street_1: Constantin Creek; street_2: 56306 Kadin Fields; city: Roweville; state: NY; postal_code: 86336; country: US; ",
+                "status": "2",
+                "purchase_order": "0",
+                "amount": "200.00",
+                "created_at": "2020-03-23",
+                "due": "-200.00",
+                "attachments": [],
+                "particulars": "purchase products",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/purchases",
                 "_links": {
-                    "self": "http://example.com/wp-json/erp/v1/accounting/purchases/1",
-                    "collection": "http://example.com/wp-json/erp/v1/accounting/purchases"
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases"
+                    }
                 }
             }
 
@@ -223,83 +154,46 @@ Fetches all available purchases with pagination
 
             {
                 "id": 1,
-                "vendor_id": 1,
-                "vendor_name": Apple,
-                "trn_no": 503,
-                "ledger_id": "104 (Tea)",
-                "particulars": "due",
-                "purchase_details": [
+                "editable": 1,
+                "vendor_id": 6,
+                "voucher_no": 6,
+                "vendor_name": "Christine Tillman",
+                "date": "2020-03-23",
+                "due_date": "2020-03-23",
+                "line_items": [
                     {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
+                        "product_id": "4",
+                        "qty": "1",
+                        "price": "200.00",
+                        "amount": "200.00",
+                        "name": "Dry cleaning",
+                        "product_type_id": "1",
+                        "category_id": "4",
+                        "vendor": "6",
+                        "cost_price": "200.00",
+                        "unit_price": "250.00",
+                        "line_total": "200.00"
                     }
                 ],
-                "date": "2016-11-22",
-                "due_date": "2016-11-22",
-                "subtotal": 200,
-                "total": 200,
-                "reference_no": "Purchase-001",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "type": "purchase",
+                "ref": "PUR001",
+                "billing_address": "street_1: Constantin Creek; street_2: 56306 Kadin Fields; city: Roweville; state: NY; postal_code: 86336; country: US; ",
+                "status": "2",
+                "purchase_order": "0",
+                "amount": "200.00",
+                "created_at": "2020-03-23",
+                "due": "-200.00",
+                "attachments": [],
+                "particulars": "purchase products",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/purchases",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases"
+                    }
                 }
             }
 
@@ -308,41 +202,25 @@ Fetches all available purchases with pagination
     Model (application/json)
 
     {
-        "vendor_id": 1,
-        "ref": 100,
-        "trn_date": "10-10-18",
-        "due_date": "31-10-18",
-        "deposit": "Bank",
+        "vendor_id": 6,
+        "vendor_name": "Christine Tillman",
+        "trn_date": "2020-03-23",
+        "due_date": "2020-03-23",
+        "ref": "PUR001",
+        "billing_address": "Constantin Creek, 56306 Kadin Fields Roweville New York, 86336 United States (US)",
         "line_items": [
             {
-                "product_id": "1",
-                "product_type": "product",
-                "qty": 2,
-                "unit_price": 200.0,
-                "item_total": 400.0
-            },
-            {
-                "product_id": "2",
-                "product_type": "service",
+                "product_id": "4",
                 "qty": 1,
-                "unit_price": 100.0,
-                "item_total": 100.0
+                "unit_price": "200.00",
+                "item_total": "200.00"
             }
         ],
-        "remarks": "Acct. 1JK90",
-        "attachments": [
-            {
-                "id": 1,
-                "file" : "file1.pdf"
-            },
-            {
-                "id": 2,
-                "file" : "file2.pdf"
-            }
-        ],
+        "particulars": "purchase products",
+        "attachments": [],
         "type": "purchase",
-        "trn_by": "cash",
-        "status": "approved"
+        "status": 2,
+        "purchase_order": 0
     }
 
 + Response 201 (application/json)
@@ -350,88 +228,100 @@ Fetches all available purchases with pagination
 
             {
                 "id": 1,
-                "purchase_id": 503,
-                "vendor_id": 1,
-                "vendor_name": Apple,
-                "trn_no": 503,
-                "ledger_id": "104 (Tea)",
-                "particulars": "due",
-                "purchase_details": [
+                "editable": 1,
+                "vendor_id": 6,
+                "voucher_no": 6,
+                "vendor_name": "Christine Tillman",
+                "date": "2020-03-23",
+                "due_date": "2020-03-23",
+                "line_items": [
                     {
-                        "product_id": "1",
-                        "product_name": "My Awesome Book",
-                        "product_details": "Book Details",
-                        "product_type": "product",
-                        "qty": 2,
-                        "unit_price": 200.0,
-                        "discount": 0,
-                        "tax": 20.0,
-                        "tax_percent": 10.0,
-                        "item_total": 400.0
-                    },
-                    {
-                        "product_id": "2",
-                        "product_name": "My Awesome Service",
-                        "product_details": "Service Details",
-                        "product_type": "service",
-                        "qty": 1,
-                        "unit_price": 100.0,
-                        "discount": 10.0,
-                        "tax": 10.0,
-                        "tax_percent": 10.0,
-                        "item_total": 100.0
+                        "product_id": "4",
+                        "qty": "1",
+                        "price": "200.00",
+                        "amount": "200.00",
+                        "name": "Dry cleaning",
+                        "product_type_id": "1",
+                        "category_id": "4",
+                        "vendor": "6",
+                        "cost_price": "200.00",
+                        "unit_price": "250.00",
+                        "line_total": "200.00"
                     }
                 ],
-                "date": "2016-11-22",
-                "due_date": "2016-11-22",
-                "subtotal": 200,
-                "total": 200,
-                "reference_no": "Purchase-001",
-                "attachments": [
-                    {
-                        "id": 1,
-                        "file" : "file1.pdf"
-                    },
-                    {
-                        "id": 2,
-                        "file" : "file2.pdf"
-                    }
-                ],
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
+                "type": "purchase",
+                "ref": "PUR001",
+                "billing_address": "street_1: Constantin Creek; street_2: 56306 Kadin Fields; city: Roweville; state: NY; postal_code: 86336; country: US; ",
+                "status": "2",
+                "purchase_order": "0",
+                "amount": "200.00",
+                "created_at": "2020-03-23",
+                "due": "-200.00",
+                "attachments": [],
+                "particulars": "purchase products",
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/purchases",
                 "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/purchases"
-                        }
-                    ]
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases"
+                    }
                 }
             }
 
-### Delete A Purchase [DELETE]
+### Void an Purchases [POST]
+
+Voids a particular purchase
 
 + Request (application/json)
 + Response 204 (application/json)
+
+
+## Due Purchases from a vendor [/purchases/due/{id}]
+
++ Parameters
+    + id (string) - id of the vendor in the form of an string
+
+### List All Due Purchases [GET]
+
+Fetches all due Purchases from a vendor
+
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "editable": 0,
+                    "vendor_id": 6,
+                    "voucher_no": 6,
+                    "vendor_name": "Christine Tillman",
+                    "date": "2020-03-23",
+                    "due_date": "2020-03-23",
+                    "line_items": [],
+                    "type": "purchase",
+                    "ref": "PUR001",
+                    "billing_address": "street_1: Constantin Creek; street_2: 56306 Kadin Fields; city: Roweville; state: NY; postal_code: 86336; country: US; ",
+                    "status": "2",
+                    "purchase_order": "0",
+                    "amount": "200.00",
+                    "created_at": "2020-03-23",
+                    "due": "200.00",
+                    "attachments": [],
+                    "particulars": "purchase products",
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/purchases",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/purchases"
+                        }
+                    }
+                }
+            ]
+
+
