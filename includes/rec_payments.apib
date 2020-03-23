@@ -8,8 +8,7 @@
         + Default: `20`
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
-    + start (string, optional) - The start date of filtering payments.
-    + end (string, optional) - The end date of filtering payments.
+    + search (string, optional) - The search keyword.
 
 ### List All Payments [GET]
 
@@ -128,7 +127,7 @@ Fetches all available payments with pagination
 + Parameters
     + id (string) - id of the payment in the form of an string
 
-### Retrieve An Payment [GET]
+### Retrieve A Payment [GET]
 
 + Response 200 (application/json)
     + Body
@@ -169,7 +168,7 @@ Fetches all available payments with pagination
             }
 
 
-### Update An Payment [PUT]
+### Update A Payment [PUT]
 
     Model (application/json)
 
@@ -242,7 +241,7 @@ Fetches all available payments with pagination
 + Parameters
     + id (string) - id of the Payment in the form of an string
 
-### Void an Payments [POST]
+### Void a Payment [POST]
 
 Voids a particular Payment
 
