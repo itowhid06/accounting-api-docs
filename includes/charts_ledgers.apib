@@ -1,7 +1,7 @@
 # Group Chart of Accounts & Ledgers
 
 
-## Ledger List [/ledgers/{?per_page,page,search,include,type,uid,start,end}]
+## Ledger List [/ledgers/{?per_page,page,search}]
 
 + Parameters
 
@@ -10,138 +10,68 @@
     + page: 1 (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
-    + type (string, optional) - The type of journal.
-    + uid (number, optional) - Filter journals by user id.
-    + start (string, optional) - The start date of filtering journals.
-    + end (string, optional) - The end date of filtering journals.
+
 
 ### List All Ledgers [GET]
 
-Fetches all available journals with pagination
+Fetches all available ledgers
 
 + Response 200 (application/json)
     + Body
 
             [
                 {
-                    "id": 1,
-                    "reference": "S8368",
-                    "summary": "Ledger Details",
-                    "issue_date": "2016-11-22",
-                    "items": [
-                    {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
-                    },
-                    {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
-                    }
-                    ],
-                    "total": 200,
-                    "trans_total": 200,
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "mail@gmail.com",
-                        "user_url": "",
-                        "display_name": "John Wick",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/ledgers/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "www.example.com/wp-json/erp/v1/accounting/ledgers"
-                            }
-                        ]
-                    }
+                    "id": "2",
+                    "chart_id": "1",
+                    "category_id": null,
+                    "name": "Inventory",
+                    "slug": "inventory",
+                    "code": "140",
+                    "system": "1",
+                    "balance": 0,
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/ledgers"
+                },
+                {
+                    "id": "3",
+                    "chart_id": "1",
+                    "category_id": null,
+                    "name": "Office Equipment",
+                    "slug": "office_equipment",
+                    "code": "150",
+                    "system": "1",
+                    "balance": 0,
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/ledgers"
                 }
             ]
 
 ## Ledger List [/ledgers/]
 
-### Create A Ledger [POST]
+### Create A Ledger Account [POST]
 
     Model (application/json)
 
     {
-        "reference": "S8367",
-        "summary": "Ledger Details Here",
-        "issue_date": "2016-11-22",
-        "items": [
-            {
-                "debit": 100,
-                "ledger_id": 1
-            },
-            {
-                "credit": 100,
-                "ledger_id": 24
-            }
-        ]
+        "chart_id": "7",
+        "category_id": null,
+        "name": "Bank Account",
+        "code": "0123232"
     }
 
 + Response 201 (application/json)
     + Body
 
             {
-                "id": 1,
-                "reference": "S8368",
-                "summary": "Ledger Details",
-                "issue_date": "2016-11-22",
-                "items": [
-                    {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
-                    },
-                    {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
-                    }
-                ],
-                "total": 200,
-                "trans_total": 200,
-                "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/ledgers/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/ledgers"
-                        }
-                    ]
-                }
+                "id": "105",
+                "chart_id": "7",
+                "category_id": null,
+                "name": "Bank Account",
+                "slug": "bank_account",
+                "code": "123232",
+                "trn_count": "0",
+                "system": null,
+                "balance": null
             }
 
 
@@ -156,60 +86,15 @@ Fetches all available journals with pagination
     + Body
 
             {
-                "id": 1,
-                "reference": "S8368",
-                "summary": "Ledger Details",
-                "issue_date": "2016-11-22",
-                "items": [
-                    {
-                        "id": 1,
-                        "debit": 100,
-                        "credit": 0,
-                        "ledger_id": 1,
-                        "ledger_name": "Accounts Receivable"
-                    },
-                    {
-                        "id": 2,
-                        "debit": 0,
-                        "credit": 100,
-                        "ledger_id": 24,
-                        "ledger_name": "Costs of Goods Sold"
-                    }
-                ],
-                "total": 200,
-                "trans_total": 200,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "mail@gmail.com",
-                    "user_url": "",
-                    "display_name": "John Wick",
-                    "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/ledgers/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "www.example.com/wp-json/erp/v1/accounting/ledgers"
-                        }
-                    ]
-                }
+                "id": "105",
+                "chart_id": "7",
+                "category_id": null,
+                "name": "Bank Account",
+                "slug": "bank_account",
+                "code": "123232",
+                "trn_count": "0",
+                "system": null,
+                "balance": null
             }
 
 
@@ -218,282 +103,83 @@ A list of Chart of Accounts
 
 ### List All Chart of Accounts [GET]
 
-Fetches all available chart-of-accounts with pagination
+Fetches all available chart-of-accounts
 
 + Response 200 (application/json)
     + Body
 
             [
                 {
-                    "id": 1,
-                    "group": "Assets",
-                    "type": "Current Asset",
-                    "code": 120,
-                    "name": "Accounts Receivable",
-                    "description": null,
-                    "parent": 0,
-                    "system": 1,
-                    "entries": 0,
-                    "created_by": {
-                    "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "john@doe.com",
-                        "user_url": "http://www.doe.com",
-                        "display_name": "John Wick",
-                        "avatar": "https://gravatar.com",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
-                            }
-                        ]
-                    }
+                    "id": "1",
+                    "label": "Asset"
                 },
                 {
-                    "id": 2,
-                    "group": "Assets",
-                    "type": "Inventory",
-                    "code": 140,
-                    "name": "Inventory",
-                    "description": null,
-                    "parent": 0,
-                    "system": 1,
-                    "entries": 0,
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "john@doe.com",
-                        "user_url": "http://www.doe.com",
-                        "display_name": "John Wick",
-                        "avatar": "https://gravatar.com",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
-                            }
-                        ]
-                    }
+                    "id": "2",
+                    "label": "Liability"
+                },
+                {
+                    "id": "3",
+                    "label": "Equity"
+                },
+                {
+                    "id": "4",
+                    "label": "Income"
+                },
+                {
+                    "id": "5",
+                    "label": "Expense"
+                },
+                {
+                    "id": "6",
+                    "label": "Asset & Liability"
+                },
+                {
+                    "id": "7",
+                    "label": "Bank"
                 }
             ]
 
-### Create A Chart of Account [POST]
 
-    Model (application/json)
+## Bank Accounts List [/chart-of-accounts]
+A list of Bank Accounts
 
-    {
-        "type": 6,
-        "code": 740,
-        "name": "Personal Account",
-        "description": "Personal Account",
-        "bank_account": "33423423424234",
-        "bank_name": "City Bank"
-    }
+### List All Bank Accounts [GET]
 
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "id": 67,
-                "group": "Assets",
-                "type": "Bank & Cash",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
-                        }
-                    ]
-                }
-            }
-
-## Manage Single Chart of Account [/chart-of-accounts/{id}]
-
-+ Parameters
-    + id (string) - id of the chart-of-account in the form of an string
-
-### Retrieve A Chart of Account [GET]
-
-+ Request (application/json)
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "id": 67,
-                "group": "Expenses",
-                "type": "Expense",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
-                        }
-                    ]
-                }
-            }
-
-### Edit A Chart of Account [PUT]
-
-    Model (application/json)
-
-    {
-        "type"       : 12,
-        "code"       : 720,
-        "name"       : "Account Snacks",
-        "description": "Account for Expense of Snacks"
-    }
-
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "id": 67,
-                "group": "Expenses",
-                "type": "Expense",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/chart-of-accounts"
-                        }
-                    ]
-                }
-            }
-
-### Delete A Chart of Account [DELETE]
-
-+ Request (application/json)
-+ Response 204 (application/json)
-
-
-## Manage Type of Chart of Account [/chart-of-accounts/types]
-
-### Retrieve All Types [GET]
-
-Retrieve all Chart of Accounts Types
+Fetches all available bank accounts
 
 + Response 200 (application/json)
     + Body
 
             [
                 {
-                    "id"      : 1,
-                    "name"    : "Current Asset",
-                    "class_id": 1
-                },
+                    "id": "105",
+                    "name": "Bank Account",
+                    "code": "123232",
+                    "obalance": 0,
+                    "balance": 200,
+                    "total_debit": 0,
+                    "total_credit": 0
+                }
+            ]
+
+
+## Cash Accounts List [/chart-of-accounts]
+A list of Cash Accounts
+
+### List All Cash Accounts [GET]
+
+Fetches all available cash accounts
+
++ Response 200 (application/json)
+    + Body
+
+            [
                 {
-                    "id"      : 2,
-                    "name"    : "Fixed Asset",
-                    "class_id": 1
-                },
-                {
-                    "id"      : 3,
-                    "name"    : "Inventory",
-                    "class_id": 1
+                    "id": "7",
+                    "name": "Cash",
+                    "obalance": 0,
+                    "balance": 10159.5,
+                    "total_debit": 0,
+                    "total_credit": 0
                 }
             ]
