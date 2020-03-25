@@ -1,6 +1,6 @@
 # Group Expenses
 
-## Manage Expense Collection [/expenses/{?per_page,page,search,include}]
+## Manage Expense Collection [/expenses/{?per_page,page,search}]
 
 ### List All Expenses [GET]
 
@@ -11,7 +11,7 @@
     + page (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
-    + include: owner (string, optional) - The additional object to be included.
+
 
 + Response 200 (application/json)
 
@@ -19,190 +19,339 @@
 
             [
                 {
-                    "id": 2,
-                    "form_type": "payment",
-                    "status": "draft",
-                    "billing_address": "Dhanmondi, Dhaka",
-                    "reference": "",
-                    "summary": "",
-                    "issue_date": "2016-11-07",
-                    "due_date": null,
-                    "currency": "USD",
-                    "conversion_rate": 0,
-                    "items": [
+                    "id": 1,
+                    "voucher_no": 12,
+                    "people_id": 24,
+                    "people_name": "Bryce Keebler",
+                    "date": "2020-03-25",
+                    "address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+                    "bill_details": [
                         {
-                            "id": 2,
-                            "journal_id": 4,
-                            "product_id": 0,
-                            "description": "Some random description",
-                            "qty": 1,
-                            "unit_price": 14816,
-                            "discount": 0,
-                            "tax": 0,
-                            "tax_rate": 0,
-                            "tax_journal": 0,
-                            "line_total": 14816,
-                            "order": 1
+                            "id": "1",
+                            "ledger_id": "24",
+                            "ledger_name": "Costs of Goods Sold",
+                            "trn_no": "12",
+                            "particulars": "cost of sold goods",
+                            "amount": "250.00"
+                        },
+                        {
+                            "id": "2",
+                            "ledger_id": "31",
+                            "ledger_name": "General Expenses",
+                            "trn_no": "12",
+                            "particulars": "general expenses",
+                            "amount": "220.00"
                         }
                     ],
-                    "sub_total": 14816,
-                    "total": 14816,
-                    "due": 0,
-                    "trans_total": 14816,
-                    "invoice": "SPN-0026",
-                    "parent": 0,
-                    "created_at": "2016-11-08 03:33:57",
-                    "customer": {
-                        "id": 2034,
-                        "first_name": "John",
-                        "last_name": "Doe",
-                        "email": "john@doe.com.bd",
-                        "phone": "",
-                        "mobile": "",
-                        "other": "",
-                        "website": "",
-                        "fax": "",
-                        "notes": "",
-                        "street_1": "Street 1",
-                        "street_2": "Street 2",
-                        "city": "Dinajpur",
-                        "state": "Rang",
-                        "postal_code": "5200",
-                        "country": "",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "http://example.com/wp-json/erp/v1/accounting/customers/2016"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "http://example.com/wp-json/erp/v1/accounting/customers"
-                                }
-                            ]
-                        }
-                    },
-                    "created_by": {
-                        "ID": 1,
-                        "user_nicename": "admin",
-                        "user_email": "sohelamincse@gmail.com",
-                        "user_url": "",
-                        "display_name": "admin",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
+                    "total": 470,
+                    "ref": "Expense",
+                    "check_no": null,
+                    "particulars": "office expenses",
+                    "status": "4",
+                    "attachments": [],
+                    "trn_by": "1",
+                    "created_at": "2020-03-25",
+                    "deposit_to": "7",
+                    "check_data": [],
+                    "namespace": "erp/v1",
+                    "rest_base": "accounting/v1/expenses",
                     "_links": {
-                        "self": "http://example.com/wp-json/erp/v1/accounting/expenses/2",
-                        "collection": "http://example.com/wp-json/erp/v1/accounting/expenses"
-                    }
-                },
-                {
-                    "id": 3,
-                    "form_type": "invoice",
-                    "status": "draft",
-                    "billing_address": "Dhanmondi, Dhaka",
-                    "reference": "",
-                    "summary": "",
-                    "issue_date": "2016-11-06",
-                    "due_date": "2016-11-17",
-                    "currency": "USD",
-                    "conversion_rate": 0,
-                    "items": [
-                        {
-                            "id": 3,
-                            "journal_id": 6,
-                            "product_id": 0,
-                            "description": "Some random description",
-                            "qty": 1,
-                            "unit_price": 2428,
-                            "discount": 0,
-                            "tax": 0,
-                            "tax_rate": 0,
-                            "tax_journal": 0,
-                            "line_total": 2428,
-                            "order": 1
+                        "self": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses/1"
+                        },
+                        "collection": {
+                            "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses"
                         }
-                    ],
-                    "sub_total": 2428,
-                    "total": 2428,
-                    "due": 0,
-                    "trans_total": 2428,
-                    "invoice": "INV-0008",
-                    "parent": 0,
-                    "created_at": "2016-11-08 03:33:58",
-                    "customer": {
-                        "id": 1007,
-                        "first_name": "Sohel",
-                        "last_name": "Amin Shah",
-                        "email": "sohel@sohelamin.com",
-                        "phone": "",
-                        "mobile": "",
-                        "other": "",
-                        "website": "",
-                        "fax": "",
-                        "notes": "",
-                        "street_1": "",
-                        "street_2": "",
-                        "city": "",
-                        "state": "-1",
-                        "postal_code": "",
-                        "country": "-1",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/customers"
-                                }
-                            ]
-                        }
-                    },
-                    "created_by": {
-                        "ID": 1,
-                        "user_nicename": "admin",
-                        "user_email": "sohelamincse@gmail.com",
-                        "user_url": "",
-                        "display_name": "admin",
-                        "avatar": "http://2.gravatar.com/avatar/50b8fc98057e12e1f1f8982a981297e7?s=96&d=mm&r=g",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href":"http://example.com/wp-json/erp/v1/accounting/expenses/3"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "http://example.com/wp-json/erp/v1/accounting/expenses"
-                            }
-                        ]
                     }
                 }
             ]
 
+## Expense List [/expenses]
+
+### Create An Expense [POST]
+
+    Model (application/json)
+
+    {
+        "people_id": 24,
+        "ref": "Expense",
+        "trn_date": "2020-03-25",
+        "trn_by": "1",
+        "bill_details": [
+            {
+                "ledger_id": "24",
+                "particulars": "cost of sold goods",
+                "amount": "250"
+            },
+            {
+                "ledger_id": "31",
+                "particulars": "general expenses",
+                "amount": "220"
+            }
+        ],
+        "deposit_to": "7",
+        "billing_address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+        "attachments": [],
+        "type": "expense",
+        "status": 4,
+        "particulars": "office expenses",
+        "check_no": null,
+        "name": "",
+        "bank": ""
+    }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1,
+                "voucher_no": 12,
+                "people_id": 24,
+                "people_name": "Bryce Keebler",
+                "date": "2020-03-25",
+                "address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+                "bill_details": [
+                    {
+                        "id": "1",
+                        "ledger_id": "24",
+                        "ledger_name": "Costs of Goods Sold",
+                        "trn_no": "12",
+                        "particulars": "cost of sold goods",
+                        "amount": "250.00"
+                    },
+                    {
+                        "id": "2",
+                        "ledger_id": "31",
+                        "ledger_name": "General Expenses",
+                        "trn_no": "12",
+                        "particulars": "general expenses",
+                        "amount": "220.00"
+                    }
+                ],
+                "total": 470,
+                "ref": "Expense",
+                "check_no": null,
+                "particulars": "office expenses",
+                "status": "4",
+                "attachments": [],
+                "trn_by": "1",
+                "created_at": "2020-03-25",
+                "deposit_to": "7",
+                "check_data": [],
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/expenses",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses"
+                    }
+                }
+            }
+
+
+## Manage Single Expense [/expenses/{id}]
+
++ Parameters
+    + id (string) - id of the expense in the form of an string
+
+### Retrieve An Expense [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 1,
+                "voucher_no": 12,
+                "people_id": 24,
+                "people_name": "Bryce Keebler",
+                "date": "2020-03-25",
+                "address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+                "bill_details": [
+                    {
+                        "id": "1",
+                        "ledger_id": "24",
+                        "ledger_name": "Costs of Goods Sold",
+                        "trn_no": "12",
+                        "particulars": "cost of sold goods",
+                        "amount": "250.00"
+                    },
+                    {
+                        "id": "2",
+                        "ledger_id": "31",
+                        "ledger_name": "General Expenses",
+                        "trn_no": "12",
+                        "particulars": "general expenses",
+                        "amount": "220.00"
+                    }
+                ],
+                "total": 470,
+                "ref": "Expense",
+                "check_no": null,
+                "particulars": "office expenses",
+                "status": "4",
+                "attachments": [],
+                "trn_by": "1",
+                "created_at": "2020-03-25",
+                "deposit_to": "7",
+                "check_data": [],
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/expenses",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses"
+                    }
+                }
+            }
+
+### Update An Expense [PUT]
+
+    Model (application/json)
+
+    {
+        "people_id": 24,
+        "ref": "Expense",
+        "trn_date": "2020-03-25",
+        "trn_by": "1",
+        "bill_details": [
+            {
+                "ledger_id": "24",
+                "particulars": "cost of sold goods",
+                "amount": "250"
+            },
+            {
+                "ledger_id": "31",
+                "particulars": "general expenses",
+                "amount": "220"
+            }
+        ],
+        "deposit_to": "7",
+        "billing_address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+        "attachments": [],
+        "type": "expense",
+        "status": 4,
+        "particulars": "office expenses",
+        "check_no": null,
+        "name": "",
+        "bank": ""
+    }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1,
+                "voucher_no": 12,
+                "people_id": 24,
+                "people_name": "Bryce Keebler",
+                "date": "2020-03-25",
+                "address": "Emilia Parkways, 5470 Ezekiel Heights Emmanuelberg New York, 36358 Burundi",
+                "bill_details": [
+                    {
+                        "id": "1",
+                        "ledger_id": "24",
+                        "ledger_name": "Costs of Goods Sold",
+                        "trn_no": "12",
+                        "particulars": "cost of sold goods",
+                        "amount": "250.00"
+                    },
+                    {
+                        "id": "2",
+                        "ledger_id": "31",
+                        "ledger_name": "General Expenses",
+                        "trn_no": "12",
+                        "particulars": "general expenses",
+                        "amount": "220.00"
+                    }
+                ],
+                "total": 470,
+                "ref": "Expense",
+                "check_no": null,
+                "particulars": "office expenses",
+                "status": "4",
+                "attachments": [],
+                "trn_by": "1",
+                "created_at": "2020-03-25",
+                "deposit_to": "7",
+                "check_data": [],
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/expenses",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses/1"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses"
+                    }
+                }
+            }
+
+
+## Void Expense [/expenses/{id}/void/]
+
++ Parameters
+    + id (string) - id of the expense in the form of an string
+
+### Void an Expenses [POST]
+
+Voids a particular expense
+
++ Request (application/json)
++ Response 204 (application/json)
+
+
+## Manage Single Check [/expenses/checks/{id}]
+
++ Parameters
+    + id (string) - id of the expense in the form of an string
+
+### Retrieve A Check [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 13,
+                "voucher_no": 13,
+                "people_id": 22,
+                "people_name": "Shemar Emmerich",
+                "date": "2020-03-25",
+                "address": "Dagmar Stravenue, 69480 Watson Key North Damion Colorado, 34246-1511 Macedonia",
+                "bill_details": [
+                    {
+                        "id": "2",
+                        "voucher_no": "13",
+                        "status": "4",
+                        "trn_by": "3",
+                        "trn_date": "2020-03-25",
+                        "ledger_id": "30",
+                        "particulars": "postage payment",
+                        "amount": "100.00",
+                        "ledger_name": "Postage & Delivary"
+                    }
+                ],
+                "total": 100,
+                "ref": "",
+                "check_no": "CHK0232233",
+                "particulars": "check payment",
+                "status": "4",
+                "attachments": [],
+                "trn_by": "3",
+                "created_at": "2020-03-25",
+                "deposit_to": "105",
+                "check_data": [],
+                "namespace": "erp/v1",
+                "rest_base": "accounting/v1/expenses",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses/13"
+                    },
+                    "collection": {
+                        "href": "http://localhost/wperp/wp-json/erp/v1/accounting/v1/expenses"
+                    }
+                }
+            }
