@@ -12,66 +12,89 @@ Fetches Trial Balance Report
     + Body
 
             {
-                "assets": {
-                    "7": {
-                        "id": 7,
-                        "code": 90,
-                        "name": "Petty Cash",
-                        "debit": 102,
-                        "credit": 0
+                "total_credit": -11313.5,
+                "rows": {
+                    "4": {
+                        "4": {
+                            "id": "94",
+                            "name": "Sales Revenue",
+                            "balance": -100,
+                            "chart_id": "4"
+                        }
                     },
-                    "9": {
-                        "id": 62,
-                        "code": 92,
-                        "name": "Savings Account",
-                        "debit": 0,
-                        "credit": 712
-                    }
-                },
-                "liabilities": {
-                        "17": {
-                        "id": 73,
-                        "code": 488,
-                        "name": "Govt. Tax Payable",
-                        "debit": 0,
-                        "credit": 2
-                    }
-                },
-                "expenses": {
+                    "5": {
+                        "5": {
+                            "id": "103",
+                            "name": "Purchase",
+                            "balance": 700,
+                            "chart_id": "5"
+                        },
+                        "1": {
+                            "id": "24",
+                            "name": "Costs of Goods Sold",
+                            "balance": 450,
+                            "chart_id": "5"
+                        },
+                        "2": {
+                            "id": "30",
+                            "name": "Postage & Delivary",
+                            "balance": 100,
+                            "chart_id": "5"
+                        },
+                        "3": {
+                            "id": "31",
+                            "name": "General Expenses",
+                            "balance": 520,
+                            "chart_id": "5"
+                        }
+                    },
                     "1": {
-                        "id": 24,
-                        "code": 500,
-                        "name": "Costs of Goods Sold",
-                        "debit": 700,
-                        "credit": 0
+                        "6": {
+                            "additional": [
+                                {
+                                    "id": "105",
+                                    "name": "Bank Account",
+                                    "balance": 100,
+                                    "chart_id": "7"
+                                }
+                            ],
+                            "name": "Cash at Bank",
+                            "balance": 100,
+                            "chart_id": "1"
+                        },
+                        "0": {
+                            "id": "7",
+                            "name": "Cash",
+                            "balance": 9389.5,
+                            "chart_id": "1"
+                        },
+                        "11": {
+                            "name": "Accounts Receivable",
+                            "balance": 54,
+                            "chart_id": "1"
+                        }
                     },
-                    "34": {
-                        "id": 72,
-                        "code": 845,
-                        "name": "Govt. Tax Receivable",
-                        "debit": 10,
-                        "credit": 0
+                    "2": {
+                        "8": {
+                            "name": "Sales Tax Payable",
+                            "balance": -13.5,
+                            "chart_id": "2"
+                        },
+                        "10": {
+                            "name": "Accounts Payable",
+                            "balance": -500,
+                            "chart_id": "2"
+                        }
                     },
-                    "36": {
-                        "id": 74,
-                        "code": 574,
-                        "name": "Govt. Tax Receivable",
-                        "debit": 2,
-                        "credit": 0
+                    "3": {
+                        "12": {
+                            "name": "Owner's Capital",
+                            "balance": -10700,
+                            "chart_id": "3"
+                        }
                     }
                 },
-                "income": {
-                    "1": {
-                        "id": 54,
-                        "code": 400,
-                        "name": "Sales",
-                        "debit": 0,
-                        "credit": 100
-                    }
-                },
-                "equity": [],
-                "debit_total": 814,
-                "credit_total": 814
+                "total_debit": 11313.5
             }
 
 
@@ -86,52 +109,84 @@ Fetches Income Statement Report
     + Body
 
             {
-                "revenue": 102,
-                "cost_of_goods_sold": 700,
-                "gross_income": 0,
-                "overhead": 0,
-                "operating_income": 0,
-                "tax": 14,
-                "net_income": 0
+                "rows1": [
+                    {
+                        "id": "94",
+                        "name": "Sales Revenue",
+                        "balance": 100
+                    }
+                ],
+                "rows2": [
+                    {
+                        "id": "24",
+                        "name": "Costs of Goods Sold",
+                        "balance": 450
+                    },
+                    {
+                        "id": "30",
+                        "name": "Postage & Delivary",
+                        "balance": 100
+                    },
+                    {
+                        "id": "31",
+                        "name": "General Expenses",
+                        "balance": 520
+                    },
+                    {
+                        "id": "103",
+                        "name": "Purchase",
+                        "balance": 700
+                    }
+                ],
+                "income": 100,
+                "expense": 1770,
+                "loss": -1670,
+                "raw_balance": -1670,
+                "balance": -1670
             }
 
 
-## Sales Tax [/reports/sales-taxes]
+## Sales Tax [/reports/sales-taxes/{?agency_id,start_date,end_date}]
+
+    + agency_id (string,required): The Tax Agency id.
+    + start_date (string,required): Start Date.
+    + end_date (string,required): End Date.
+
 Sales Tax Report
 
-### Show All Sales Tax [GET]
+### Show Sales Tax Report of an Agency [GET]
 
-Fetches Sales Tax Report
+Fetches Sales Tax Report by Agency
 
 + Response 200 (application/json)
     + Body
 
-            [
-                {
-                    "tax": "Govt. Tax",
-                    "tax_payable": {
-                        "trn_sub_total": "100.00",
-                        "tax_amount": "2.00"
+            {
+                "details": [
+                    {
+                        "trn_no": null,
+                        "particulars": "Opening Balance =",
+                        "debit": null,
+                        "credit": null,
+                        "trn_date": "2020-03-01",
+                        "balance": "0 Dr",
+                        "created_at": null
                     },
-                    "tax_receivable": {
-                        "trn_sub_total": "500.00",
-                        "tax_amount": "10.00"
-                    },
-                    "net_tax": "8.00"
-                },
-                {
-                    "tax": "Govt. Tax",
-                    "tax_payable": {
-                        "trn_sub_total": "0.00",
-                        "tax_amount": "0.00"
-                    },
-                    "tax_receivable": {
-                        "trn_sub_total": "200.00",
-                        "tax_amount": "2.00"
-                    },
-                    "net_tax": "2.00"
+                    {
+                        "trn_no": "2",
+                        "particulars": "sales",
+                        "debit": "0.00",
+                        "credit": "6.00",
+                        "trn_date": "2020-03-20",
+                        "created_at": "2020-03-20",
+                        "balance": "6 Cr"
+                    }
+                ],
+                "extra": {
+                    "total_debit": 0,
+                    "total_credit": 6
                 }
-            ]
+            }
 
 
 ## Balance Sheet [/reports/balance-sheets]
@@ -145,32 +200,149 @@ Fetches Balance Sheet Report
     + Body
 
             {
-                "assets": {
-                    "accounts": [
+                "total_liability": 0,
+                "total_asset": -300,
+                "rows1": [
                     {
-                        "account": "Petty Cash",
-                        "amount": "102.00"
+                        "id": "7",
+                        "name": "Cash",
+                        "balance": -300
                     },
                     {
-                        "account": "Savings Account",
-                        "amount": "712.00"
-                    }
-                    ],
-                    "total": "610.00"
-                },
-                "liabilities": {
-                    "accounts": [
+                        "name": "Accounts Receivable",
+                        "balance": 0
+                    },
                     {
-                        "account": "Govt. Tax Payable",
-                        "amount": "2.00"
+                        "additional": [],
+                        "name": "Cash at Bank",
+                        "balance": 0
                     }
-                    ],
-                    "total": "2.00"
-                },
-                "equities": {
-                    "total": "612.00",
-                    "accounts": {
-                    "net_income": "612.00"
+                ],
+                "owners_equity": -300,
+                "rows3": [
+                    {
+                        "id": "86",
+                        "name": "Owner's Capital",
+                        "balance": 0
+                    },
+                    {
+                        "name": "Loss",
+                        "balance": 300,
+                        "slug": "loss"
                     }
+                ],
+                "rows2": [
+                    {
+                        "name": "Accounts Payable",
+                        "balance": 0
+                    },
+                    {
+                        "additional": [],
+                        "name": "Bank Loan",
+                        "balance": 0
+                    },
+                    {
+                        "name": "Sales Tax Payable",
+                        "balance": 0,
+                        "slug": "sales_tax"
+                    }
+                ],
+                "total_equity": 300
+            }
+
+
+## Ledger Report [/reports/ledger-report/{?ledger_id,start_date,end_date}]
+
+    + ledger_id (string,required): The Tax Agency id.
+    + start_date (string,required): Start Date.
+    + end_date (string,required): End Date.
+
+Ledger Report
+
+### Show Ledger Report of an Account [GET]
+
+Fetches Ledger Report by Ledger Account
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "details": [
+                    {
+                        "trn_no": null,
+                        "particulars": "Opening Balance =",
+                        "debit": null,
+                        "credit": null,
+                        "trn_date": "2020-03-01",
+                        "balance": "300 Cr",
+                        "created_at": null
+                    },
+                    {
+                        "trn_no": "1",
+                        "particulars": "Cash In Hand",
+                        "debit": "10000.00",
+                        "credit": "0.00",
+                        "trn_date": "2020-03-20",
+                        "created_at": null,
+                        "balance": "9700 Cr"
+                    },
+                    {
+                        "trn_no": "3",
+                        "particulars": "payment received",
+                        "debit": "59.50",
+                        "credit": "0.00",
+                        "trn_date": "2020-03-20",
+                        "created_at": "2020-03-20",
+                        "balance": "9759.5 Dr"
+                    },
+                    {
+                        "trn_no": "4",
+                        "particulars": "cash added",
+                        "debit": "1000.00",
+                        "credit": "0.00",
+                        "trn_date": "2020-03-20",
+                        "created_at": "2020-03-20",
+                        "balance": "10759.5 Dr"
+                    },
+                    {
+                        "trn_no": "7",
+                        "particulars": "Paying for the purchase",
+                        "debit": "0.00",
+                        "credit": "200.00",
+                        "trn_date": "2020-03-23",
+                        "created_at": "2020-03-23",
+                        "balance": "10559.5 Dr"
+                    },
+                    {
+                        "trn_no": "10",
+                        "particulars": "Paying Bill",
+                        "debit": "0.00",
+                        "credit": "500.00",
+                        "trn_date": "2020-03-24",
+                        "created_at": "2020-03-24",
+                        "balance": "10059.5 Dr"
+                    },
+                    {
+                        "trn_no": "11",
+                        "particulars": "cash transfer",
+                        "debit": "0.00",
+                        "credit": "200.00",
+                        "trn_date": "2020-03-25",
+                        "created_at": "2020-03-25",
+                        "balance": "9859.5 Dr"
+                    },
+                    {
+                        "trn_no": "12",
+                        "particulars": "office expenses",
+                        "debit": "0.00",
+                        "credit": "470.00",
+                        "trn_date": "2020-03-25",
+                        "created_at": "2020-03-25",
+                        "balance": "9389.5 Dr"
+                    }
+                ],
+                "extra": {
+                    "total_debit": 11059.5,
+                    "total_credit": 1370
                 }
             }
