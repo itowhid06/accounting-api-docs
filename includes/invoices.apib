@@ -545,7 +545,17 @@ Fetches all due invoices of a customer
 Uploads an attachment for any transaction
 
 + Request (application/json)
+
 + Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "file": "/Applications/XAMPP/xamppfiles/htdocs/wperp/wp-content/uploads/2020/03/1788291182.pdf",
+                    "url": "http://localhost/wperp/wp-content/uploads/2020/03/1788291182.pdf",
+                    "type": "application/pdf"
+                }
+            ]
 
 
 ## Get Receivables overview [/invoices/overview-receivable]

@@ -1,287 +1,52 @@
 # Group Closing Balances
 
 
-## Closing Balance List [/closing-balances]
-A list of Closing Balances
+## Closing Balance List [/closing-balance]
 
-### List All Closing Balances [GET]
+### Closing Balance Sheet of Current Financial Year [POST]
 
-Fetches all available closing-balances with pagination
-
-+ Response 200 (application/json)
-    + Body
-
-            [
-                {
-                    "id": 1,
-                    "group": "Assets",
-                    "type": "Current Asset",
-                    "code": 120,
-                    "name": "Accounts Receivable",
-                    "description": null,
-                    "parent": 0,
-                    "system": 1,
-                    "entries": 0,
-                    "created_by": {
-                    "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "john@doe.com",
-                        "user_url": "http://www.doe.com",
-                        "display_name": "John Wick",
-                        "avatar": "https://gravatar.com",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href":  "http://example.com/wp-json/erp/v1/accounting/closing-balances/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/closing-balances"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 2,
-                    "group": "Assets",
-                    "type": "Inventory",
-                    "code": 140,
-                    "name": "Inventory",
-                    "description": null,
-                    "parent": 0,
-                    "system": 1,
-                    "entries": 0,
-                    "created_by": {
-                        "id": 1,
-                        "user_nicename": "john",
-                        "user_email": "john@doe.com",
-                        "user_url": "http://www.doe.com",
-                        "display_name": "John Wick",
-                        "avatar": "https://gravatar.com",
-                        "_links": {
-                            "self": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                                }
-                            ],
-                            "collection": [
-                                {
-                                    "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                                }
-                            ]
-                        }
-                    },
-                    "_links": {
-                        "self": [
-                            {
-                                "href":  "http://example.com/wp-json/erp/v1/accounting/closing-balances/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "http://example.com/wp-json/erp/v1/accounting/closing-balances"
-                            }
-                        ]
-                    }
-                }
-            ]
-
-### Create A Closing Balance [POST]
+Closing Balance Sheet of Current Financial Year
 
     Model (application/json)
 
     {
-        "type": 6,
-        "code": 740,
-        "name": "Personal Account",
-        "description": "Personal Account",
-        "bank_account": "33423423424234",
-        "bank_name": "City Bank"
+        "end_date": "2019-12-31",
+        "start_date": "2019-01-01",
+        "f_year_id": "1"
     }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
+
+## Get Closest Financial Year [/closing-balance/closest-fn-year]
+Get Closest Financial Year
+
+### Get Closest Financial Year [GET]
+
+Fetches next closest financial year
+
++ Response 200 (application/json)
     + Body
 
             {
-                "id": 67,
-                "group": "Assets",
-                "type": "Bank & Cash",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/closing-balances/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/closing-balances"
-                        }
-                    ]
-                }
+                "id": "1",
+                "name": "2020",
+                "end_date": "2020-12-31",
+                "start_date": "2020-01-01"
             }
 
-## Manage Single Closing Balance [/closing-balances/{id}]
-
+## Get Next Financial Year [/closing-balance/next-fn-year/{?date}]
 + Parameters
-    + id (string) - id of the closing-balance in the form of an string
+    + date (string) - last date of the current financial year in the form of an string
 
-### Retrieve A Closing Balance [GET]
+### List Next Financial Year[GET]
 
-+ Request (application/json)
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "id": 67,
-                "group": "Expenses",
-                "type": "Expense",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/closing-balances/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/closing-balances"
-                        }
-                    ]
-                }
-            }
-
-### Edit A Closing Balance [PUT]
-
-    Model (application/json)
-
-    {
-        "type"       : 12,
-        "code"       : 720,
-        "name"       : "Account Snacks",
-        "description": "Account for Expense of Snacks"
-    }
-
-+ Response 201 (application/json)
-    + Body
-
-            {
-                "id": 67,
-                "group": "Expenses",
-                "type": "Expense",
-                "code": 720,
-                "name": "Account Snacks",
-                "description": "Account for Expense of Snacks",
-                "parent": 0,
-                "system": 0,
-                "entries": 0,
-                "created_by": {
-                    "id": 1,
-                    "user_nicename": "john",
-                    "user_email": "john@doe.com",
-                    "user_url": "http://www.doe.com",
-                    "display_name": "John Wick",
-                    "avatar": "https://gravatar.com",
-                    "_links": {
-                        "self": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users/1"
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "href": "https://demo.wp-api.org/wp-json/wp/v2/users"
-                            }
-                        ]
-                    }
-                },
-                "_links": {
-                    "self": [
-                        {
-                            "href":  "http://example.com/wp-json/erp/v1/accounting/closing-balances/1"
-                        }
-                    ],
-                    "collection": [
-                        {
-                            "href": "http://example.com/wp-json/erp/v1/accounting/closing-balances"
-                        }
-                    ]
-                }
-            }
-
-### Delete A Closing Balance [DELETE]
-
-+ Request (application/json)
-+ Response 204 (application/json)
-
-
-## Manage Type of Closing Balance [/closing-balances/types]
-
-### Retrieve All Types [GET]
-
-Retrieve all Closing Balances Types
+Fetches next financial year
 
 + Response 200 (application/json)
     + Body
 
-            [
-                {
-                    "id"      : 1,
-                    "name"    : "Current Asset",
-                    "class_id": 1
-                },
-                {
-                    "id"      : 2,
-                    "name"    : "Fixed Asset",
-                    "class_id": 1
-                },
-                {
-                    "id"      : 3,
-                    "name"    : "Inventory",
-                    "class_id": 1
-                }
-            ]
+            {
+                "id": "1",
+                "start_date": "2020-01-01",
+                "end_date": "2020-12-31"
+            }
