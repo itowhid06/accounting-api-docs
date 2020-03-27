@@ -1,8 +1,7 @@
 # Group Expenses
 
-## Manage Expense Collection [/expenses/{?per_page,page,search}]
 
-### List All Expenses [GET]
+## Manage Expense Collection [/expenses/{?per_page,page,search}]
 
 + Parameters
 
@@ -11,6 +10,11 @@
     + page (number, optional) - The current page number of results.
         + Default: `1`
     + search (string, optional) - The search keyword.
+
+
+### List All Expenses [GET]
+
+Fetches all available expenses with pagination
 
 
 + Response 200 (application/json)
