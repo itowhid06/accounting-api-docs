@@ -1,12 +1,12 @@
 {
-    "name": "accounting-api",
+    "name": "accounting-api-docs",
     "version": "1.0.0",
-    "description": "ERP Accounting API",
+    "description": "API Documentation of WP ERP Accounting Module",
     "scripts": {
         "dev": "aglio --theme-full-width --theme-template triple --theme-variables flatly -i docs.apib -s",
         "build": "aglio --theme-full-width --theme-template triple --theme-variables flatly -i docs.apib -o index.html"
     },
-    "author": "Tareq Hasan <tareq@wedevs.com",
+    "author": "wp-erp",
     "license": "MIT",
     "dependencies": {
         "aglio": "^2.3.0",
