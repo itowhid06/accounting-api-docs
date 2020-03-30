@@ -1,5 +1,4 @@
-# Group Peoples
-
+# Group People
 
 
 ## People List [/people/{?per_page,page,search}]
@@ -61,8 +60,6 @@ Fetches all available people with pagination
                 }
             ]
 
-## People List [/people]
-
 ## Manage Single People [/people/{id}]
 
 + Parameters
@@ -109,4 +106,51 @@ Fetches all available people with pagination
                         "href": "https://example.com/wp-json/erp/v1/accounting/v1/people"
                     }
                 }
+            }
+
+# Group People Address
+
+
+## Get Address of a People [/people/{id}/address]
+
++ Parameters
+    + id (string) - id of the people in the form of an string
+
+### Retrieve Address of A People [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "street_1: Mauricio Brooks; street_2: 56014 Lebsack Passage; city: Port Dianna; state: Idaho; postal_code: 54817-5202; country: Cuba; "
+            }
+
+
+## Get Opening Balance of a People [/people/{id}/opening-balance]
+
++ Parameters
+    + id (string) - id of the people in the form of an string
+
+### Retrieve Opening Balance of A People [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                0
+            }
+
+
+## Check if email exist already for a people [/people/check-email/{?email}]
+
++ Parameters
+    + email (string) - email of the people to be checked
+
+### Check the email of a people [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                false
             }
