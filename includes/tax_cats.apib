@@ -13,7 +13,7 @@
 
 ### List All Tax Categories [GET]
 
-Fetches all available products with pagination
+Fetches all available tax categorys with pagination
 
 + Response 200 (application/json)
     + Body
@@ -130,7 +130,7 @@ Fetches all available products with pagination
 ## Manage Single Tax Category [/tax-cats/{id}]
 
 + Parameters
-    + id (string) - id of the product in the form of an string
+    + id (string) - id of the tax category in the form of an string
 
 ### Retrieve A Tax Category [GET]
 
@@ -157,7 +157,6 @@ Fetches all available products with pagination
 
     Model (application/json)
 
-        Model (application/json)
 
     {
         "description": "Drive Safely",
@@ -185,7 +184,7 @@ Fetches all available products with pagination
 
 ### Delete A Tax Category [DELETE]
 
-Deletes a product
+Deletes a tax category
 
 + Request (application/json)
 + Response 204 (application/json)
@@ -193,11 +192,11 @@ Deletes a product
 ## Bulk Delete Tax Categories [/tax-cats/{ids}]
 
 + Parameters
-    + ids (string) - ids of the products to be deleted seperated by comma
+    + ids (string) - ids of the tax categories to be deleted seperated by comma
 
 ### Bulk Delete Tax Categories [DELETE]
 
-Bulk Deletes selected products
+Bulk Deletes selected tax categories
 
 + Request (application/json)
 + Response 204 (application/json)
