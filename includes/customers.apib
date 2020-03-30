@@ -257,10 +257,16 @@ Fetches all available customers with pagination
 + Request (application/json)
 + Response 204 (application/json)
 
-## Customers Transactions [/customers/{id}/transactions/{?per_page,page,search,include,include}]
+## Customers Transactions [/customers/{id}/transactions/{?per_page,page,search}]
 
 + Parameters
+
     + id (string) - id of the customer in the form of an string
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + search (string, optional) - The search keyword.
 
 ### List All Transactions of a Customer [GET]
 
@@ -270,40 +276,37 @@ Fetches all available customers with pagination
 
             [
                 {
-                    "id": 41,
-                    "first_name": "John",
-                    "last_name": "Smith",
-                    "email": "john@gmail.com",
-                    "phone": "1234567890",
-                    "mobile": "",
-                    "fax": null,
-                    "website": "",
-                    "notes": "",
-                    "other": null,
-                    "company": "ABC Inc.",
-                    "photo_id": null,
-                    "photo": null,
-                    "billing": {
-                        "first_name": "John",
-                        "last_name": "Smith",
-                        "street_1": "43 Edgewood Rd.",
-                        "street_2": "",
-                        "city": "Riverside",
-                        "state": "CA",
-                        "postal_code": "94544",
-                        "country": "US",
-                        "email": "john@gmail.com",
-                        "phone": "1234567890"
-                    },
-                    "namespace": "erp/v1",
-                    "rest_base": "accounting/v1/customers",
-                    "_links": {
-                        "self": {
-                            "href": "https://example.com/wp-json/erp/v1/accounting/v1/customers/41"
-                        },
-                        "collection": {
-                            "href": "https://example.com/wp-json/erp/v1/accounting/v1/customers"
-                        }
-                    }
+                    "voucher_no": null,
+                    "particulars": "Opening Balance",
+                    "people_id": null,
+                    "trn_no": null,
+                    "trn_date": null,
+                    "created_at": null,
+                    "debit": null,
+                    "credit": null,
+                    "balance": 50,
+                    "balance_val": 0
+                },
+                {
+                    "voucher_no": "2",
+                    "people_id": "23",
+                    "trn_date": "2020-03-30",
+                    "debit": "50.00",
+                    "credit": "0.00",
+                    "particulars": "Sales invoice",
+                    "created_at": "2020-03-30",
+                    "balance_val": 50,
+                    "balance": "$50 Dr"
+                },
+                {
+                    "voucher_no": null,
+                    "particulars": "Total",
+                    "people_id": null,
+                    "trn_no": null,
+                    "trn_date": null,
+                    "created_at": null,
+                    "debit": 50,
+                    "credit": 0,
+                    "balance": null
                 }
             ]
